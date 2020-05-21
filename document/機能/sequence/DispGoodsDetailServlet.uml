@@ -1,55 +1,19 @@
 @startuml
-\
-actor User\
-participant \'93DispGoodsDetailServlet\'94as A\
-participant \'93goodsDao:GoodsDao\'94as B\
-participant \'93good\'94as C\
-participant \'93listGoodsBean:ListGoodsBeans\'94 as D\
-participant \'93list:List<ListGoodsBeans>\'94 as E\
-A -> B: 
-\f1 \'90\'b6\'90\'ac
-\f0 \
-A -> B: getGoodsDetails(goodsId)\
-activate A\
-B -> C: SELECT
-\f1 \'95\'b6\'8e\'c0\'8d\'73\
-
-\f0 activate B\
-C //\'97 B: 
-\f1 \'8c\'8b\'89\'ca\'83\'5a\'83\'62\'83\'67\
-
-\f0 activate C
-\f1 \
-B
-\f0  -> 
-\f1 C
-\f0 : 
-\f1 \'90\'b6\'90\'ac\
-B
-\f0  -> 
-\f1 D
-\f0 : setGoodsDescription(goodsDescription)
-\f2\fs28 \cf0 \kerning1\expnd0\expndtw0 \
-\pard\pardeftab720\sl500\partightenfactor0
-
-\f1\fs28\fsmilli14400 \cf2 \expnd0\expndtw0\kerning0
-B
-\f0  -> 
-\f1 D
-\f0 : setGoodsCategory_id(category_id)
-\f2\fs28 \cf0 \kerning1\expnd0\expndtw0 \
-
-\f1\fs28\fsmilli14400 \cf2 \expnd0\expndtw0\kerning0
-B
-\f0  -> 
-\f1 D
-\f0 : setGoodsBrand_id(goodsBrand_id)\
-B -> E:
-\f1 \'81\'40\'90\'b6\'90\'ac\
-B
-\f0  -> E: add(ListGoodBeans)\
-B -> A:list:List<ListGoodBeans>\
-activate B\
-B -> C: DoWork\
-activate C\
+actor User
+participant DispGoodsDetailServlet as A
+participant goodsDao as B
+participant GoodsDto as D
+participant GoodsListDto as E
+participant good as C
+A -> B: getGoodsDetails(goodsId)
+activate A
+B -> C: SELECT()
+activate B
+C -> B: 戻り値
+activate C
+B -> C: setGoodsDescription(goodsDescription)
+B -> D: setGoodsCategory_id(category_id)
+B -> D: setGoodsBrand_id(goodsBrand_id)
+B -> E: add(ListGoodBeans)
+B -> A:list:List<ListGoodBeans>
 @enduml
