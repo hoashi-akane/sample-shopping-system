@@ -1,0 +1,23 @@
+@startuml
+actor User
+participant DispBuyHistoryServlet as A
+participant BuyHistoryDao as B
+participant BuyHistoryDto as C
+participant BuyHistoryListDto as D
+participant buy_history as E
+A -> B: getHistoryList(session.user.id)
+activate A
+B -> E: SELECT()
+activate E
+activate B
+E -> B: 戻り値
+B -> D: 生成
+activate D
+B -> C: 生成
+activate C
+B -> C: setId(id)
+B -> C: setBuyDate(buy_date)
+B -> C: setTotalPrice(total_price)
+B -> D: add(BuyHistoryDto)
+B -> A:list:List<BuyHistoryListDto>
+@enduml
