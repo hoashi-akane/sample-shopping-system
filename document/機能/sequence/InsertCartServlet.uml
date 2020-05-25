@@ -1,0 +1,18 @@
+@startuml 
+actor User
+participant "InsertCartServlet" as A
+participant "cartsDto:CartsDto" as B
+participant "cartsDao:CartsDao" as C
+participant "carts" as D
+A -> B: 生成
+activate A
+A -> B: setUserId(user_id)
+A -> B: setGoodsId(goods_id)
+A -> B: setVolume(volume)
+A -> C: 生成
+activate C
+A -> C: insertDate(cartsDto)
+C -> D: INSERT文実行
+D --> C: 結果セット
+C --> A: true/false
+@enduml

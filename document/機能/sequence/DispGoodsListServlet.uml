@@ -1,0 +1,24 @@
+@startuml 
+actor User
+participant "DispGoodsListServlet" as A
+participant "goodsDao:GoodsDao" as B
+participant "goods" as C
+participant "listGoodsBean:ListGoodsBeans" as D
+participant "list:List<ListGoodsBeans>" as E
+A -> B: 生成
+activate A
+activate B
+A -> B: getlist()
+B -> C: SELECT文実行
+activate C
+C --> B: 結果セット
+B -> D: 生成
+B -> D: setGoodsName(goods_name)
+B -> D:setPrice(price)
+B -> D:setStock(stock)
+activate D
+B -> E: 生成
+activate E
+B -> E: add(ListGoodsBeans)
+B --> A: list: List< ListGoodsBeans>
+@enduml
