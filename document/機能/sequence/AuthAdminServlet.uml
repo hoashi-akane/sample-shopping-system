@@ -1,0 +1,17 @@
+@startuml
+actor User
+participant AuthAdminServlet as A
+participant userDao as B
+participant loginInfoDto as C
+participant users as D
+A -> B: login(userId, password)
+activate A
+activate B
+B -> D: SELECT()
+D -> B: 戻り値
+B -> C: 生成
+activate C
+B -> C: setId(Id)
+B -> C: setUserName(userName)
+B -> C: setIsAdmin(true)
+@enduml
