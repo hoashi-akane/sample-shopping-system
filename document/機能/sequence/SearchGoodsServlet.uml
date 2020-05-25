@@ -1,0 +1,25 @@
+@startuml
+actor User
+participant SearchGoodsServlet as A
+participant goodsDao as B
+participant GoodsDto as D
+participant GoodsListDto as E
+participant good as C
+A -> B: getGoodsLists(search)
+activate A
+B -> C: SELECT()
+activate B
+C -> B: 戻り値
+B -> E: 生成
+activate E
+activate C
+B -> D: 生成
+activate D
+B -> D: setId(id)
+B -> D: setGoodsName(goods_name)
+B -> D: setPrice(price)
+B -> D: setCaterogyId(category_id)
+B -> D: setBrandId(brand_id)
+B -> E: add(GoodsDto)
+B -> A:list:List<GoodsListDto>
+@enduml
