@@ -1,8 +1,8 @@
 @startuml 
 actor User
 participant "InsertCartServlet" as A
-participant "cartsDto:CartsDto" as B
-participant "cartsDao:CartsDao" as C
+participant "cartDto:CartDto" as B
+participant "cartDao:CartDao" as C
 participant "carts" as D
 A -> B: 生成
 activate A

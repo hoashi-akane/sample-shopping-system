@@ -8,11 +8,11 @@ participant good as C
 A -> B: getGoodsLists(search)
 activate A
 B -> C: SELECT()
+activate C
 activate B
 C -> B: 戻り値
 B -> E: 生成
 activate E
-activate C
 B -> D: 生成
 activate D
 B -> D: setId(id)
