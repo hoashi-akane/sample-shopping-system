@@ -6,11 +6,17 @@ participant "goodsDao:GoodsDao" as C
 participant "Goods" as D
 A -> B: 生成
 activate A
-//ここから
-//beans
+A -> B: setId(id)
+A -> B: setgoodsName(goods_name)
+A -> B: setprice(price)
+A -> B: setStock(stock)
+A -> B: setStock(description)
+A -> B: setStock(cotegory_id)
+A -> B: setStock(brand_id)
+B -> C: carts(goodsBeans:GoodsBeans)
 C -> D: UPDATE文実行
 activate C
 D --> C: 結果セット
 activate D
-B --> A: true/false
+C --> A: true/false
 @enduml
