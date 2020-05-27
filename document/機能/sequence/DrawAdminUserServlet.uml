@@ -5,7 +5,7 @@ participant "userDao:UserDao" as B
 participant "users" as C
 A -> B: 生成
 activate A
-A -> B: DeleteUser(user_id)
+A -> B: DeleteUser(id)
 B -> C: DELETE文実行
 activate C
 C --> B: 結果セット

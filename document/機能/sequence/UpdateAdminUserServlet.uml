@@ -7,6 +7,7 @@ participant "users" as D
 A -> B: 生成
 activate A
 activate B
+A -> B: setId(id)
 A -> B: setUserId(user_id)
 A -> B: setUserPass(User_password)
 A -> B: setUserName(user_name)
