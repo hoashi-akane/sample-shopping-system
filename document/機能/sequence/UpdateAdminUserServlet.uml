@@ -1,0 +1,25 @@
+@startuml 
+actor User
+participant "UpdateAdminUserServlet" as A
+participant "adminUserDto:AdminUserDto" as B
+participant "userDao:UserDao" as C
+participant "users" as D
+A -> B: 生成
+activate A
+activate B
+A -> B: setUserId(user_id)
+A -> B: setUserPass(User_password)
+A -> B: setUserName(user_name)
+A -> B: setAddress(address)
+A -> B: setSubAddress(address_sub)
+A -> B: setTel(tel)
+A -> B: setGender(gender)
+A -> B: isadmin(is_admin)
+A -> C: 生成
+activate C
+A -> C: updateUser(userDto)
+C -> D: UPDATE文実行
+activate D
+C --> B: 結果セット
+B --> A: true/false
+@enduml

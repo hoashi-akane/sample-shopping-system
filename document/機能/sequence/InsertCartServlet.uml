@@ -11,8 +11,10 @@ A -> B: setGoodsId(goods_id)
 A -> B: setVolume(volume)
 A -> C: 生成
 activate C
-A -> C: insertDate(cartsDto)
+A -> C: insertCart(cartsDto)
 C -> D: INSERT文実行
 D --> C: 結果セット
 C --> A: true/false
 @enduml
+
+//メソッドの名前変更

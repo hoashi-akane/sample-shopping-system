@@ -1,0 +1,16 @@
+@startuml 
+actor User
+participant "UpdateGootsServlet" as A
+participant "goodsDto:GoodsDto" as B
+participant "goodsDao:GoodsDao" as C
+participant "Goods" as D
+A -> B: 生成
+activate A
+//ここから
+//beans
+C -> D: UPDATE文実行
+activate C
+D --> C: 結果セット
+activate D
+B --> A: true/false
+@enduml

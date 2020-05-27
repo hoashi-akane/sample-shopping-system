@@ -1,0 +1,24 @@
+@startuml 
+actor User
+participant "Insert GoodsServlet" as A
+participant "goodsDto:GoodsDto" as B
+participant "goodsDao:GoodsDao" as C
+participant "Goods" as D
+A -> B: 生成
+activate A
+A -> B: setGoodsId(goods_id)
+A -> B: setGoodsName(goods_name)
+A -> B: setPrice(price)
+A -> B: setStock(stock)
+A -> B: setDescription(description)
+A -> B: setCategory_id(category_id)
+A -> B: setBrand(brand_id)
+A -> C: 生成
+activate C
+A -> C: insertGoods(goodsDto)
+C -> D: INSERT文実行
+D --> C: 結果セット
+C --> A: true/false
+@enduml
+
+//登録者の名前をつけるか

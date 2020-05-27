@@ -1,0 +1,17 @@
+@startuml 
+actor User
+participant "UpdateCartServlet" as A
+participant "cartsDto:CartsDto" as B
+participant "cartsDao:CartsDao" as C
+participant "carts" as D
+A -> B: 生成
+activate A
+A -> B: setStock(stock)
+A -> B: setId(id)
+B -> D: carts( cartsBeans: CartsBeans )
+C -> D: UPDATE文実行
+activate C
+D --> C: 結果セット
+activate D
+B --> A: true/false
+@enduml
