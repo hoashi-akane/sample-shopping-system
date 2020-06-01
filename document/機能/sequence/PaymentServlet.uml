@@ -1,0 +1,57 @@
+@startuml
+actor User
+participant "PaymentServlet" as A
+participant "cartDao:CartDao" as B
+participant "PaymentDto:PaymentDto" as G
+participant "List<paymentDto:List<PaymentDto>" as H
+participant "carts" as C
+participant "buyHisotryDto:BuyHisotryDto" as J
+participant "buyHistoryDao:BuyHistoryDao" as I
+participant "buy_historys" as D
+participant "buyHistoryDetailDao:BuyHistoryDetailDao" as E
+participant "buy_historys_details" as K
+activate A
+A -> B: 生成
+activate B
+A -> B: getCartList('users.id')
+B -> C: SELECT文実行
+activate C
+C --> B: 戻り値
+deactivate C
+activate H
+B -> G: 生成
+activate G
+B -> G: setUserId(session.user_id)
+B -> G: setGoodsId(carts.goods_id)
+B -> G: setVolume(carts.volume)
+B -> G: setPrice(goods.price)
+B -> H: add(paymentDto)
+B --> A: return List<paymentDto>
+deactivate G
+deactivate H
+deactivate B
+A -> J:生成
+activate J
+A -> J: setUserId(session.user_id)
+A -> J: setDate(now.date)
+A -> J: setTotalPrice(totalPrice)
+deactivate J
+A -> I: insertBuyHistory(buyHistoryDto)
+activate I
+I -> D: INSERT文実行
+activate D
+D --> I: true / false
+I --> A: true / false
+A -> I: getBuyHisotryId(buyHisotryDto)
+I -> D: SELECT文実行
+D --> I: 戻り値(id)
+deactivate D
+I --> A: 戻り値(id)
+deactivate I
+A -> E: insertBuyHistoryDetail(buy_hisotry.id, PaymentDto) 
+activate E
+E -> K: INSERT文実行
+activate K
+K --> E: true / false
+E --> A: true / false
+@enduml
