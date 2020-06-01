@@ -1,5 +1,6 @@
 @startuml
 package servlet{
+    left to right direction
     package user{
      class LoginServlet
      class AuthServlet
@@ -18,21 +19,40 @@ package servlet{
      class UpdateAdminUserServlet
      class DispAdminUserInfoServlet
     }
+    package other{
+      class MenuServlet
+    }
+    package payment{
+      class PaymentServlet
+    }
     package cart{
      class DeleteCartServlet
      class UpdateCartServlet
+     class InsertCartServlet
     }
-    package buy_hisotry{
+    package buy_history{
+     class DispBuyHistoryServlet
+     class HiddenBuyHisotryServlet
     }
     package goods{
      class DispGoodsDetailServlet
      class DispGoodsListServlet
+     class InsertGoodsServlet
+     class DeleteGoodsServlet
+     class SeachGoodsServlet
     }
-    class MenuServlet
-    
-    
 }
-
+class MenuServlet{
+  #doGet(request: HttpServletRequest,
+   response: HttpServletResponse):void
+  __ private data __
+  none
+}
+/' 
+##################################
+ pkg User
+##################################
+'/
 class LoginServlet {
   #doGet(request: HttpServletRequest,
   response: HttpServletResponse):void
@@ -71,22 +91,17 @@ class UpdateUserServlet{
   __ private data __
     none 
 }
-class MenuServlet{
-  #doGet(request: HttpServletRequest,
-   response: HttpServletResponse):void
-  __ private data __
-  none
-}
-class DispGoodsDetailServlet{
+class DispUserInfoServlet{
   #doPost(request: HttpServletRequest,
    response: HttpServletResponse):void
   __ private data __
-    none
+    none     
 }
-class DispGoodsListServlet{
-  #doPost(request: HttpServletRequest,
-   response: HttpServletResponse):void
-}
+/' 
+##################################
+ pkg Admin
+##################################
+'/
 class LoginAdminServlet{
  #doGet(request: HttpServletRequest,
   response: HttpServletResponse):void
@@ -131,12 +146,42 @@ class DispAdminUserInfoServlet{
   __ private data __
     none     
 }
-class DispUserInfoServlet{
+/' 
+##################################
+ pkg Goods
+##################################
+'/
+class DispGoodsDetailServlet{
   #doPost(request: HttpServletRequest,
    response: HttpServletResponse):void
   __ private data __
-    none     
+    none
 }
+class DispGoodsListServlet{
+  #doPost(request: HttpServletRequest,
+   response: HttpServletResponse):void
+}
+class InsertGoodsServlet{
+  #doGet(request: HttpServletRequest,
+   response: HttpServletResponse):void
+  #doPost(request: HttpServletRequest,
+   response: HttpServletResponse):void
+  __ private data __
+    none
+}
+class DeleteGoodsServlet{
+  #doPost(request: HttpServletRequest,
+   response: HttpServletResponse):void
+}
+class SeachGoodsServlet{
+  #doPost(request: HttpServletRequest,
+   response: HttpServletResponse):void
+}
+/' 
+##################################
+ pkg Cart
+##################################
+'/
 class DeleteCartServlet{
   #doPost(request: HttpServletRequest,
    response: HttpServletResponse):void
@@ -148,6 +193,40 @@ class UpdateCartServlet{
    response: HttpServletResponse):void
   __ private data __
     none     
+}
+class InsertCartServlet{
+  #doPost(request: HttpServletRequest,
+   response: HttpServletResponse):void
+  __ private data __
+    none     
+}
+/' 
+##################################
+ pkg buy_history
+##################################
+'/
+class DispBuyHistoryServlet{
+  #doPost(request: HttpServletRequest,
+   response: HttpServletResponse):void
+  __ private data __
+    none    
+}
+class HiddenBuyHisotryServlet{
+  #doPost(request: HttpServletRequest,
+   response: HttpServletResponse):void
+  __ private data __
+    none    
+}
+/' 
+##################################
+ other
+##################################
+'/
+class PaymentServlet{
+  #doPost(request: HttpServletRequest,
+   response: HttpServletResponse):void
+  __ private data __
+    none 
 }
 
 @enduml
