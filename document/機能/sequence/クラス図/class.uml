@@ -1,0 +1,153 @@
+@startuml
+package servlet{
+    package user{
+     class LoginServlet
+     class AuthServlet
+     class LogoutServlet
+     class CreateUserServlet
+     class DrowUserServlet
+     class UpdateUserServlet
+     class DispUserInfoServlet
+    }
+    package admin{
+     class LoginAdminServlet
+     class LogoutAdminServlet
+     class AuthAdminServlet
+     class CreateAdminUserServlet
+     class DrowAdminUserServlet
+     class UpdateAdminUserServlet
+     class DispAdminUserInfoServlet
+    }
+    package cart{
+     class DeleteCartServlet
+     class UpdateCartServlet
+    }
+    package buy_hisotry{
+    }
+    package goods{
+     class DispGoodsDetailServlet
+     class DispGoodsListServlet
+    }
+    class MenuServlet
+    
+    
+}
+
+class LoginServlet {
+  #doGet(request: HttpServletRequest,
+  response: HttpServletResponse):void
+  __ private data __
+  none
+}
+class AuthServlet {
+  #doPost(request: HttpServletRequest,
+  response: HttpServletResponse):void
+  __ private data __
+  none
+}
+class LogoutServlet {
+  #doGet(request: HttpServletRequest,
+  response: HttpServletResponse):void
+  __ private data __
+  none
+}
+class CreateUserServlet{
+  #doGet(request: HttpServletRequest,
+   response: HttpServletResponse):void
+  #doPost(request: HttpServletRequest,
+   response: HttpServletResponse):void
+  __ private data __
+  none
+}
+class DrowUserServlet{
+  #doPost(request: HttpServletRequest,
+   response: HttpServletResponse):void
+  __ private data __
+    none
+}
+class UpdateUserServlet{
+ #doPost(request: HttpServletRequest,
+   response: HttpServletResponse):void
+  __ private data __
+    none 
+}
+class MenuServlet{
+  #doGet(request: HttpServletRequest,
+   response: HttpServletResponse):void
+  __ private data __
+  none
+}
+class DispGoodsDetailServlet{
+  #doPost(request: HttpServletRequest,
+   response: HttpServletResponse):void
+  __ private data __
+    none
+}
+class DispGoodsListServlet{
+  #doPost(request: HttpServletRequest,
+   response: HttpServletResponse):void
+}
+class LoginAdminServlet{
+ #doGet(request: HttpServletRequest,
+  response: HttpServletResponse):void
+ __ private data __
+    none
+}
+class LogoutAdminServlet{
+ #doGet(request: HttpServletRequest,
+  response: HttpServletResponse):void
+ __ private data __
+    none
+}
+class AuthAdminServlet{
+ #doPost(request: HttpServletRequest,
+  response: HttpServletResponse):void
+ __ private data __
+    none
+}
+class CreateAdminUserServlet{
+ #doGet(request: HttpServletRequest,
+  response: HttpServletResponse):void
+ #doPost(request: HttpServletRequest,
+  response: HttpServletResponse):void
+ __ private data __
+    none
+}
+class DrowAdminUserServlet{
+  #doPost(request: HttpServletRequest,
+   response: HttpServletResponse):void
+  __ private data __
+    none
+}
+class UpdateAdminUserServlet{
+  #doPost(request: HttpServletRequest,
+  response: HttpServletResponse):void
+  __ private data __
+    none 
+}
+class DispAdminUserInfoServlet{
+  #doPost(request: HttpServletRequest,
+  response: HttpServletResponse):void
+  __ private data __
+    none     
+}
+class DispUserInfoServlet{
+  #doPost(request: HttpServletRequest,
+   response: HttpServletResponse):void
+  __ private data __
+    none     
+}
+class DeleteCartServlet{
+  #doPost(request: HttpServletRequest,
+   response: HttpServletResponse):void
+  __ private data __
+    none     
+}
+class UpdateCartServlet{
+  #doPost(request: HttpServletRequest,
+   response: HttpServletResponse):void
+  __ private data __
+    none     
+}
+
+@enduml
