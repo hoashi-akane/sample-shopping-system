@@ -29,6 +29,7 @@ package servlet{
      class DeleteCartServlet
      class UpdateCartServlet
      class InsertCartServlet
+     class DispCartServlet
     }
     package buy_history{
      class DispBuyHistoryServlet
@@ -196,6 +197,12 @@ class UpdateCartServlet{
 }
 class InsertCartServlet{
   #doPost(request: HttpServletRequest,
+   response: HttpServletResponse):void
+  __ private data __
+    none     
+}
+class DispCartServlet{
+  #doGet(request: HttpServletRequest,
    response: HttpServletResponse):void
   __ private data __
     none     

@@ -3,17 +3,18 @@ actor User
 participant DispGoodsDetailServlet as A
 participant goodsDao as B
 participant GoodsDto as D
-participant GoodsListDto as E
 participant good as C
-A -> B: getGoodsDetails(goodsId)
 activate A
-B -> C: SELECT()
+A -> B: getGoods(goodsId)
 activate B
-C -> B: 戻り値
+B -> C: SELECT()
 activate C
-B -> C: setGoodsDescription(goodsDescription)
+C -> B: 戻り値
+B -> D: 生成
+activate D
+B -> D: setGoodsDescription(goodsDescription)
 B -> D: setGoodsCategory_id(category_id)
 B -> D: setGoodsBrand_id(goodsBrand_id)
-B -> E: add(ListGoodBeans)
-B -> A:list:List<ListGoodBeans>
+deactivate D
+B -> A:goodsDto
 @enduml

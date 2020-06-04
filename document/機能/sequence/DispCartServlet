@@ -1,0 +1,27 @@
+@startuml
+actor User
+participant DispCartServlet as A
+participant CartDao as B
+participant CartDto as C
+participant "List<CartDto>" as D
+participant carts as E
+activate A
+A -> B: getCart(userId)
+activate B
+B -> E: SELECT()
+activate E
+E -> B: 戻り値
+B -> D: 生成
+activate D
+B -> C: 生成
+activate C
+B -> C: setGoodsId(goods_id)
+B -> C: setGoodsName(Goods.name)
+B -> C: setVolume(volume)
+B -> C: setPrice(Goods.price)
+B -> C: setCategoryName(Goods.category_id.category_name)
+B -> C: setBrandName(Goods.brand_id.brand_name)
+deactivate C
+B -> D: add(CartDto)
+B -> A: List<CartDto>
+@enduml

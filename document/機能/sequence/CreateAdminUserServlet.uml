@@ -4,9 +4,10 @@ participant "CreateAdminUserServlet" as A
 participant "adminUserDto:AdminUserDto" as B
 participant "userDao:UserDao" as C
 participant "users" as D
-A -> B: 生成
 activate A
-A -> B: setUserId(user_id)
+A -> B: 生成
+activate B
+A -> B: setLoginId(login_id)
 A -> B: setUserPass(User_password)
 A -> B: setUserName(user_name)
 A -> B: setAddress(address)
@@ -16,8 +17,10 @@ A -> B: setGender(gender)
 A -> B: setIsAdmin(is_admin)
 A -> C: 生成
 activate C
-A -> C: insertDate(userDto)
+A -> C: insertAdminUser(userDto)
+deactivate B
 C -> D: INSERT文実行
+activate D
 D --> C: 結果セット
 C -> A: true/false
 @enduml

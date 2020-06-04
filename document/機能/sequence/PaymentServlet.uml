@@ -13,15 +13,16 @@ participant "buy_historys_details" as K
 activate A
 A -> B: 生成
 activate B
-A -> B: getCartList('users.id')
+A -> B: getCart('user_id')
 B -> C: SELECT文実行
 activate C
 C --> B: 戻り値
-deactivate C
+B -> H:生成
 activate H
+deactivate C
 B -> G: 生成
 activate G
-B -> G: setUserId(session.user_id)
+B -> G: setUserId(user_id)
 B -> G: setGoodsId(carts.goods_id)
 B -> G: setVolume(carts.volume)
 B -> G: setPrice(goods.price)
