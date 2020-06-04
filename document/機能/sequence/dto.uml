@@ -1,0 +1,198 @@
+@startuml
+package dto{
+    class UserDto
+    class GoodsDto
+    class CartDto
+    class BuyHistoryDto
+    class BuyHisotryDetailDto
+    class GoodsCategoryDto
+    class BrandDto
+    class CardDto
+    class PaymentDto
+}
+class sample{
+    .. Simple Getter ..
+    .. Some setter ..
+    __ private data __
+}
+class UserDto{
+    .. Simple Getter ..
+        +getId(): int
+        +getLoginId(): String
+        +getUserPassword(): String
+        +getUserName(): String
+        +getAddress(): String
+        +getAddressSub(): String
+        +getTel(): int
+        +getGender(): bit
+        +getIsAdmin(): boolean
+    .. Some setter ..
+        +setId(): int
+        +setLoginId(loginId: String)
+        +setUserPassword(userPassword: String)
+        +setUserName(userPassword: String)
+        +setAddressid
+        +setAddressSub(addressSub: String)
+        +setTel(tel: int)
+        +setGender(gender: bit)
+        +setIsAdmin(isAdmin :boolean)
+    __ private data __
+        -id: int
+        -loginId: String
+        -userPassword: String
+        -userName: String
+        -address: String
+        -addressSub: String
+        -tel: int
+        -gender: bit
+        -isAdmin :boolean
+}
+class GoodsDto{
+    .. Simple Getter ..
+        +getId(): int
+        +getGoodsName(): String
+        +getPrice(): int
+        +getStock(): int
+        +getDescription(): String
+        +getCategoryId(): int
+        +getBrandId(): int
+    .. Some setter ..
+        +setId(id: int)
+        +setGoodsName(goodsName: String)
+        +setPrice(price: int)
+        +setStock(stock: int)
+        +setDescription(description: String)
+        +setCategoryId(categoryId: int)
+        +setBrandId(brandId: int)
+    __ private data __
+        -id: int
+        -goodsName: String
+        -price: int
+        -stock: int
+        -description: String
+        -categoryId: int
+        -brandId: int
+}
+class CartDto{ 
+    .. Simple Getter ..
+        +getId(): int
+        +getUserId(): int
+        +getGoodsId(): int
+        +getVolume(): int
+    .. Some setter ..
+        +setId(id: int) 
+        +setUserId(userId: int)
+        +setGoodsId(goodsId: int)
+        +setVolume(volume: int)
+    __ private data __
+        -id: int
+        -userId: int
+        -goodsId: int
+        -volume: int
+}
+class BuyHistoryDto{
+    .. Simple Getter ..
+        +setId(): int
+        +setUserId(): int
+        +setBuyDate(): datetime
+        +setTotalPrice(): int
+    .. Some setter ..
+        +getId(id: int)
+        +getUserId(userId: int)
+        +getBuyDate(buyDate: datetime)
+        +getTotalPrice(totalPrice: int)
+    __ private data __
+        -id: int
+        -userId: int
+        -buyDate: datetime
+        -totalPrice: int
+}
+class BuyHisotryDetailDto{
+    .. Simple Getter ..
+        +getId(): int
+        +getBuyHistoryId(): int
+        +getGoodsId(): int
+        +getVolume(): int
+        +getUnitPrice(): int
+        +getIsHidden(): boolean
+    .. Some setter ..
+        +setId(id: int)
+        +setBuyHistoryId(buyHistoryId: int)
+        +setGoodsId(goodsId: int)
+        +setVolume(volume: int)
+        +setUnitPrice(unitPrice: int)
+        +setIsHidden(isHidden: boolean)
+    __ private data __
+        -id: int
+        -buyHistoryId: int
+        -goodsId: int
+        -volume: int
+        -unitPrice: int
+        -isHidden: boolean
+}
+class GoodsCategoryDto{
+    .. Simple Getter ..
+        +getId(): int
+        +getCategoryName(): String
+    .. Some setter ..
+        +setId(id: int)
+        +setCategoryName(category_name: String)
+    __ private data __
+        -id: int
+        -categoryName: String
+}
+class BrandDto{
+    .. Simple Getter ..
+        +getId(): int
+        +getBrandname(): String
+    .. Some setter ..
+        +setId(id: int)
+        +setBrandName(category_name: String)
+    __ private data __
+        -id: int
+        -brandName: String
+}
+class CardDto{
+    .. Simple Getter ..
+        +getId(): int
+        +getCardNumber(): int
+        +getPeriodMonth(): int
+        +getPeriodYear(): int
+        +getAlias(): String
+        +getCardUsername(): String
+        +getUserId(): int
+    .. Some setter ..
+        +setId(id: int)
+        +setCardNumber(cardNumber: int)
+        +setPeriodMonth(periodMonth: int)
+        +setPeriodYear(periodYear: int)
+        +setAlias(alias: String)
+        +setCardUsername(cardUsername: String)
+        +setUserId(userId: int)
+    __ private data __
+        -id: int
+        -cardNumber: int
+        -periodMonth: int
+        -periodYear: int
+        -alias: String
+        -cardUsername: String
+        -userId: int
+}
+class PaymentDto{
+    .. Simple Getter ..
+        +getUserId(): int
+        +getGoodsId(): int
+        +getVolume(): int
+        +getPrice(): int
+    .. Some setter ..
+        +setUserId(userId: int)
+        +setGoodsId(goodsId: int)
+        +setVolume(volume: int)
+        +setPrice(price: int)
+    __ private data __
+        -userId: int
+        -goodsId: int
+        -volume: int
+        -price: int
+}
+@enduml
