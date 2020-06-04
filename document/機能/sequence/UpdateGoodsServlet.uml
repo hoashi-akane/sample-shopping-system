@@ -1,11 +1,12 @@
 @startuml 
 actor User
-participant "UpdateGootsServlet" as A
+participant "UpdateGoodsServlet" as A
 participant "goodsDto:GoodsDto" as B
 participant "goodsDao:GoodsDao" as C
 participant "Goods" as D
-A -> B: 生成
 activate A
+A -> B: 生成
+activate B
 A -> B: setId(id)
 A -> B: setgoodsName(goods_name)
 A -> B: setprice(price)
@@ -13,10 +14,11 @@ A -> B: setStock(stock)
 A -> B: setStock(description)
 A -> B: setStock(cotegory_id)
 A -> B: setStock(brand_id)
-B -> C: carts(goodsBeans:GoodsBeans)
-C -> D: UPDATE文実行
+A -> C: updateGoods(goodsDto)
+deactivate B
 activate C
-D --> C: 結果セット
+C -> D: UPDATE文実行
 activate D
+D --> C: 結果セット
 C --> A: true/false
 @enduml

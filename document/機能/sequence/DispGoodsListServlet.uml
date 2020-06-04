@@ -2,21 +2,22 @@
 actor User
 participant "DispGoodsListServlet" as A
 participant "goodsDao:GoodsDao" as B
-participant "listGoodsBean:ListGoodsBeans" as D
-participant "list:List<ListGoodsBeans>" as E
+participant "GoodsDto:GoodsDto" as D
+participant "listGoodsDto:List<GoodsDto>" as E
 participant "goods" as C
-A -> B: 生成
 activate A
+A -> B: 生成
 activate B
-A -> B: getlist()
+A -> B: getGoodsList()
 B -> C: SELECT文実行
 activate C
 C --> B: 結果セット
 B -> D: 生成
+activate D
 B -> D: setGoodsName(goods_name)
 B -> D:setPrice(price)
 B -> D:setStock(stock)
-activate D
+deactivate D
 B -> E: 生成
 activate E
 B -> E: add(ListGoodsBeans)

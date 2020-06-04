@@ -1,0 +1,61 @@
+@startuml{plantuml_class_is_a.png}
+package dao{
+    class DaoBase
+    class UserDaoBase
+    class UserDao
+    class AdminDao
+    class BuyHisotryDao
+    class CartDao 
+    class GoodsDao
+}
+
+DaoBase <|-- UserDaoBase: 汎化
+UserDaoBase <|-- UserDao: 汎化
+UserDaoBase <|-- AdminDao: 汎化
+DaoBase <|-- CartDao:汎化
+DaoBase <|-- GoodsDao: 汎化
+DaoBase <|-- BuyHisotryDao: 汎化
+
+class DaoBase{
+    #connect():boolean
+    #close():void
+}
+
+class UserDaoBase{
+   #login(loginId: int, password:String):loginInfoDto
+   #deleteUser(userId:int):boolean
+   #updateUser(userDto:UserDto):boolean
+}
+
+class UserDao{
+    #insertUser(userDto:userDto):boolean
+}
+
+class AdminDao{
+    #insertAdminUser(userDto:UserDto):boolean
+}
+
+class GoodsDao{
+    #getGoodsList():List<GoodsDto>
+    #getGoodsList(search:String):List<GoodsDto>
+    #getGoods(goodsId:int):GoodsDto
+    #insertGoods(goodsDto:GoodsDto):boolean
+    #deleteGoods(id:int):boolean
+    #updateGoods(goodsDto:GoodsDto):boolean
+}
+
+class CartDao{
+    #deleteCart(id:int):boolean
+    #updateCart(cartDto:CartDto):boolean 
+    #insertCart(cartDto:CartDto):boolean
+    #getCart(userId:int):List<cartDto>
+}
+
+class BuyHisotryDao{
+    #getBuyHistoryList(userId:int):List<BuyHistoryListDto>
+    #hiddenBuyHistory(id:int):boolean
+    #insertBuyHistory(buyHisotryDto:BuyHisotryDto):boolean
+    #getBuyHistoryId(buyHistoryDto:BuyHisotryDto):int
+    #insertBuyHistoryDetail(buy_hisotry.id:int, paymentDto:PaymentDto):boolean
+}
+@enduml

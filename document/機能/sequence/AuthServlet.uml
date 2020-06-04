@@ -4,10 +4,11 @@ participant AuthServlet as A
 participant userDao as B
 participant loginInfoDto as C
 participant users as D
-A -> B: login(userId, password)
 activate A
+A -> B: login(loginId, password)
 activate B
 B -> D: SELECT()
+activate D
 D -> B: 戻り値
 B -> C: 生成
 activate C
