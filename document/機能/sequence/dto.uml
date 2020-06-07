@@ -10,11 +10,13 @@ package dto{
     class CardDto
     class PaymentDto
 }
+/'
 class sample{
     .. Simple Getter ..
     .. Some setter ..
     __ private data __
 }
+'/
 class UserDto{
     .. Simple Getter ..
         +getId(): int
@@ -31,7 +33,7 @@ class UserDto{
         +setLoginId(loginId: String)
         +setUserPassword(userPassword: String)
         +setUserName(userPassword: String)
-        +setAddressid
+        +setAddress(address: String)
         +setAddressSub(addressSub: String)
         +setTel(tel: int)
         +setGender(gender: bit)
