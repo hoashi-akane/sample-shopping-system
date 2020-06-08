@@ -1,0 +1,12 @@
+@startuml
+package filter{
+    class LoginFilter
+}
+class LoginFilter{
+  #doGet(request: HttpServletRequest,
+  response: HttpServletResponse):void
+  __ private data __
+  none
+}
+
+@enduml
