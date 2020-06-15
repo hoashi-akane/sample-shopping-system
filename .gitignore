@@ -1,3 +1,4 @@
 *.xlsx-HEAD
 *.xlsx-master
 /document/機能/sequence/out
+/.metadata/
