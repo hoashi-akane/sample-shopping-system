@@ -18,34 +18,32 @@ public class DaoBase {
 
 		DataSource ds=null;
 
-		public Connection DbOpen() {
-
-
-		try{
-			///////////////////////////////////
-			//DBの接続:
-			Class.forName("com.mysql.cj.jdbc.Driver");
-
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sample_db","root","root");
-		}catch(ClassNotFoundException e){
-			e.printStackTrace();
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return con;
-	}
-
-		public void Dbclose() {
-
-		try {
-			if(rs!=null) {
-				rs.close();
-			}if(con !=null){
-					con.close();
-				}
-		}catch(SQLException e) {
-					e.printStackTrace();
-				}
+		public Connection dbOpen() {
+	
+			try{
+				///////////////////////////////////
+				//DBの接続:
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sample_db","root","root");
+			}catch(ClassNotFoundException e){
+				e.printStackTrace();
+			}catch(SQLException e) {
+				e.printStackTrace();
 			}
+			return con;
 		}
+
+		public void dbClose() {
+
+			try {
+				if(rs!=null) {
+					rs.close();
+				}if(con !=null){
+						con.close();
+					}
+			}catch(SQLException e) {
+						e.printStackTrace();
+					}
+		}
+}
 
