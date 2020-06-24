@@ -12,6 +12,7 @@ A -> B: setGoodsName(goods_name)
 A -> B: setPrice(price)
 A -> B: setStock(stock)
 A -> B: setDescription(description)
+A -> B: setImageDir(image_dir)
 A -> B: setCategory_id(category_id)
 A -> B: setBrand(brand_id)
 A -> C: 生成

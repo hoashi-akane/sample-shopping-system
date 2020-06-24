@@ -56,6 +56,7 @@ class GoodsDto{
         +getPrice(): int
         +getStock(): int
         +getDescription(): String
+        +getImageDir(): String
         +getCategoryId(): int
         +getBrandId(): int
     .. Some setter ..
@@ -64,6 +65,7 @@ class GoodsDto{
         +setPrice(price: int)
         +setStock(stock: int)
         +setDescription(description: String)
+        +getImageDir(imageDir: String)
         +setCategoryId(categoryId: int)
         +setBrandId(brandId: int)
     __ private data __
@@ -72,6 +74,7 @@ class GoodsDto{
         -price: int
         -stock: int
         -description: String
+        -imageDir: String
         -categoryId: int
         -brandId: int
 }
@@ -97,7 +100,6 @@ class BuyHistoryDto{
         +setId(): int
         +setUserId(): int
         +setBuyDate(): datetime
-        +setTotalPrice(): int
     .. Some setter ..
         +getId(id: int)
         +getUserId(userId: int)

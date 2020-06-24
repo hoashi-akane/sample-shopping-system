@@ -1,8 +1,8 @@
 @startuml
 actor User
 participant "HiddenBuyHistoryServlet" as A
-participant "cartDao:CartDao" as B
-participant "carts" as C
+participant "buyHistoryDetailDao:BuyHistoryDetailDao" as B
+participant "buy_history_detail" as C
 activate A
 A -> B: 生成
 activate B
