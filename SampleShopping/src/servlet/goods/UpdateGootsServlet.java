@@ -1,3 +1,4 @@
+package servlet.goods;
 //package servlet;
 //
 //import java.io.IOException;
