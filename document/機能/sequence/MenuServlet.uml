@@ -4,8 +4,6 @@ participant MunuServlet as A
 participant "goodsDao:GoodsDao" as B
 participant "GoodsDto:GoodsDto" as D
 participant "listGoodsDto:List<GoodsDto>" as E
-participant "categoryService:CategoryService" as G
-participant "brandService:BrandService" as F
 participant "goods" as C
 activate A
 A -> B: 生成
@@ -22,24 +20,8 @@ B -> D:setStock(stock)
 B -> D:setBrandId(brand_id)
 B -> D:setCategoryId(categor_id)
 deactivate D
-A -> B: getSaleList()
-B -> C: SELECT文実行
-C --> B: 結果セット
-activate D
-B -> D: setGoodsName(goods_name)
-B -> D:setPrice(price)
-B -> D:setStock(stock)
-B -> D:setBrandId(brand_id)
-B -> D:setCategoryId(categor_id)
-deactivate D
 B -> E: 生成
 activate E
 B -> E: add(ListGoodsBeans)
 B --> A: list: List< ListGoodsBeans>
-activate F
-A ->F: brandService
-F --> A: return(List<brandDto>)
-activate G
-A ->G: categoryService
-G --> A: return(List<categoryDto>)
 @enduml

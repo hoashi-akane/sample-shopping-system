@@ -1,7 +1,6 @@
 *.xlsx-HEAD
 *.xlsx-master
 /document/機能/sequence/out
-/document/機能/out/
 *.metadata
 Servers
 *.class
@@ -9,4 +8,3 @@ Servers
 .classpath
 .settings
 /SampleShopping/build/
-.idea

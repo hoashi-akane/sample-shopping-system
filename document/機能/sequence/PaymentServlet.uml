@@ -5,8 +5,6 @@ participant "cartDao:CartDao" as B
 participant "PaymentDto:PaymentDto" as G
 participant "List<paymentDto:List<PaymentDto>" as H
 participant "carts" as C
-participant "goodsDao:GoodsDao" as L
-participant "goods" as M
 participant "buyHisotryDto:BuyHisotryDto" as J
 participant "buyHistoryDao:BuyHistoryDao" as I
 participant "buy_historys" as D
@@ -21,6 +19,7 @@ activate C
 C --> B: 戻り値
 B -> H:生成
 activate H
+deactivate C
 B -> G: 生成
 activate G
 B -> G: setUserId(user_id)
@@ -31,24 +30,12 @@ B -> H: add(paymentDto)
 B --> A: return List<paymentDto>
 deactivate G
 deactivate H
-activate L
-A -> L: reCulcStock(paymentDto)
-L -> M: UPDATE文実行
-activate M
-M --> L: true/false
-deactivate M
-L --> A: true/false
-deactivate L
-A -> B: deleteCarts(userId)
-B -> C: DELETE文実行
-C --> B: true/false
-B --> A: true/false
 deactivate B
-deactivate C
 A -> J:生成
 activate J
 A -> J: setUserId(session.user_id)
 A -> J: setDate(now.date)
+A -> J: setTotalPrice(totalPrice)
 deactivate J
 A -> I: insertBuyHistory(buyHistoryDto)
 activate I

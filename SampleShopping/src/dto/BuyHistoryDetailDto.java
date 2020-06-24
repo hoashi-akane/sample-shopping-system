@@ -8,8 +8,6 @@ public class BuyHistoryDetailDto {
 	private int volume;
 	private int unitPrice;
 	private boolean isHidden;
-	
-	
 	public int getId() {
 		return id;
 	}

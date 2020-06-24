@@ -3,8 +3,6 @@ actor User
 participant "DrawUserServlet" as A
 participant "userDao:UserDao" as B
 participant "users" as C
-participant "cartDao:CartDao" as D
-participant "carts" as E
 activate A
 A -> B: 生成
 activate B
@@ -12,14 +10,5 @@ A -> B: DeleteUser(user_id)
 B -> C: DELETE文実行
 activate C
 C --> B: 結果セット
-deactivate C
 B --> A: true/false
-deactivate B
-A -> D: 生成
-activate D
-A -> D: deleteCarts(userId)
-D-> E: DELETE分実行
-activate E
-E --> D: 結果セット
-D --> A: true/false
 @enduml

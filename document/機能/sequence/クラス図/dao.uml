@@ -46,7 +46,6 @@ class GoodsDao{
 
 class CartDao{
     #deleteCart(id:int):boolean
-    #deleteCarts(userId:int):boolean
     #updateCart(cartDto:CartDto):boolean 
     #insertCart(cartDto:CartDto):boolean
     #getCart(userId:int):List<cartDto>
@@ -58,9 +57,5 @@ class BuyHisotryDao{
     #insertBuyHistory(buyHisotryDto:BuyHisotryDto):boolean
     #getBuyHistoryId(buyHistoryDto:BuyHisotryDto):int
     #insertBuyHistoryDetail(buy_hisotry.id:int, paymentDto:PaymentDto):boolean
-}
-
-class BrandDao{
-    #getBrandList():List<BrandDto>
 }
 @enduml
