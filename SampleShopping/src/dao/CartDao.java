@@ -99,10 +99,10 @@ public class CartDao extends DaoBase{
 	private CartDto cartToDto(ResultSet rs) {
 		CartDto cartDto = new CartDto();
 		try {
-			cartDto.setId(this.rs.getInt("id"));
-			cartDto.setUserId(this.rs.getInt("user_id"));
-			cartDto.setGoodsId(this.rs.getInt("goods_id"));
-			cartDto.setVolume(this.rs.getInt("volume"));
+			cartDto.setId(rs.getInt("id"));
+			cartDto.setUserId(rs.getInt("user_id"));
+			cartDto.setGoodsId(rs.getInt("goods_id"));
+			cartDto.setVolume(rs.getInt("volume"));
 		}catch(Exception e ) {
 			e.printStackTrace();
 		}

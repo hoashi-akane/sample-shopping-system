@@ -72,14 +72,14 @@ public class UserDaoBase extends DaoBase{
 	private UserDto userToDto(ResultSet rs) {
 		UserDto userDto = new UserDto();
 		try {
-			userDto.setId(this.rs.getInt("id"));
-			userDto.setLoginId(this.rs.getString("login_id"));
-			userDto.setUserName(this.rs.getString("user_name"));
-			userDto.setAddress(this.rs.getString("address"));
-			userDto.setAddressSub(this.rs.getString("address_sub"));
-			userDto.setTel(this.rs.getString("tel"));
-			userDto.setGender(this.rs.getByte("gender"));
-			userDto.setAdmin(this.rs.getBoolean("is_admin"));
+			userDto.setId(rs.getInt("id"));
+			userDto.setLoginId(rs.getString("login_id"));
+			userDto.setUserName(rs.getString("user_name"));
+			userDto.setAddress(rs.getString("address"));
+			userDto.setAddressSub(rs.getString("address_sub"));
+			userDto.setTel(rs.getString("tel"));
+			userDto.setGender(rs.getByte("gender"));
+			userDto.setAdmin(rs.getBoolean("is_admin"));
 		} catch (SQLException e) {
 			userDto = null;
 		}

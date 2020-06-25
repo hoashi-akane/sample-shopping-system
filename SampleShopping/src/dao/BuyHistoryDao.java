@@ -39,14 +39,14 @@ public class BuyHistoryDao extends DaoBase{
 			while(flag) {
 				List<GoodsDto> goodsDtoList = new ArrayList<GoodsDto>();
 				BuyHistoryDto buyHistoryDto =new BuyHistoryDto();
-				buyHistoryDto.setId(this.rs.getInt("id"));
-				buyHistoryDto.setBuyDate(this.rs.getDate("buy_date"));
+				buyHistoryDto.setId(rs.getInt("id"));
+				buyHistoryDto.setBuyDate(rs.getDate("buy_date"));
 				while(flag) {
 //					1回目は必ずtrue
-					if(buyHistoryDto.getId() == this.rs.getInt("Id")) {
+					if(buyHistoryDto.getId() == rs.getInt("Id")) {
 						GoodsDto goodsDto = new GoodsDto();
-						goodsDto.setId(this.rs.getInt("goods_id"));
-						goodsDto.setGoodsName(this.rs.getString("goods_name"));
+						goodsDto.setId(rs.getInt("goods_id"));
+						goodsDto.setGoodsName(rs.getString("goods_name"));
 						goodsDtoList.add(goodsDto);
 //						rs.next()をするのはここのみ（idが同じ限りrs.next()を、異なればdtoListに追加してbreakさせる。)
 //						データがなくならない限りtrue
