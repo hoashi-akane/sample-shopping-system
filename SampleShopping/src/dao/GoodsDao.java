@@ -138,16 +138,16 @@ public class GoodsDao extends DaoBase{
 	private GoodsDto goodsToDto(ResultSet rs) {
 		GoodsDto goodsDto = new GoodsDto();
 		try {
-			goodsDto.setId(this.rs.getInt("id"));
-			goodsDto.setGoodsName(this.rs.getString("goods_name"));
-			goodsDto.setPrice(this.rs.getInt("price"));
-			goodsDto.setStock(this.rs.getInt("stock"));
-			goodsDto.setDescription(this.rs.getString("description"));
-			goodsDto.setImageDir(this.rs.getString("image_dir"));
-			goodsDto.setCategoryId(this.rs.getInt("category_id"));
-			goodsDto.setBrandId(this.rs.getInt("brand_id"));
-			goodsDto.setSale(this.rs.getBoolean("sale"));
-			goodsDto.setSalesQuantity(this.rs.getInt("sales_quantity"));
+			goodsDto.setId(rs.getInt("id"));
+			goodsDto.setGoodsName(rs.getString("goods_name"));
+			goodsDto.setPrice(rs.getInt("price"));
+			goodsDto.setStock(rs.getInt("stock"));
+			goodsDto.setDescription(rs.getString("description"));
+			goodsDto.setImageDir(rs.getString("image_dir"));
+			goodsDto.setCategoryId(rs.getInt("category_id"));
+			goodsDto.setBrandId(rs.getInt("brand_id"));
+			goodsDto.setSale(rs.getBoolean("is_sale"));
+			goodsDto.setSalesQuantity(rs.getInt("sales_quantity"));
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();

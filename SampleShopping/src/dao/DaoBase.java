@@ -24,7 +24,7 @@ public class DaoBase {
 				///////////////////////////////////
 				//DBの接続:
 				Class.forName("com.mysql.cj.jdbc.Driver");
-				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sample_db","root","root");
+				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sample_db?useSSL=false","root","root");
 			}catch(ClassNotFoundException e){
 				e.printStackTrace();
 			}catch(SQLException e) {
