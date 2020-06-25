@@ -15,7 +15,7 @@ import dto.GoodsDto;
 /**
  * Servlet implementation class SearchGoodsServlet
  */
-@WebServlet("/SearchGoodsServlet")
+@WebServlet("/searchgoods")
 public class SearchGoodsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -41,6 +41,7 @@ public class SearchGoodsServlet extends HttpServlet {
     	}else {
     		request.setAttribute("message", "検索しましたが見つかりませんでした。");
     	}
+    	request.getRequestDispatcher("WEB-INF/jsp/goodslist.jsp").forward(request, response);
     }
 
 }
