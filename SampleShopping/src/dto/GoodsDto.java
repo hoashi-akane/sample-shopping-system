@@ -12,6 +12,9 @@ public class GoodsDto {
 	private boolean sale;
 	private int categoryId;
 	private int brandId;
+	private BrandDto brandDto;
+	private CategoryDto categoryDto;
+	
 	
 	public int getId() {
 		return id;
@@ -46,9 +49,6 @@ public class GoodsDto {
 	public String getImageDir() {
 		return imageDir;
 	}
-	public void setImageDir(String imageDir) {
-		this.imageDir = imageDir;
-	}
 	public int getCategoryId() {
 		return categoryId;
 	}
@@ -61,6 +61,9 @@ public class GoodsDto {
 	public void setBrandId(int brandId) {
 		this.brandId = brandId;
 	}
+	public void setImageDir(String imageDir) {
+		this.imageDir = imageDir;
+	}
 	public int getSalesQuantity() {
 		return salesQuantity;
 	}
@@ -72,6 +75,18 @@ public class GoodsDto {
 	}
 	public void setSale(boolean sale) {
 		this.sale = sale;
+	}
+	public BrandDto getBrandDto() {
+		return brandDto;
+	}
+	public void setBrandDto(BrandDto brandDto) {
+		this.brandDto = brandDto;
+	}
+	public CategoryDto getCategoryDto() {
+		return categoryDto;
+	}
+	public void setCategoryDto(CategoryDto categoryDto) {
+		this.categoryDto = categoryDto;
 	}
 	
 }
