@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dto.BrandDto;
+import dto.CategoryDto;
 import dto.GoodsDto;
 
 public class GoodsDao extends DaoBase{
@@ -53,11 +55,15 @@ public class GoodsDao extends DaoBase{
 		GoodsDto goodsDto = null;
 		try {
 			con = super.dbOpen();
-			stmt = this.con.prepareStatement("SELECT * FROM goods WHERE id = ?;");
+			stmt = this.con.prepareStatement("SELECT goods.id, goods.goods_name, goods.price, goods.description, goods.image_dir, goods.sales_quantity, goods.is_sale, goods.category_id,"
+					+ " goods.brand_id, brands.brand_name, categorys.category_name FROM goods LEFT OUTER JOIN brands ON goods.brand_id = brands.id "
+					+ "LEFT OUTER JOIN goods_category AS categorys ON goods.category_id = categorys.id WHERE goods.id = ?;");
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				goodsDto = goodsToDto(rs);
+				goodsDto.setBrandDto(new BrandDto(rs.getInt("brand_id"),rs.getString("brand_name")));
+				goodsDto.setCategoryDto(new CategoryDto(rs.getInt("category_id"), rs.getString("category_name")));
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -144,8 +150,6 @@ public class GoodsDao extends DaoBase{
 			goodsDto.setStock(rs.getInt("stock"));
 			goodsDto.setDescription(rs.getString("description"));
 			goodsDto.setImageDir(rs.getString("image_dir"));
-			goodsDto.setCategoryId(rs.getInt("category_id"));
-			goodsDto.setBrandId(rs.getInt("brand_id"));
 			goodsDto.setSale(rs.getBoolean("is_sale"));
 			goodsDto.setSalesQuantity(rs.getInt("sales_quantity"));
 		} catch (SQLException e) {
@@ -153,6 +157,5 @@ public class GoodsDao extends DaoBase{
 			e.printStackTrace();
 		}
 		return goodsDto;
-		
 	}
 }
