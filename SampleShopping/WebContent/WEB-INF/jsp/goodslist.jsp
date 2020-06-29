@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import="java.util.*" %>
+<%@page import="dto.*" %>
+    <%List<GoodsDto> list= (ArrayList<GoodsDto>)request.getAttribute("goodsDtoList");%>
+    <%String action=""; %>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
 	<head>
@@ -49,14 +53,17 @@
 			</div>
 
 			<table id="goodsTable" align="center">
+		<%for(GoodsDto bean:list){ %>
+		<form id ='form' name = 'inputForm' action="">
 				<tr>
-					<td rowspan="3"><img src="../img/header2.png" alt="" id="goodsimg"></td>
-					<td colspan="4" id="goodsName">商品名</td>
+					<td rowspan="3"><img src="<%=bean.getImageDir()%>" alt="" id="goodsimg"></td>
+					<td colspan="5" id="goodsName"><%=bean.getGoodsName()%></td>
 				</tr>
-				<tr>
-					<td id="goodsName">値段</td>
-					<td id="goodsName">在庫数</td>
-					<td id="goodsName">数量
+				<tr class="mt-2">
+					<td id="goodsName"><%=bean.getPrice()%></td>
+					<td id="goodsName"><%=bean.getStock()%></td>
+					<td id="goodsName">数量</td>
+					<td>
 						<select name="cnt">
 							<option value="1" selected>1</option>
 							<option value="2">2</option>
@@ -65,11 +72,10 @@
 							<option value="5">5</option>
 						</select>
 					</td>
-					<td id="goodsName"><a href="cart.html"><img src="../img/icon/cart.png" alt="" id="cartimg"></a></td>
+					<td id="goodsName"><a href="#"><img src="" alt="" id="cartimg"></a></td>
 				</tr>
-				<tr>
-					<td colspan="4" id="goodsName">説明</td>
-				</tr>
+		</form>
+				<%} %>
 			</table>
 			<!--フッター-->
 	<footer>
@@ -92,7 +98,7 @@
 	          spNavInOut.switch();
 	          //一時的にボタンを押せなくする
 	          setTimeout(function(){
-	            navButtonFlag = true;
+	        	  navButtonFlag = true;
 	          },200);
 	          navButtonFlag = false;
 	        }
