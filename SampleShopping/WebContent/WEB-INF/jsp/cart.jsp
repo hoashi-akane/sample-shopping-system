@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import="java.util.*" %>
+<%@page import="dto.*" %>
+<% List<CartDto> cartDtoList = (ArrayList<CartDto>)request.getAttribute("cartDtoList");
+	int i =1; %>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
 	<head>
@@ -58,14 +62,16 @@
 			<th id="cartName">数量</th>
 			<th id="cartName">小計</th>
 		</tr>
+		<% for(CartDto cartDto:cartDtoList){ %>
 		<tr>
-			<td id="cartTabletd"></td>
-			<td id="cartTabletd"></td>
-			<td id="cartTabletd"></td>
-			<td id="cartTabletd"></td>
-			<td id="cartTabletd"></td>
-			<td id="cartTabletd"></td>
+			<td id="cartTabletd"><%= i %></td>
+			<td id="cartTabletd"><%= cartDto.getGoodsDto().getGoodsName() %></td>
+			<td id="cartTabletd"><%= cartDto.getGoodsDto().getId() %></td>
+			<td id="cartTabletd"><%= cartDto.getGoodsDto().getPrice() %></td>
+			<td id="cartTabletd"><%= cartDto.getVolume() %></td>
+			<td id="cartTabletd"><%= (cartDto.getGoodsDto().getPrice() * cartDto.getVolume()) %></td>
 		</tr>
+		<%} %>
 		<tr>
 			<td colspan="6" id="cartTotal"><div align="center">合計 円</div></td>
 
