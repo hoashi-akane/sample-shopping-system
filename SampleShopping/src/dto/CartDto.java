@@ -6,6 +6,7 @@ public class CartDto {
 	private int userId;
 	private int goodsId;
 	private int volume;
+	private GoodsDto goodsDto;
 	
 	
 	public int getId() {
@@ -31,6 +32,12 @@ public class CartDto {
 	}
 	public void setVolume(int volume) {
 		this.volume = volume;
+	}
+	public GoodsDto getGoodsDto() {
+		return goodsDto;
+	}
+	public void setGoodsDto(GoodsDto goodsDto) {
+		this.goodsDto = goodsDto;
 	}
 	
 }
