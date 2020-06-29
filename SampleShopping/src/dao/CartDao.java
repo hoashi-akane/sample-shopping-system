@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dto.CartDto;
+import dto.GoodsDto;
 
 public class CartDao extends DaoBase{
 
@@ -85,11 +86,13 @@ public class CartDao extends DaoBase{
 		List<CartDto> cartDtoList = new ArrayList<CartDto>();
 		try {
 			con = super.dbOpen();
-			stmt = this.con.prepareStatement("SELECT * FROM carts WHERE user_id=?");
+			stmt = this.con.prepareStatement("SELECT carts.id, carts.user_id, carts.goods_id, carts.volume, goods.goods_name, goods.price "
+					+ "FROM carts LEFT OUTER join goods ON carts.goods_id = goods.id WHERE carts.user_id=?;");
 			stmt.setInt(1, userId);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				CartDto cartDto = cartToDto(rs);
+				cartDto.setGoodsDto(new GoodsDto(rs.getInt("goods_id"), rs.getString("goods_name"), rs.getInt("price")));
 				cartDtoList.add(cartDto);
 			}
 		}catch(Exception e) {
