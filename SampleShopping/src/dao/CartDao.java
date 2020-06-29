@@ -21,6 +21,7 @@ public class CartDao extends DaoBase{
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		super.dbClose();
 		return isSuccess;
 	}
 	
@@ -37,6 +38,7 @@ public class CartDao extends DaoBase{
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		super.dbClose();
 		return isSuccess;
 	}
 	
@@ -54,6 +56,7 @@ public class CartDao extends DaoBase{
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		super.dbClose();
 		return isSuccess;
 	}
 	
@@ -72,6 +75,7 @@ public class CartDao extends DaoBase{
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		super.dbClose();
 		return isSuccess;
 	}
 	
@@ -81,7 +85,7 @@ public class CartDao extends DaoBase{
 		List<CartDto> cartDtoList = new ArrayList<CartDto>();
 		try {
 			con = super.dbOpen();
-			stmt = con.prepareStatement("SELECT * FROM carts WHERE userId=?");
+			stmt = this.con.prepareStatement("SELECT * FROM carts WHERE user_id=?");
 			stmt.setInt(1, userId);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
@@ -92,6 +96,7 @@ public class CartDao extends DaoBase{
 			cartDtoList = null;
 			e.printStackTrace();
 		}
+		super.dbClose();
 		return cartDtoList;
 	}
 	
@@ -105,6 +110,7 @@ public class CartDao extends DaoBase{
 			cartDto.setVolume(rs.getInt("volume"));
 		}catch(Exception e ) {
 			e.printStackTrace();
+			cartDto = null;
 		}
 		return cartDto;
 	}
