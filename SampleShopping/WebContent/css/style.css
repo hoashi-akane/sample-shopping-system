@@ -329,3 +329,13 @@ font-size: 30px;
 	padding-left: 35px;
 	padding-right: 35px;
 }
+
+/**************************************:goodsdetail.html**********************************/
+
+#goodsDetailCart{
+	margin-left: 1250px;
+	padding-top: 80px;
+	padding-left: 50px;
+	border: solid 1px #000;
+	height: 200px;
+}

@@ -52,6 +52,8 @@
 					<p id="title2">- GoodsDetail -</p>
 			</div>
 
+			<p	id="goodsDetailCart">合計金額 個数</p>
+
 				<table id="goodsTable" align="center">
 		<form id ='form' name = 'inputForm' action="">
 				<tr>
