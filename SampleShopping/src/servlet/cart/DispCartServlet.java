@@ -35,8 +35,14 @@ public class DispCartServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		int userId = 1;
+		int userId = ((UserDto)session.getAttribute("userDto")).getId();
 		CartDao cartDao = new CartDao();
+		//		成功、失敗、エラーメッセージ確認
+		String message = (String)session.getAttribute("message");
+		if(message != null) {
+			session.removeAttribute("message");
+			request.setAttribute("message", message);
+		}
 		List<CartDto> cartDtoList = cartDao.getCart(userId);
 		if(cartDtoList != null) {
 			request.setAttribute("cartDtoList", cartDtoList);
