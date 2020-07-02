@@ -11,12 +11,13 @@ public class CartDao extends DaoBase{
 
 	
 //	カート商品削除
-	public boolean deleteCart(int id) {
+	public boolean deleteCart(int cartId, int userId) {
 		boolean isSuccess = false;
 		try {
 			con = super.dbOpen();
-			stmt = con.prepareStatement("DELETE FROM cart WHERE id=?");
-			stmt.setInt(1, id);
+			stmt = con.prepareStatement("DELETE FROM cart WHERE id=? AND user_id=?");
+			stmt.setInt(1, cartId);
+			stmt.setInt(2, userId);
 			stmt.executeUpdate();
 			isSuccess = true;
 		}catch(Exception e) {
@@ -49,9 +50,10 @@ public class CartDao extends DaoBase{
 		boolean isSuccess = false;
 		try {
 			con = super.dbOpen();
-			stmt = con.prepareStatement("UPDATE carts SET volume=? WHERE id=?");
+			stmt = con.prepareStatement("UPDATE carts SET volume=? WHERE id=? AND user_id=?");
 			stmt.setInt(1, cartDto.getVolume());
 			stmt.setInt(2, cartDto.getId());
+			stmt.setInt(3, cartDto.getUserId());
 			stmt.executeUpdate();
 			isSuccess = true;
 		}catch(Exception e) {
