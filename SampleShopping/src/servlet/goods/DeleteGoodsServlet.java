@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.GoodsDao;
 
-/**
- * Servlet implementation class InsertAbsenceResistServlet
- */
+
 @WebServlet("/deletegoods")
 public class DeleteGoodsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -28,8 +26,11 @@ public class DeleteGoodsServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
+	try {
+
 		String num =request.getParameter("id");
 		int id  = Integer.parseInt(num);
+
 
 		GoodsDao goodsDao = new GoodsDao();
 		boolean isSuccess = goodsDao.deleteGoods(id);
@@ -42,6 +43,10 @@ public class DeleteGoodsServlet extends HttpServlet {
 		} else {
 			path = "dispgoodslist";
 			response.sendRedirect(path);
+		}
+
+	} catch(Exception e) {
+
 		}
 	}
 }
