@@ -32,11 +32,11 @@ public class AuthServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String loginid =request.getParameter("login_id");
+		String loginId =request.getParameter("login_Id");
 		String password = request.getParameter("password");
 
 		UserDao userDao = new UserDao();
-		UserDto userDto = userDao.login(loginid,password);
+		UserDto userDto = userDao.login(loginId,password);
 
 		String path = "";
 		HttpSession session = request.getSession();

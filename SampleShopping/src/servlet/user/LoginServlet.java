@@ -18,7 +18,7 @@ public class LoginServlet extends HttpServlet {
 
 	/**
 	 * 認証
-	 * ログインの学籍番号、パスワードが合っていたらTop.javaへ
+	 * ログインのログインid、パスワードが合っていたらTop.javaへ
 	 * 一致しなければ戻る
 	 */
 
