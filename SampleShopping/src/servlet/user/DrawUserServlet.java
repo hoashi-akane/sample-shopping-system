@@ -32,7 +32,7 @@ public class DrawUserServlet extends HttpServlet {
 	 */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	HttpSession session = request.getSession();
-		UserDto userDto = (UserDto)session.getAttribute("userdto");
+		UserDto userDto = (UserDto)session.getAttribute("userDto");
 		int id = userDto.getId();
 
 		UserDao userDao = new UserDao();
