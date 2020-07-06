@@ -31,8 +31,6 @@ public class MenuServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
 
-		session.removeAttribute("diaryBeans");
-
 		request.getRequestDispatcher("/WEB-INF/jsp/top.jsp").forward(request,response);
 
 	}
