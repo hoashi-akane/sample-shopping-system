@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@page import="java.util.*" %>
 <%@page import="dto.*" %>
-    <%List<GoodsDto> list= (ArrayList<GoodsDto>)request.getAttribute("goodsDtoList");%>
+    <%List<GoodsDto> goodsDtoList= (ArrayList<GoodsDto>)request.getAttribute("goodsDtoList");%>
     <%String action=""; %>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
@@ -53,15 +53,15 @@
 			</div>
 
 			<table id="goodsTable" align="center">
-		<%for(GoodsDto bean:list){ %>
+		<%for(GoodsDto goodsDto:goodsDtoList){ %>
 		<form id ='form' name = 'inputForm' action="">
 				<tr>
-					<td rowspan="3"><img src="<%=bean.getImageDir()%>" alt="" id="goodsimg"></td>
-					<td colspan="5" id="goodsName"><%=bean.getGoodsName()%></td>
+					<td rowspan="3"><img src="<%=goodsDto.getImageDir()%>" alt="" id="goodsimg"></td>
+					<td colspan="5" id="goodsName"><%=goodsDto.getGoodsName()%></td>
 				</tr>
 				<tr class="mt-2">
-					<td id="goodsName"><%=bean.getPrice()%></td>
-					<td id="goodsName"><%=bean.getStock()%></td>
+					<td id="goodsName"><%=goodsDto.getPrice()%></td>
+					<td id="goodsName"><%=goodsDto.getStock()%></td>
 					<td id="goodsName">数量</td>
 					<td>
 						<select name="cnt">

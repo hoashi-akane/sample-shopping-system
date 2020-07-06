@@ -21,24 +21,27 @@
 
 		<body>
 		<!--タイトル-->
+
 		<div align="center">
 				<a href="top.html" id="title3a"><h3 id="title3">SampleShopping</h3></a>
 				<p id="title2">- Login -</p>
 		</div>
 
+
+	<form action="/SampleShopping/auth" method="POST">
 	<div align="center">
 		<table id="loginTable">
 			<tr>
 				<th>UserId</th>
-				<td><input type="text" name="" value=""></td>
+				<td><input type="text" name="login_Id"></input></td>
 			</tr>
 			<tr>
 				<th>Password</th>
-				<td><input type="password" name="" value=""></td>
+				<td><input type="password" name="password"></input></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-						<a href="#" class="btn-border-bottom">login</a>
+					<input type="submit" value="送信">
 				</td>
 			</tr>
 			<tr>
@@ -48,6 +51,7 @@
 			</tr>
 		</table>
 	</div>
+	</form>
 
 
 			<!--フッター-->
