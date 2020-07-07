@@ -23,7 +23,7 @@ import dto.UserDto;
 public class PaymentService {
 
 //	戻り値 clientSecret
-	public String paymentFasade(UserDto userDto){
+	public PaymentIntent paymentFasade(UserDto userDto){
 		CartDao cartDao = new CartDao();
 //		userの合計金額取得・カスタマーid取得
 		int totalPrice = cartDao.getCartTotalPrice(userDto.getId());
@@ -58,6 +58,18 @@ public class PaymentService {
 		return Optional.ofNullable(cardInfoList);
 	}
 
+//	決済完了したかの確認をおこなう（jsでもしているが、）
+	public String checkPayment(String paymentIntentId) {
+		String status = "";
+		try {
+			PaymentIntent paymentIntent = PaymentIntent.retrieve(paymentIntentId);
+			status = paymentIntent.getStatus();
+		} catch (StripeException e) {
+			status = null;
+		}
+		return status;
+	}
+	
 	//	customerを生成
 	private String createCustomer(UserDto userDto) {
 		String customerId = null;
@@ -101,10 +113,10 @@ public class PaymentService {
 		return customerId;
 	}
 	
-
+	
 //　合計金額を設定したpaymentIntntを生成、クライアントに渡すclientSecretを返すメソッド
-	private String createPaymentIntent(String customerId, int totalPrice) {
-		String clientSecret = null;
+	private PaymentIntent createPaymentIntent(String customerId, int totalPrice) {
+		PaymentIntent paymentIntent = null;
 		PaymentIntentCreateParams params =
 				  PaymentIntentCreateParams.builder()
 				    .setCurrency("jpy")
@@ -112,11 +124,11 @@ public class PaymentService {
 				    .setCustomer(customerId)
 				    .build();
 		try {
-			PaymentIntent paymentIntent = PaymentIntent.create(params);
-			clientSecret = paymentIntent.getClientSecret();
+			paymentIntent = PaymentIntent.create(params);
+			
 		}catch(StripeException e) {
 			e.printStackTrace();
 		}
-		return clientSecret;
+		return paymentIntent;
 	}
 }
