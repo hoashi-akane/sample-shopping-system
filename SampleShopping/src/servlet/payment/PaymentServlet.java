@@ -25,6 +25,7 @@ import com.stripe.param.PaymentMethodListParams;
 import dao.CartDao;
 import dto.UserDto;
 import other.StripeSecretKey;
+import service.BuyHistoryService;
 import service.PaymentService;
 
 /**
@@ -33,7 +34,7 @@ import service.PaymentService;
 @WebServlet("/payment")
 public class PaymentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+//	PaymentService aymentService = new PaymentService();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -55,9 +56,11 @@ public class PaymentServlet extends HttpServlet {
 		Optional<ArrayList<HashMap<String, String>>> cardInfoListOpt = paymentService.getCardInfo(userDto);
 		cardInfoListOpt.ifPresent(cardInfoList -> request.setAttribute("card_info_list",cardInfoList));
 		
-		String clientSecret = paymentService.paymentFasade(userDto);
-		if(clientSecret != null) {
-			request.setAttribute("client_secret", clientSecret);
+		PaymentIntent paymentIntent = paymentService.paymentFasade(userDto);
+		if(paymentIntent != null) {
+//			サーバで確認するためにpaymentIntentIdをセッションに格納
+			session.setAttribute("paymentIntentId", paymentIntent.getId());
+			request.setAttribute("client_secret", paymentIntent.getClientSecret());
 			request.getRequestDispatcher("WEB-INF/jsp/payment.jsp").forward(request, response);
 		}else {
 			response.sendRedirect("/test/cart");
@@ -70,7 +73,26 @@ public class PaymentServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("WEB-INF/jsp/completepayment.jsp").forward(request,response);
+		HttpSession session = request.getSession();
+		UserDto userDto = (UserDto)session.getAttribute("userDto");
+		PaymentService paymentService = new PaymentService();
+		CartDao cartDao = new CartDao();
+		String paymentIntentId = (String)session.getAttribute("paymentIntentId");
+		session.removeAttribute("paymentIntentId");
+		String status = paymentService.checkPayment(paymentIntentId);
+//		決済が完了している状態 ・・・時間があればwebhookで実装したいところ
+		if(status.equals("succeeded")) {
+			BuyHistoryService buyHistoryService = new BuyHistoryService();
+			if(buyHistoryService.insertBuyHistoryFasade(userDto) && cartDao.deleteCarts(userDto.getId())) {
+				request.setAttribute("message", "購入が完了しました。");
+			}else {
+				request.setAttribute("message", "購入処理後にエラーが発生しました。");
+				
+			}
+		}else {
+			request.setAttribute("message", "購入に失敗しました。");
+		}
+		request.getRequestDispatcher("WEB-INF/jsp/paymentstatus.jsp").forward(request, response);
 	}
 
 }
