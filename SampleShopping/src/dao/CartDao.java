@@ -119,4 +119,21 @@ public class CartDao extends DaoBase{
 		}
 		return cartDto;
 	}
+	
+	
+//	カートの合計金額取得
+	public int getCartTotalPrice(int userId) {
+		int totalPrice = 0;
+		try {
+			con = super.dbOpen();
+			stmt = this.con.prepareStatement("SELECT SUM(goods.price * carts.volume) AS total_price FROM carts LEFT OUTER JOIN goods ON carts.goods_id = goods.id WHERE user_id = ?");
+			stmt.setInt(1, userId);
+			ResultSet rs = stmt.executeQuery();
+			rs.next();
+			totalPrice = rs.getInt("total_price");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return totalPrice;
+	}
 }
