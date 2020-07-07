@@ -1,6 +1,10 @@
 package servlet.payment;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Optional;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +25,7 @@ import com.stripe.param.PaymentMethodListParams;
 import dao.CartDao;
 import dto.UserDto;
 import other.StripeSecretKey;
+import service.PaymentService;
 
 /**
  * Servlet implementation class PaymentServlet
@@ -46,42 +51,18 @@ public class PaymentServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		UserDto userDto = (UserDto)session.getAttribute("userDto");
-		CartDao cartDao = new CartDao();
-		int totalPrice = cartDao.getCartTotalPrice(userDto.getId());
-		request.setAttribute("total_price", totalPrice);
+		PaymentService paymentService = new PaymentService();
+		Optional<ArrayList<HashMap<String, String>>> cardInfoListOpt = paymentService.getCardInfo(userDto);
+		cardInfoListOpt.ifPresent(cardInfoList -> request.setAttribute("card_info_list",cardInfoList));
 		
-		try {
-		CustomerCreateParams params =
-				  CustomerCreateParams.builder()
-				    .build();
-		
-		PaymentMethodListParams paramsae = 
-				PaymentMethodListParams.builder()
-				.setCustomer("cus_Hb7t3gsQLszGaR")
-				.setType(PaymentMethodListParams.Type.CARD)
-				.build();
-		PaymentMethodCollection paymentMethods = PaymentMethod.list(paramsae);
-		System.out.println(paymentMethods.getData().size());
-//		Customer customer = Customer.create(params);
-		PaymentIntentCreateParams paramsa =
-				  PaymentIntentCreateParams.builder()
-				    .setCurrency("jpy")
-				    .setAmount((long)totalPrice)
-				    .build();
-
-		
-		PaymentIntent paymentIntent = PaymentIntent.create(paramsa);
-		String clientSecret = paymentIntent.getClientSecret();
-//		クライアント側で必要なclient_secretを抜き出し渡す。
-		request.setAttribute("client_secret", clientSecret);
-		}catch(Exception e) {
-			e.printStackTrace();
-			System.out.println("111");
-			System.out.println("エラー");
+		String clientSecret = paymentService.paymentFasade(userDto);
+		if(clientSecret != null) {
+			request.setAttribute("client_secret", clientSecret);
+			request.getRequestDispatcher("WEB-INF/jsp/payment.jsp").forward(request, response);
+		}else {
+			response.sendRedirect("/test/cart");
 		}
-
-		
-		request.getRequestDispatcher("WEB-INF/jsp/payment.jsp").forward(request, response);
+//		クライアント側で必要なclient_secretをき出し渡す。
 	}
 
 	/**
