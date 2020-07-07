@@ -7,7 +7,6 @@
 <head>
 <% 
 String client_secret = (String)request.getAttribute("client_secret");
-int total_price = (int)request.getAttribute("total_price");
 %>
 <meta charset="utf-8">
 <title>SampleShopping</title>
@@ -71,7 +70,11 @@ document.getElementById("submit").onclick= function() {
 		    console.log(result.error.message);
 		  } else {
 		    if (result.paymentIntent.status === 'succeeded') {
-		    alert('成功');
+		    	var form = document.createElement("form");
+		    	document.body.appendChild( form );
+		    	 form.setAttribute("action", "/SampleShopping/payment");
+		    	 form.setAttribute("method", "post");
+		    	 form.submit();
 	     // Show a success message to your customer
 	     // There's a risk of the customer closing the window before callback execution
 	     // Set up a webhook or plugin to listen for the payment_intent.succeeded event
