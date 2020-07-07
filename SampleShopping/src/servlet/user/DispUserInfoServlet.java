@@ -34,7 +34,7 @@ public class DispUserInfoServlet extends HttpServlet {
     	HttpSession session = request.getSession();
 		UserDto userDto = (UserDto)session.getAttribute("userDto");
 		request.setAttribute("userDto", userDto);
-		request.getRequestDispatcher("WEB-INF/jsp/createuser.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/jsp/account.jsp").forward(request, response);
 	}
 }
 
