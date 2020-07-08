@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="java.util.*" %>
+
 <%@page import="dto.*" %>
 <% List<CartDto> cartDtoList = (ArrayList<CartDto>)request.getAttribute("cartDtoList");
-	int i =1; %>
+String message = (String)request.getAttribute("message");
+int i =1;
+int totalPrice = 0;
+%>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
 	<head>
@@ -53,42 +57,44 @@
 			</div>
 
 	<div align="center">
-	<table border="1" id="cartTable">
-		<tr>
-			<th id="cartName">NO.</th>
-			<th id="cartGoodsName">商品名</th>
-			<th id="cartName">商品コード</th>
-			<th id="cartName">価格</th>
-			<th id="cartName">数量</th>
-			<th id="cartName">小計</th>
-		</tr>
-		<% for(CartDto cartDto:cartDtoList){ %>
-		<tr>
-			<input type="hidden" name="cartId" value="<%= cartDto.getId() %>"></input>
-			<td id="cartTabletd"><%= i %></td>
-			<td id="cartTabletd"><%= cartDto.getGoodsDto().getGoodsName() %></td>
-			<td id="cartTabletd"><%= cartDto.getGoodsDto().getId() %></td>
-			<td id="cartTabletd"><%= cartDto.getGoodsDto().getPrice() %></td>
-			<td id="cartTabletd"><select name="volume">
-							<option value="1" selected>1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-						</select></td>
-			<td id="cartTabletd"><%= (cartDto.getGoodsDto().getPrice() * cartDto.getVolume()) %></td>
-			<td><input type="button" value="変更"><input type="button" value=""></td>
-		</form>
-		</tr>
-		<%} %>
-		<tr>
-			<td colspan="6" id="cartTotal"><div align="center">合計 円</div></td>
-		</tr>
-	</table>
-
-
-
-
+		<div class="text-danger">
+			<%if(message != null){ %>
+			<%= message %>
+			<%} %>
+		</div>
+		<table border="1" id="cartTable">
+			<tr>
+				<th id="cartName">NO.</th>
+				<th id="cartGoodsName">商品名</th>
+				<th id="cartName">商品コード</th>
+				<th id="cartName">価格</th>
+				<th id="cartName">数量</th>
+				<th id="cartName">小計</th>
+			</tr>
+			<% for(CartDto cartDto:cartDtoList){ %>
+			<tr>
+				<input type="hidden" name="cartId" value="<%= cartDto.getId() %>"></input>
+				<td id="cartTabletd"><%= i %></td>
+				<td id="cartTabletd"><%= cartDto.getGoodsDto().getGoodsName() %></td>
+				<td id="cartTabletd"><%= cartDto.getGoodsDto().getId() %></td>
+				<td id="cartTabletd"><%= cartDto.getGoodsDto().getPrice() %></td>
+				<td id="cartTabletd"><select name="volume">
+								<option value="1" selected>1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select></td>
+				<td id="cartTabletd"><%= (cartDto.getGoodsDto().getPrice() * cartDto.getVolume()) %></td>
+				<% totalPrice += cartDto.getGoodsDto().getPrice() * cartDto.getVolume(); %>
+				<td><input type="button" value="変更"><input type="button" value=""></td>
+			</form>
+			</tr>
+			<%} %>
+			<tr>
+				<td colspan="6" id="cartTotal"><div align="center">合計 <%= totalPrice %>円</div></td>
+			</tr>
+		</table>
 	</div>
 
 			<!--フッター-->
