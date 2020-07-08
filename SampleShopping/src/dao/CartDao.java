@@ -29,7 +29,7 @@ public class CartDao extends DaoBase{
 	
 	
 //	カート削除（ユーザ削除に伴う削除)
-	public boolean delteteCarts(int userId) {
+	public boolean deleteCarts(int userId) {
 		boolean isSuccess = false;
 		try {
 			con = super.dbOpen();
