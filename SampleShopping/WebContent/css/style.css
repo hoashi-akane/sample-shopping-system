@@ -329,3 +329,18 @@ font-size: 30px;
 	padding-left: 35px;
 	padding-right: 35px;
 }
+
+
+/**********************************************payment.html********************************/
+.payment-font{
+	font-family: 'Noto Serif JP', serif;
+
+}
+.payment-border{
+	border: solid 1px;
+	border-radius: 3px;
+	border-color: #fff;
+}
+
+
+
