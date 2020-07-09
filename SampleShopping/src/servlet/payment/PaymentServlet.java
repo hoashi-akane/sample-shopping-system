@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Optional;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,7 +35,9 @@ import service.PaymentService;
 @WebServlet("/payment")
 public class PaymentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-//	PaymentService aymentService = new PaymentService();
+	PaymentService paymentService = new PaymentService();
+	BuyHistoryService buyHistoryService = new BuyHistoryService();
+	CartDao cartDao = new CartDao();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -52,20 +55,22 @@ public class PaymentServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		UserDto userDto = (UserDto)session.getAttribute("userDto");
-		PaymentService paymentService = new PaymentService();
+		int totalPrice = cartDao.getCartTotalPrice(userDto.getId());
 		Optional<ArrayList<HashMap<String, String>>> cardInfoListOpt = paymentService.getCardInfo(userDto);
-		cardInfoListOpt.ifPresent(cardInfoList -> request.setAttribute("card_info_list",cardInfoList));
-		
+//		cardInfoListがnullでなければリクエストスコープに値をセット
+		cardInfoListOpt.ifPresent(cardInfoList -> request.setAttribute("cardInfoList",cardInfoList));
+
 		PaymentIntent paymentIntent = paymentService.paymentFasade(userDto);
 		if(paymentIntent != null) {
 //			サーバで確認するためにpaymentIntentIdをセッションに格納
 			session.setAttribute("paymentIntentId", paymentIntent.getId());
-			request.setAttribute("client_secret", paymentIntent.getClientSecret());
+			request.setAttribute("totalPrice", totalPrice);
+			request.setAttribute("clientSecret", paymentIntent.getClientSecret());
 			request.getRequestDispatcher("WEB-INF/jsp/payment.jsp").forward(request, response);
 		}else {
-			response.sendRedirect("/test/cart");
+			session.setAttribute("message", "商品をカートに追加してください");
+			response.sendRedirect("/SampleShopping/dispcart");
 		}
-//		クライアント側で必要なclient_secretをき出し渡す。
 	}
 
 	/**
@@ -75,24 +80,27 @@ public class PaymentServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		UserDto userDto = (UserDto)session.getAttribute("userDto");
-		PaymentService paymentService = new PaymentService();
-		CartDao cartDao = new CartDao();
 		String paymentIntentId = (String)session.getAttribute("paymentIntentId");
-		session.removeAttribute("paymentIntentId");
-		String status = paymentService.checkPayment(paymentIntentId);
-//		決済が完了している状態 ・・・時間があればwebhookで実装したいところ
-		if(status.equals("succeeded")) {
-			BuyHistoryService buyHistoryService = new BuyHistoryService();
-			if(buyHistoryService.insertBuyHistoryFasade(userDto) && cartDao.deleteCarts(userDto.getId())) {
-				request.setAttribute("message", "購入が完了しました。");
-			}else {
-				request.setAttribute("message", "購入処理後にエラーが発生しました。");
-				
-			}
-		}else {
-			request.setAttribute("message", "購入に失敗しました。");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/paymentstatus.jsp");
+//		セッションの値チェック
+		if(paymentIntentId == null) {
+			request.setAttribute("message", "不正なアクセスを検知しました。");
+			requestDispatcher.forward(request, response);
+			return;
 		}
-		request.getRequestDispatcher("WEB-INF/jsp/paymentstatus.jsp").forward(request, response);
+		String status = paymentService.checkPayment(paymentIntentId);
+//		webhookで実装するともう少し楽
+		if(status == null  || !(status.equals("succeeded"))) {
+			request.setAttribute("message", "購入に失敗しました。");
+			requestDispatcher.forward(request, response);
+			return;
+		}
+//		購入履歴登録ファサードとカート情報削除処理を行う
+		if(buyHistoryService.insertBuyHistoryFasade(userDto) && cartDao.deleteCarts(userDto.getId())) {
+			request.setAttribute("message", "購入が完了しました。");
+		}else {
+			request.setAttribute("message", "購入処理後にエラーが発生しました。");
+		}
+		requestDispatcher.forward(request, response);
 	}
-
 }
