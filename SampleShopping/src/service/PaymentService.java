@@ -27,6 +27,7 @@ public class PaymentService {
 		CartDao cartDao = new CartDao();
 //		userの合計金額取得・カスタマーid取得
 		int totalPrice = cartDao.getCartTotalPrice(userDto.getId());
+		if(totalPrice == 0) {return null;}
 		String customerId = checkCustomer(userDto);
 		if(customerId == null) {
 			customerId = createCustomer(userDto);
@@ -40,20 +41,17 @@ public class PaymentService {
 		String customerId = checkCustomer(userDto);
 		if(customerId == null) {return Optional.empty();}
 		PaymentMethodCollection paymentMethods = getPaymentMethodList(customerId);
-		if(paymentMethods == null){return Optional.empty();}
-		ArrayList<HashMap<String, String>> cardInfoList = null;
-		try {
-			cardInfoList = new ArrayList<HashMap<String, String>>();
-			for(int i=0; i<paymentMethods.getData().size(); i++) {
-				HashMap<String, String> cardInfo = new HashMap<String, String>();
+		if(paymentMethods == null || paymentMethods.getData().size() == 0){return Optional.empty();}
+		ArrayList<HashMap<String, String>> cardInfoList = new ArrayList<HashMap<String, String>>();
+		for(int i=0; i<paymentMethods.getData().size(); i++) {
+			HashMap<String, String> cardInfo = new HashMap<String, String>();
 //				paymentMethodのid
-				cardInfo.put("id", paymentMethods.getData().get(i).getId());
+			cardInfo.put("id", paymentMethods.getData().get(i).getId());
 //				cardの下４桁
-				cardInfo.put("numberLastFour", paymentMethods.getData().get(i).getCard().getLast4());
-				cardInfoList.add(cardInfo);
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
+			cardInfo.put("numberLastFour", paymentMethods.getData().get(i).getCard().getLast4());
+//				カードの発行元
+			cardInfo.put("cardBrand", paymentMethods.getData().get(i).getCard().getBrand());
+			cardInfoList.add(cardInfo);
 		}
 		return Optional.ofNullable(cardInfoList);
 	}
@@ -61,13 +59,21 @@ public class PaymentService {
 //	決済完了したかの確認をおこなう（jsでもしているが、）
 	public String checkPayment(String paymentIntentId) {
 		String status = "";
-		try {
-			PaymentIntent paymentIntent = PaymentIntent.retrieve(paymentIntentId);
-			status = paymentIntent.getStatus();
-		} catch (StripeException e) {
-			status = null;
-		}
+		PaymentIntent paymentIntent = getPaymentIntent(paymentIntentId);
+		if(paymentIntent == null) {return null;}
+		status = paymentIntent.getStatus();
 		return status;
+	}
+	
+//	paymentIntent取得
+	public PaymentIntent getPaymentIntent(String paymentIntentId) {
+		PaymentIntent paymentIntent = null;
+		try {
+			paymentIntent = PaymentIntent.retrieve(paymentIntentId);
+		} catch (StripeException e) {
+			e.printStackTrace();
+		}
+		return paymentIntent;
 	}
 	
 	//	customerを生成
@@ -112,7 +118,6 @@ public class PaymentService {
 		String customerId = userDao.getPaymentCustomerId(userDto.getId());
 		return customerId;
 	}
-	
 	
 //　合計金額を設定したpaymentIntntを生成、クライアントに渡すclientSecretを返すメソッド
 	private PaymentIntent createPaymentIntent(String customerId, int totalPrice) {
