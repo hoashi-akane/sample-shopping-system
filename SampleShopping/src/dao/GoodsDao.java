@@ -29,7 +29,7 @@ public class GoodsDao extends DaoBase{
 		super.dbClose();
 		return goodsDtoList;
 	}
-	
+
 //	検索結果の商品一覧取得
 	public List<GoodsDto> getGoodsList(String search){
 		List<GoodsDto> goodsDtoList= new ArrayList<GoodsDto>();
@@ -49,13 +49,14 @@ public class GoodsDao extends DaoBase{
 		super.dbClose();
 		return goodsDtoList;
 	}
-	
+
 //	商品取得（ひとつ）
 	public GoodsDto getGoods(int id) {
 		GoodsDto goodsDto = null;
 		try {
 			con = super.dbOpen();
-			stmt = this.con.prepareStatement("SELECT goods.id, goods.goods_name, goods.price, goods.description, goods.image_dir, goods.sales_quantity, goods.is_sale, goods.category_id,"
+
+			stmt = this.con.prepareStatement("SELECT goods.id, goods.goods_name, goods.price, goods.description, goods.stock, goods.image_dir, goods.sales_quantity, goods.is_sale, goods.category_id,"
 					+ " goods.brand_id, brands.brand_name, categorys.category_name FROM goods LEFT OUTER JOIN brands ON goods.brand_id = brands.id "
 					+ "LEFT OUTER JOIN goods_category AS categorys ON goods.category_id = categorys.id WHERE goods.id = ?;");
 			stmt.setInt(1, id);
@@ -71,7 +72,7 @@ public class GoodsDao extends DaoBase{
 		super.dbClose();
 		return goodsDto;
 	}
-	
+
 //	商品登録
 	public boolean insertGoods(GoodsDto goodsDto) {
 		boolean isSuccess = false;
@@ -113,7 +114,7 @@ public class GoodsDao extends DaoBase{
 		super.dbClose();
 		return isSuccess;
 	}
-	
+
 //	商品更新
 	public boolean updateGoods(GoodsDto goodsDto) {
 		boolean isSuccess = false;
@@ -139,7 +140,7 @@ public class GoodsDao extends DaoBase{
 		super.dbClose();
 		return isSuccess;
 	}
-	
+
 //	goodsから取得したカラムをDtoに詰め替え
 	private GoodsDto goodsToDto(ResultSet rs) {
 		GoodsDto goodsDto = new GoodsDto();

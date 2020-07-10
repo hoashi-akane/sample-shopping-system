@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-        <%@page import="java.util.*" %>
-<%@page import="dto.*" %>
-    <%UserDto userDto= (UserDto)request.getAttribute("userDto");%>
-    <%String action=""; %>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
 	<head>
@@ -17,9 +13,7 @@
 				src="https://code.jquery.com/jquery-2.2.4.min.js"
 				integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 				crossorigin="anonymous"></script>
-				<style>
- 					<%@ include file = "../../css/style.css"%>
- 				</style>
+				<link rel="stylesheet" href="../css/style.css">
 	</head>
 
 	<body>
@@ -34,11 +28,11 @@
 
 		<header class="navi">
 	     <div class="navi_inner">
-	       <div class="navi_item"><a href="top.html">Home</a></div>
+	       <div class="navi_item"><a href="topadmin.html">Home</a></div>
 	       <div class="navi_item"><a href="goods.html">Goods</a></div>
-	       <div class="navi_item"><a href="contact.html">Contact</a></div>
-		   <div class="navi_item"><a href="cart.html">Cart</a></div>
-		   <div class="navi_item"><a href="account.html">Account</a></div>
+		   <div class="navi_item"><a href="accountadmin.html">Account</a></div>
+		   <div class="navi_item"><a href="goodscreate.html">GoodsCreate</a></div>
+
 	     </div>
 	 	</header>
 
@@ -56,48 +50,44 @@
 	   <table id="gaiyou">
    <tr>
 	 <th align="center">お名前</th>
-	 <td><%=userDto.getUserName()%></td>
+	 <td></td>
    </tr>
    <tr>
 	 <th align="center">ID</th>
-   <td><%=userDto.getId()%></td>
+   <td></td>
    </tr>
    <tr>
 	 <th align="center">パスワード</th>
-	 <td><%=userDto.getPassword()%></td>
+	 <td></td>
    </tr>
    <tr>
-	 <th>郵便番号1</th>
-	 <td><%=userDto.getZipCode()%></td>
+	 <th>郵便番号</th>
+	 <td></td>
    </tr>
    <tr>
 	 <th>住所１</th>
-	 <td><%=userDto.getAddress()%></td>
+	 <td></td>
    </tr>
    <tr>
-     <tr>
-	 <th>郵便番号2</th>
-	 <td><%=userDto.getZipCodeSub()%></td>
-   </tr>
 	 <th>住所２</th>
-	 <td><%=userDto.getAddressSub()%></td>
+	 <td></td>
    </tr>
     <tr>
    	 <th>電話番号</th>
-   	 <td><%=userDto.getTel()%></td>
+   	 <td></td>
     </tr>
 	<tr>
 	 <th>メールアドレス</th>
-	 <td><%=userDto.getMailAddress()%></td>
+	 <td></td>
 	</tr>
 	 <tr>
 	  <th>性別</th>
-	  <td><%=userDto.getGender()%></td>
+	  <td></td>
 	 </tr>
    </table>
 </div>
 
-	<a href="correction.html" class="btn-border-bottom" id="accountbtn">変更</a>
+	<a href="correctionadmin.html" class="btn-border-bottom" id="accountbtn">変更</a>
 	<a href="#" class="btn-border-bottom">退会</a>
 
 

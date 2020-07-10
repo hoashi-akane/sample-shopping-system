@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%><%@page import = "dto.*" %>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang=jp dir="ltr">
 	<head>
@@ -13,14 +13,8 @@
 		src="https://code.jquery.com/jquery-2.2.4.min.js"
 		integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 		crossorigin="anonymous"></script>
-				<style>
- 					<%@ include file = "../../css/style.css"%>
- 				</style>
+		<link rel="stylesheet" href="../css/style.css">
 		</head>
-
-		<% UserDto userDto = (UserDto)session.getAttribute("userDto"); %>
-
-		<% String name = userDto.getUserName(); %>
 
 
 	<body>
@@ -35,11 +29,11 @@
 
 		<header class="navi">
 	     <div class="navi_inner">
-	       <div class="navi_item"><a href="top.html">Home</a></div>
+	       <div class="navi_item"><a href="topadmin.html">Home</a></div>
 	       <div class="navi_item"><a href="goods.html">Goods</a></div>
-	       <div class="navi_item"><a href="contact.html">Contact</a></div>
-		   <div class="navi_item"><a href="cart.html">Cart</a></div>
-		   <div class="navi_item"><a href="account.html">Account</a></div>
+		   <!--このGoodsボタンを押すと、管理者側の画面からユーザー側の方に遷移してしまうので、
+	   分けるようにように書き直しお願いします (茜)-->
+		   <div class="navi_item"><a href="accountadmin.html">Account</a></div>
 	     </div>
 	 	</header>
 
@@ -47,8 +41,6 @@
 <div class="mainView">
 <!--ページコンテンツ-->
 </div>
-
-<h3>ようこそ<%=name%>さん</h3>
 		<!--タイトル-->
 		<div align="center">
 				<h1 id="title1">SampleShopping</h1>

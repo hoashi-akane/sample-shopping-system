@@ -10,3 +10,4 @@ Servers
 .settings
 /SampleShopping/build/
 .idea
+/SampleShopping/src/other/StripeSecretKey.java

@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-        <%@page import="java.util.*" %>
-<%@page import="dto.*" %>
-    <%UserDto userDto= (UserDto)request.getAttribute("userDto");%>
-    <%String action=""; %>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
 	<head>
@@ -13,95 +9,88 @@
 				<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
 				<link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
 				<link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap" rel="stylesheet">				<script
+				<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200&display=swap" rel="stylesheet">
+				<script
 				src="https://code.jquery.com/jquery-2.2.4.min.js"
 				integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 				crossorigin="anonymous"></script>
-				<style>
- 					<%@ include file = "../../css/style.css"%>
- 				</style>
+				<link rel="stylesheet" href="../css/style.css">
 	</head>
 
-	<body>
+		<body>
 				<!--メニュ-->
-	 	<div class="el_humburger"><!--ハンバーガーボタン-->
-		    <div class="el_humburger_wrapper">
-		      <span class="el_humburger_bar top"></span>
-		      <span class="el_humburger_bar middle"></span>
-		      <span class="el_humburger_bar bottom"></span>
-		    </div>
-		  </div>
+	 <div class="el_humburger"><!--ハンバーガーボタン-->
+	    <div class="el_humburger_wrapper">
+	      <span class="el_humburger_bar top"></span>
+	      <span class="el_humburger_bar middle"></span>
+	      <span class="el_humburger_bar bottom"></span>
+	    </div>
+	  </div>
 
-		<header class="navi">
-	     <div class="navi_inner">
-	       <div class="navi_item"><a href="top.html">Home</a></div>
-	       <div class="navi_item"><a href="goods.html">Goods</a></div>
-	       <div class="navi_item"><a href="contact.html">Contact</a></div>
-		   <div class="navi_item"><a href="cart.html">Cart</a></div>
-		   <div class="navi_item"><a href="account.html">Account</a></div>
-	     </div>
-	 	</header>
+			<header class="navi">
+		     <div class="navi_inner">
+		       <div class="navi_item"><a href="topadmin.html">Home</a></div>
+		       <div class="navi_item"><a href="goods.html">Goods</a></div>
+			   <div class="navi_item"><a href="accountadmin.html">Account</a></div>
+		     </div>
+		 	</header>
 
 	<div class="mainView">
 	<!--ページコンテンツ-->
 	</div>
-			<!--タイトル-->
-	<div align="center">
-		<a href="top.html" id="title3a"><h3 id="title3">SampleShopping</h3></a>
-		<p id="title2">- Account -</p>
-	</div>
 
-	<div align="center">
-   <div class="asd">
-	   <table id="gaiyou">
-   <tr>
-	 <th align="center">お名前</th>
-	 <td><%=userDto.getUserName()%></td>
-   </tr>
-   <tr>
-	 <th align="center">ID</th>
-   <td><%=userDto.getId()%></td>
-   </tr>
-   <tr>
-	 <th align="center">パスワード</th>
-	 <td><%=userDto.getPassword()%></td>
-   </tr>
-   <tr>
-	 <th>郵便番号1</th>
-	 <td><%=userDto.getZipCode()%></td>
-   </tr>
-   <tr>
-	 <th>住所１</th>
-	 <td><%=userDto.getAddress()%></td>
-   </tr>
-   <tr>
-     <tr>
-	 <th>郵便番号2</th>
-	 <td><%=userDto.getZipCodeSub()%></td>
-   </tr>
-	 <th>住所２</th>
-	 <td><%=userDto.getAddressSub()%></td>
-   </tr>
-    <tr>
-   	 <th>電話番号</th>
-   	 <td><%=userDto.getTel()%></td>
-    </tr>
-	<tr>
-	 <th>メールアドレス</th>
-	 <td><%=userDto.getMailAddress()%></td>
-	</tr>
-	 <tr>
-	  <th>性別</th>
-	  <td><%=userDto.getGender()%></td>
-	 </tr>
-   </table>
-</div>
+		<!--タイトル-->
+		<div align="center">
+				<a href="top.html" id="title3a"><h3 id="title3">SampleShopping</h3></a>
+				<p id="title2">- Correction -</p>
+		</div>
 
-	<a href="correction.html" class="btn-border-bottom" id="accountbtn">変更</a>
-	<a href="#" class="btn-border-bottom">退会</a>
+			<div align="center">
+		   <div class="asd">
+			   <table id="gaiyou">
+		   <tr>
+			 <th align="center">お名前<font color="red"> *</font></p></th>
+			 <td><input type="text" name="" value=""></td>
+		   </tr>
+		   <tr>
+			 <th align="center">ID<font color="red"> *</font></p></th>
+		   <td><input type="text" name="" value=""></td>
+		   </tr>
+		   <tr>
+			 <th align="center">パスワード</th>
+			 <td><input type="password" name="" value=""></td>
+		   </tr>
+		   <tr>
+			 <th>郵便番号</th>
+			 <td><input type="text" name="" value=""></td>
+		   </tr>
+		   <tr>
+			 <th>住所１</th>
+			 <td><input type="text" name="" value=""></td>
+		   </tr>
+		   <tr>
+			 <th>住所２</th>
+			 <td><input type="text" name="" value=""></td>
+		   </tr>
+		    <tr>
+		   	 <th>電話番号</th>
+		   	 <td><input type="text" name="" value=""></td>
+		    </tr>
+			<tr>
+			 <th>メールアドレス</th>
+			 <td><input type="email" name="" value="" id="textbox"></td>
+			</tr>
+			 <tr>
+			  <th>性別</th>
+			  <td><input type="radio" name="example" value="1">女性
+		        <input type="radio" name="example" value="2">男性
+			  </td>
+			 </tr>
+		   </table>
+		</div>
 
-
-
+			<a href="account.html" class="btn-border-bottom" id="accountbtn">戻る</a>
+			<a href="#" class="btn-border-bottom">変更</a>
 			<!--フッター-->
 	<footer>
 	<small id="footer">Copyright&copy;Kadai Website,all rightsreserved.</small>
