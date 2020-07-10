@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.UserDaoBase;
+import dao.AdminDao;
 import dto.UserDto;
 
 /**
@@ -36,9 +36,9 @@ public class AuthAdminServlet extends HttpServlet {
 		String userid =request.getParameter("userid");
 		String password =request.getParameter("paasword");
 
-		UserDaoBase userDaoBase = new UserDaoBase();
+		AdminDao adminDao = new AdminDao();
 
-		UserDto userDto = userDaoBase.login(userid,password);
+		UserDto userDto = adminDao.login(userid,password);
 
 		String path ="";
 		if(userDto != null) {
