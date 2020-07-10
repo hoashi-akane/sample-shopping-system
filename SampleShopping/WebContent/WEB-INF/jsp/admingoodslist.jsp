@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import="java.util.*" %>
+<%@page import="dto.*" %>
+    <%List<GoodsDto> list= (ArrayList<GoodsDto>)request.getAttribute("goodsDtoList");%>
+    <%String action=""; %>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
 	<head>
@@ -20,6 +24,18 @@
 	</head>
 
 		<body>
+		<script>
+			function goDelete(){
+				document.getElementById('form').action = 'deletegoods';
+			}
+
+			function goCorrection(){
+				document.getElementById('form').action = 'updategoods';
+				document.getElementById('form').method = 'get';
+
+			}
+		</script>
+
 				<!--メニュ-->
 	 <div class="el_humburger"><!--ハンバーガーボタン-->
 	    <div class="el_humburger_wrapper">
@@ -45,18 +61,22 @@
 			<!--タイトル-->
 			<div align="center">
 					<a href="top.html" id="title3a"><h3 id="title3">SampleShopping</h3></a>
-					<p id="title2">- adminGoods -</p>
+					<p id="title2">- AdminGoods -</p>
 			</div>
 
 			<table id="goodsTable" align="center">
+		<%for(GoodsDto bean:list){ %>
+		<form id ='form' name = 'inputForm' method="post">
+		<input type="hidden" name="id" value="<%=bean.getId()%>">
 				<tr>
-					<td rowspan="3"><img src="../img/header2.png" alt="" id="goodsimg"></td>
-					<td colspan="4" id="goodsName">商品名</td>
+					<td rowspan="3"><img src="<%=bean.getImageDir()%>" alt="" id="goodsimg"></td>
+					<td colspan="5" id="goodsName" name="goods_name"><%=bean.getGoodsName()%></td>
 				</tr>
-				<tr>
-					<td id="goodsName">値段</td>
-					<td id="goodsName">在庫数</td>
-					<td id="goodsName">数量
+				<tr class="mt-2">
+					<td id="goodsName" name="price"><%=bean.getPrice()%></td>
+					<td id="goodsName" name="stock"><%=bean.getStock()%></td>
+					<td id="goodsName">数量</td>
+					<td>
 						<select name="cnt">
 							<option value="1" selected>1</option>
 							<option value="2">2</option>
@@ -65,17 +85,15 @@
 							<option value="5">5</option>
 						</select>
 					</td>
-					<td id="goodsName"><a href="cart.html"><img src="../img/icon/cart.png" alt="" id="cartimg"></a></td>
+
+<td><button type="submit" value = "delete" onclick="goDelete();" id="delete">削除</button></td>
+<td><button type="submit" value ="correction" onclick="goCorrection();" id="correction">修正</button></td>
 				</tr>
-				<tr>
-					<td colspan="4" id="goodsName">説明</td>
-				</tr>
-				<tr>
-				<td><input type="submit" value="削除"></td>
-				<td><input type="submit" value="修正"></td>
-				</tr>
+		</form>
+				<%} %>
 			</table>
 
+			<a href="MenuServlet" class="btn btn-outline-info">戻る</a>
 
 			<!--フッター-->
 	<footer>
@@ -98,7 +116,7 @@
 	          spNavInOut.switch();
 	          //一時的にボタンを押せなくする
 	          setTimeout(function(){
-	            navButtonFlag = true;
+	        	  navButtonFlag = true;
 	          },200);
 	          navButtonFlag = false;
 	        }
