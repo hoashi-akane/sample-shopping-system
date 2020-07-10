@@ -40,8 +40,11 @@ public class CreateAdminUserServlet extends HttpServlet {
 		userDto.setUserName(request.getParameter("username"));
 		userDto.setAddress(request.getParameter("address"));
 		userDto.setAddressSub(request.getParameter("addresssub"));
+		userDto.setZipCode(request.getParameter("zipcode"));
+		userDto.setZipCodeSub(request.getParameter("zipcodesub"));
 		userDto.setTel(request.getParameter("tel"));
 		userDto.setGender(Byte.parseByte(request.getParameter("gender")));
+		userDto.setMailAddress(request.getParameter("mailaddress"));
 
 		AdminDao adminDao = new AdminDao();
 		if(adminDao.insertAdminUser(userDto)) {
