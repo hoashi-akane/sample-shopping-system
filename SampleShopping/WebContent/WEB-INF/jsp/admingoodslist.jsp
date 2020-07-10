@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@page import="java.util.*" %>
 <%@page import="dto.*" %>
-
-    <%List<GoodsDto> goodsDtoList= (ArrayList<GoodsDto>)request.getAttribute("goodsDtoList");%>
+    <%List<GoodsDto> list= (ArrayList<GoodsDto>)request.getAttribute("goodsDtoList");%>
     <%String action=""; %>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
@@ -25,6 +24,18 @@
 	</head>
 
 		<body>
+		<script>
+			function goDelete(){
+				document.getElementById('form').action = 'deletegoods';
+			}
+
+			function goCorrection(){
+				document.getElementById('form').action = 'updategoods';
+				document.getElementById('form').method = 'get';
+
+			}
+		</script>
+
 				<!--メニュ-->
 	 <div class="el_humburger"><!--ハンバーガーボタン-->
 	    <div class="el_humburger_wrapper">
@@ -50,21 +61,20 @@
 			<!--タイトル-->
 			<div align="center">
 					<a href="top.html" id="title3a"><h3 id="title3">SampleShopping</h3></a>
-					<p id="title2">- Goods -</p>
+					<p id="title2">- AdminGoods -</p>
 			</div>
 
 			<table id="goodsTable" align="center">
-
-		<%for(GoodsDto goodsDto:goodsDtoList){ %>
-		<form id ='form' name = 'inputForm' action="">
+		<%for(GoodsDto bean:list){ %>
+		<form id ='form' name = 'inputForm' method="post">
+		<input type="hidden" name="id" value="<%=bean.getId()%>">
 				<tr>
-					<td rowspan="3"><img src="<%=goodsDto.getImageDir()%>" alt="" id="goodsimg"></td>
-					<td colspan="5" id="goodsName"><%=goodsDto.getGoodsName()%></td>
+					<td rowspan="3"><img src="<%=bean.getImageDir()%>" alt="" id="goodsimg"></td>
+					<td colspan="5" id="goodsName" name="goods_name"><%=bean.getGoodsName()%></td>
 				</tr>
 				<tr class="mt-2">
-					<td id="goodsName"><%=goodsDto.getPrice()%></td>
-					<td id="goodsName"><%=goodsDto.getStock()%></td>
-
+					<td id="goodsName" name="price"><%=bean.getPrice()%></td>
+					<td id="goodsName" name="stock"><%=bean.getStock()%></td>
 					<td id="goodsName">数量</td>
 					<td>
 						<select name="cnt">
@@ -75,11 +85,16 @@
 							<option value="5">5</option>
 						</select>
 					</td>
-					<td id="goodsName"><a href="#"><img src="" alt="" id="cartimg"></a></td>
+
+<td><button type="submit" value = "delete" onclick="goDelete();" id="delete">削除</button></td>
+<td><button type="submit" value ="correction" onclick="goCorrection();" id="correction">修正</button></td>
 				</tr>
 		</form>
 				<%} %>
 			</table>
+
+			<a href="MenuServlet" class="btn btn-outline-info">戻る</a>
+
 			<!--フッター-->
 	<footer>
 	<small id="footer">Copyright&copy;Kadai Website,all rightsreserved.</small>

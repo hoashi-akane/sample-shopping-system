@@ -15,6 +15,7 @@ public class GoodsDto {
 	private BrandDto brandDto;
 	private CategoryDto categoryDto;
 	
+
 	public GoodsDto(int id, String goodsName, int price){
 		this.id = id;
 		this.goodsName = goodsName;

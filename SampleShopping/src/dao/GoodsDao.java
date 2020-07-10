@@ -55,6 +55,7 @@ public class GoodsDao extends DaoBase{
 		GoodsDto goodsDto = null;
 		try {
 			con = super.dbOpen();
+
 			stmt = this.con.prepareStatement("SELECT goods.id, goods.goods_name, goods.price, goods.description, goods.stock, goods.image_dir, goods.sales_quantity, goods.is_sale, goods.category_id,"
 					+ " goods.brand_id, brands.brand_name, categorys.category_name FROM goods LEFT OUTER JOIN brands ON goods.brand_id = brands.id "
 					+ "LEFT OUTER JOIN goods_category AS categorys ON goods.category_id = categorys.id WHERE goods.id = ?;");
