@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>SampleShopping</title>
-				<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+				<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 				<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
 				<link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
 				<link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
@@ -45,7 +45,7 @@
 		<p id="title2">- CreateGoods -</p>
 	</div>
 
-	<form action="/SampleShopping/insertgoods" method="post">
+	<form action="/SampleShopping/insertgoods" method="post" enctype="multipart/form-data">
 		<div align="center">
 		   <div class="asd">
 			   <table id="gaiyou">
@@ -54,14 +54,26 @@
 			   	 <th>商品名</th>
 			 <td><input type="text" name="goods_name"></td>
 		   </tr>
-
+			<tr>
+				<th>商品画像</th>
+				<td>
+					<div id="file" class="input-group">
+					    <div class="custom-file">
+					        <input type="file" class="custom-file-input" id="customFile" name="file" multiple>
+					        <label class="custom-file-label" for="customFile" data-browse="参照">ファイル選択...</label>
+					    </div>
+					    <div class="input-group-append">
+					        <button type="button" class="btn btn-outline-secondary reset"><i class="fas fa-times fa-fw"></i>取消</button>
+					    </div>
+					</div>
+				</td>
 		   <tr>
 			 <th align="center">値段</th>
-		   <td><input type="text" name="price"></td>
+		   <td><input type="number" name="price"></td>
 		   </tr>
 		   <tr>
 			 <th align="center">在庫数</th>
-			 <td><input type="text" name="stock"></td>
+			 <td><input type="number" name="stock"></td>
 		   </tr>
 		   <tr>
 			 <th>説明文</th>
@@ -152,6 +164,31 @@
 		    }
 		  }
 		};
+		
+		
+		$('.custom-file-input').on('change', handleFileSelect);
+		function handleFileSelect(evt) {
+		        $('#preview').remove();// 繰り返し実行時の処理
+		        $(this).parents('.input-group').after('<div id="preview"></div>');
+
+		  var files = evt.target.files;
+
+		    var output = [];
+		    for (var i = 0, f; f = files[i]; i++) {
+		        output.push('<li>', escape(f.name), ' (', f.size, ' bytes)</li>');
+		    }
+		    $('#preview').append('<ul>' + output.join('') + '</ul>');
+
+		    $(this).next('.custom-file-label').html(+ files.length + '個のファイルを選択しました');
+		}
+
+
+		//ファイルの取消
+		$('.reset').click(function(){
+		    $(this).parent().prev().children('.custom-file-label').html('ファイル選択...');
+		    $('#preview').remove();
+		    $('.custom-file-input').val('');
+		})
 		</script>
 
 
