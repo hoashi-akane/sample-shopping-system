@@ -79,7 +79,7 @@ public class GoodsDao extends DaoBase{
 		try {
 			con = super.dbOpen();
 			stmt = this.con.prepareStatement("INSERT INTO goods("
-					+ "goods_name,price,stock,description,image_dir,sales_quantity,sale,category_id,brand_id "
+					+ "goods_name,price,stock,description,image_dir,sales_quantity,is_sale,category_id,brand_id "
 					+ ")VALUES(?,?,?,?,?,?,?,?,?);");
 			stmt.setString(1, goodsDto.getGoodsName());
 			stmt.setInt(2, goodsDto.getPrice());
