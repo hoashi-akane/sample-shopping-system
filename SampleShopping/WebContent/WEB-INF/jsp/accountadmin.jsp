@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@page import="java.util.*" %>
-<%@page import="dto.*" %>
-
-    <%List<GoodsDto> goodsDtoList= (ArrayList<GoodsDto>)request.getAttribute("goodsDtoList");%>
-    <%String action=""; %>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
 	<head>
@@ -14,72 +9,89 @@
 				<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
 				<link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
 				<link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200&display=swap" rel="stylesheet">
-				<script
+				<link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap" rel="stylesheet">				<script
 				src="https://code.jquery.com/jquery-2.2.4.min.js"
 				integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 				crossorigin="anonymous"></script>
-				<style>
- 					<%@ include file = "../../css/style.css"%>
- 				</style>
+				<link rel="stylesheet" href="../css/style.css">
 	</head>
 
-		<body>
+	<body>
 				<!--メニュ-->
-	 <div class="el_humburger"><!--ハンバーガーボタン-->
-	    <div class="el_humburger_wrapper">
-	      <span class="el_humburger_bar top"></span>
-	      <span class="el_humburger_bar middle"></span>
-	      <span class="el_humburger_bar bottom"></span>
-	    </div>
-	  </div>
+	 	<div class="el_humburger"><!--ハンバーガーボタン-->
+		    <div class="el_humburger_wrapper">
+		      <span class="el_humburger_bar top"></span>
+		      <span class="el_humburger_bar middle"></span>
+		      <span class="el_humburger_bar bottom"></span>
+		    </div>
+		  </div>
 
-			<header class="navi">
-		     <div class="navi_inner">
-		       <div class="navi_item"><a href="top.html">Home</a></div>
-		       <div class="navi_item"><a href="goods.html">Goods</a></div>
-		       <div class="navi_item"><a href="contact.html">Contact</a></div>
-			   <div class="navi_item"><a href="cart.html">Cart</a></div>
-			   <div class="navi_item"><a href="account.html">Account</a></div>
-		     </div>
-		 	</header>
+		<header class="navi">
+	     <div class="navi_inner">
+	       <div class="navi_item"><a href="topadmin.html">Home</a></div>
+	       <div class="navi_item"><a href="goods.html">Goods</a></div>
+		   <div class="navi_item"><a href="accountadmin.html">Account</a></div>
+		   <div class="navi_item"><a href="goodscreate.html">GoodsCreate</a></div>
+
+	     </div>
+	 	</header>
 
 	<div class="mainView">
 	<!--ページコンテンツ-->
 	</div>
 			<!--タイトル-->
-			<div align="center">
-					<a href="top.html" id="title3a"><h3 id="title3">SampleShopping</h3></a>
-					<p id="title2">- Goods -</p>
-			</div>
+	<div align="center">
+		<a href="top.html" id="title3a"><h3 id="title3">SampleShopping</h3></a>
+		<p id="title2">- Account -</p>
+	</div>
 
-			<table id="goodsTable" align="center">
+	<div align="center">
+   <div class="asd">
+	   <table id="gaiyou">
+   <tr>
+	 <th align="center">お名前</th>
+	 <td></td>
+   </tr>
+   <tr>
+	 <th align="center">ID</th>
+   <td></td>
+   </tr>
+   <tr>
+	 <th align="center">パスワード</th>
+	 <td></td>
+   </tr>
+   <tr>
+	 <th>郵便番号</th>
+	 <td></td>
+   </tr>
+   <tr>
+	 <th>住所１</th>
+	 <td></td>
+   </tr>
+   <tr>
+	 <th>住所２</th>
+	 <td></td>
+   </tr>
+    <tr>
+   	 <th>電話番号</th>
+   	 <td></td>
+    </tr>
+	<tr>
+	 <th>メールアドレス</th>
+	 <td></td>
+	</tr>
+	 <tr>
+	  <th>性別</th>
+	  <td></td>
+	 </tr>
+   </table>
+</div>
 
-		<%for(GoodsDto goodsDto:goodsDtoList){ %>
-		<form id ='form' name = 'inputForm' action="">
-				<tr>
-					<td rowspan="3"><img src="<%=goodsDto.getImageDir()%>" alt="" id="goodsimg"></td>
-					<td colspan="5" id="goodsName"><%=goodsDto.getGoodsName()%></td>
-				</tr>
-				<tr class="mt-2">
-					<td id="goodsName"><%=goodsDto.getPrice()%></td>
-					<td id="goodsName"><%=goodsDto.getStock()%></td>
+	<a href="correctionadmin.html" class="btn-border-bottom" id="accountbtn">変更</a>
+	<a href="#" class="btn-border-bottom">退会</a>
 
-					<td id="goodsName">数量</td>
-					<td>
-						<select name="cnt">
-							<option value="1" selected>1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-						</select>
-					</td>
-					<td id="goodsName"><a href="#"><img src="" alt="" id="cartimg"></a></td>
-				</tr>
-		</form>
-				<%} %>
-			</table>
+
+
 			<!--フッター-->
 	<footer>
 	<small id="footer">Copyright&copy;Kadai Website,all rightsreserved.</small>
@@ -101,7 +113,7 @@
 	          spNavInOut.switch();
 	          //一時的にボタンを押せなくする
 	          setTimeout(function(){
-	        	  navButtonFlag = true;
+	            navButtonFlag = true;
 	          },200);
 	          navButtonFlag = false;
 	        }

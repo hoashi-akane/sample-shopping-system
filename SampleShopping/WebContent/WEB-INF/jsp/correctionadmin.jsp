@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@page import="java.util.*" %>
-<%@page import="dto.*" %>
-
-    <%List<GoodsDto> goodsDtoList= (ArrayList<GoodsDto>)request.getAttribute("goodsDtoList");%>
-    <%String action=""; %>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
 	<head>
@@ -19,9 +14,7 @@
 				src="https://code.jquery.com/jquery-2.2.4.min.js"
 				integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 				crossorigin="anonymous"></script>
-				<style>
- 					<%@ include file = "../../css/style.css"%>
- 				</style>
+				<link rel="stylesheet" href="../css/style.css">
 	</head>
 
 		<body>
@@ -36,50 +29,68 @@
 
 			<header class="navi">
 		     <div class="navi_inner">
-		       <div class="navi_item"><a href="top.html">Home</a></div>
+		       <div class="navi_item"><a href="topadmin.html">Home</a></div>
 		       <div class="navi_item"><a href="goods.html">Goods</a></div>
-		       <div class="navi_item"><a href="contact.html">Contact</a></div>
-			   <div class="navi_item"><a href="cart.html">Cart</a></div>
-			   <div class="navi_item"><a href="account.html">Account</a></div>
+			   <div class="navi_item"><a href="accountadmin.html">Account</a></div>
 		     </div>
 		 	</header>
 
 	<div class="mainView">
 	<!--ページコンテンツ-->
 	</div>
-			<!--タイトル-->
+
+		<!--タイトル-->
+		<div align="center">
+				<a href="top.html" id="title3a"><h3 id="title3">SampleShopping</h3></a>
+				<p id="title2">- Correction -</p>
+		</div>
+
 			<div align="center">
-					<a href="top.html" id="title3a"><h3 id="title3">SampleShopping</h3></a>
-					<p id="title2">- Goods -</p>
-			</div>
+		   <div class="asd">
+			   <table id="gaiyou">
+		   <tr>
+			 <th align="center">お名前<font color="red"> *</font></p></th>
+			 <td><input type="text" name="" value=""></td>
+		   </tr>
+		   <tr>
+			 <th align="center">ID<font color="red"> *</font></p></th>
+		   <td><input type="text" name="" value=""></td>
+		   </tr>
+		   <tr>
+			 <th align="center">パスワード</th>
+			 <td><input type="password" name="" value=""></td>
+		   </tr>
+		   <tr>
+			 <th>郵便番号</th>
+			 <td><input type="text" name="" value=""></td>
+		   </tr>
+		   <tr>
+			 <th>住所１</th>
+			 <td><input type="text" name="" value=""></td>
+		   </tr>
+		   <tr>
+			 <th>住所２</th>
+			 <td><input type="text" name="" value=""></td>
+		   </tr>
+		    <tr>
+		   	 <th>電話番号</th>
+		   	 <td><input type="text" name="" value=""></td>
+		    </tr>
+			<tr>
+			 <th>メールアドレス</th>
+			 <td><input type="email" name="" value="" id="textbox"></td>
+			</tr>
+			 <tr>
+			  <th>性別</th>
+			  <td><input type="radio" name="example" value="1">女性
+		        <input type="radio" name="example" value="2">男性
+			  </td>
+			 </tr>
+		   </table>
+		</div>
 
-			<table id="goodsTable" align="center">
-
-		<%for(GoodsDto goodsDto:goodsDtoList){ %>
-		<form id ='form' name = 'inputForm' action="">
-				<tr>
-					<td rowspan="3"><img src="<%=goodsDto.getImageDir()%>" alt="" id="goodsimg"></td>
-					<td colspan="5" id="goodsName"><%=goodsDto.getGoodsName()%></td>
-				</tr>
-				<tr class="mt-2">
-					<td id="goodsName"><%=goodsDto.getPrice()%></td>
-					<td id="goodsName"><%=goodsDto.getStock()%></td>
-
-					<td id="goodsName">数量</td>
-					<td>
-						<select name="cnt">
-							<option value="1" selected>1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-						</select>
-					</td>
-					<td id="goodsName"><a href="#"><img src="" alt="" id="cartimg"></a></td>
-				</tr>
-		</form>
-				<%} %>
-			</table>
+			<a href="account.html" class="btn-border-bottom" id="accountbtn">戻る</a>
+			<a href="#" class="btn-border-bottom">変更</a>
 			<!--フッター-->
 	<footer>
 	<small id="footer">Copyright&copy;Kadai Website,all rightsreserved.</small>
@@ -101,7 +112,7 @@
 	          spNavInOut.switch();
 	          //一時的にボタンを押せなくする
 	          setTimeout(function(){
-	        	  navButtonFlag = true;
+	            navButtonFlag = true;
 	          },200);
 	          navButtonFlag = false;
 	        }

@@ -40,14 +40,14 @@ public class DispUserInfoServlet extends HttpServlet {
 
     	int userId = ((UserDto)session.getAttribute("userDto")).getId();
     	UserDao userDao = new UserDao();
-    	List<UserDto> userinfolist = userDao.findUser(userId);
+    	UserDto userDto = userDao.findUser(userId);
 
-    	if(userinfolist==null) {
+    	if(userDto==null) {
     		getServletContext().getRequestDispatcher("/WEB-INF/jsp/menu.jsp").
     		forward(request,response);
 
     	}else {
-    		session.setAttribute("userinfolist", userinfolist);
+    		session.setAttribute("userDto", userDto);
     		getServletContext().getRequestDispatcher("/WEB-INF/jsp/account.jsp").
     		forward(request,response);
     	}
