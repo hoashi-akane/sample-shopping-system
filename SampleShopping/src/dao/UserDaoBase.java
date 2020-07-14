@@ -11,7 +11,7 @@ public class UserDaoBase extends DaoBase{
 		UserDto userDto = null;
 		try {
 			con = super.dbOpen();
-			stmt = this.con.prepareStatement("SELECT * FROM users WHERE login_id=? AND password=?");
+			stmt = this.con.prepareStatement("SELECT * FROM users WHERE login_id=? AND user_password=?");
 			this.stmt.setString(1, loginId);
 			this.stmt.setString(2, password);
 			ResultSet rs = this.stmt.executeQuery();
@@ -69,12 +69,13 @@ public class UserDaoBase extends DaoBase{
 	}
 	
 //	dbのカラムから取得したデータをdtoに詰め替えるメソッド
-	private UserDto userToDto(ResultSet rs) {
+	protected UserDto userToDto(ResultSet rs) {
 		UserDto userDto = new UserDto();
 		try {
 			userDto.setId(rs.getInt("id"));
 			userDto.setLoginId(rs.getString("login_id"));
 			userDto.setUserName(rs.getString("user_name"));
+			userDto.setZipCode(rs.getString("zip_code"));
 			userDto.setAddress(rs.getString("address"));
 			userDto.setAddressSub(rs.getString("address_sub"));
 			userDto.setTel(rs.getString("tel"));
