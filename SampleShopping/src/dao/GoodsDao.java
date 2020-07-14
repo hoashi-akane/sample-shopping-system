@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import dto.BrandDto;
 import dto.CategoryDto;
@@ -72,7 +73,27 @@ public class GoodsDao extends DaoBase{
 		super.dbClose();
 		return goodsDto;
 	}
-
+	
+//	 商品id取得（商品登録用）
+	public int findGoods(GoodsDto goodsDto) {
+		int id = 0;
+		try {
+			con = super.dbOpen();
+			stmt = this.con.prepareStatement("SELECT id FROM goods "
+					+ "WHERE goods_name=? AND description=?;");
+			stmt.setString(1, goodsDto.getGoodsName());
+			stmt.setString(2, goodsDto.getDescription());
+			ResultSet rs = stmt.executeQuery();
+			rs.next();
+			id = rs.getInt("id");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			super.dbClose();
+		}
+		return id;
+	}
+	
 //	商品登録
 	public boolean insertGoods(GoodsDto goodsDto) {
 		boolean isSuccess = false;
@@ -96,6 +117,24 @@ public class GoodsDao extends DaoBase{
 			e.printStackTrace();
 		}
 		super.dbClose();
+		return isSuccess;
+	}
+	
+//	商品の画像パスを登録
+	public boolean insertImagePath(int id, String imagePath) {
+		boolean isSuccess = false;
+		try {
+			con = super.dbOpen();
+			stmt = this.con.prepareStatement("UPDATE goods SET image_dir =? WHERE id =?");
+			stmt.setString(1, imagePath);
+			stmt.setInt(2, id);
+			stmt.executeUpdate();
+			isSuccess = true;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			super.dbClose();
+		}
 		return isSuccess;
 	}
 
