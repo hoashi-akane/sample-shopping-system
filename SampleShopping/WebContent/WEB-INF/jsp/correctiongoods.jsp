@@ -17,7 +17,7 @@
 				<script>
 				src="https://code.jquery.com/jquery-2.2.4.min.js"
 				integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-				crossorigin="anonymous"></script>
+				crossorigin="anonymous"</script>
 				<link rel="stylesheet" href="../css/style.css">
 	</head>
 
@@ -47,36 +47,33 @@
 		<a href="top.html" id="title3a"><h3 id="title3">SampleShopping</h3></a>
 		<p id="title2">- CreateGoods -</p>
 	</div>
-
-
-
 			<div align="center">
 		   <div class="asd">
 			   <table id="gaiyou">
 			<tr>
 			 <th>商品名</th>
-			 <td><input type="text" name="" value=""></td>
+			 <td><input type="text" name="goods_name" value="<%=goodsDto.getGoodsName()%>"></td>
 		   </tr>
 
 		   <tr>
 			 <th align="center">値段</th>
-		   <td><input type="text" name="" value="<%=goodsDto.getPrice()%>"></td>
+		   <td><input type="text" name="price" value="<%=goodsDto.getPrice()%>"></td>
 		   </tr>
 		   <tr>
 			 <th align="center">在庫数</th>
-			 <td><input type="password" name="" value="<%=goodsDto.getStock()%>"></td>
+			 <td><input type="password" name="stock" value="<%=goodsDto.getStock()%>"></td>
 		   </tr>
 		   <tr>
 			 <th>説明文</th>
-			 <td><textarea name="" cols="50" rows="7" id="textbox" value="<%=goodsDto.getDescription()%>"></textarea></td>
+			 <td><textarea name="description" cols="50" rows="7" id="textbox" value="<%=goodsDto.getDescription()%>"></textarea></td>
 		   </tr>
 		   <tr>
 			 <th>カテゴリー</th>
-			 <td><input type="text" name="" value="<%=goodsDto.getCategoryId()%>"></td>
+			 <td><input type="text" name="category_id" value="<%=goodsDto.getCategoryId()%>"></td>
 		   </tr>
 		    <tr>
 		   	 <th>ブランド</th>
-		   	 <td><input type="text" name="" value="<%=goodsDto.getBrandId()%>"></td>
+		   	 <td><input type="text" name="brand_id" value="<%=goodsDto.getBrandId()%>"></td>
 		    </tr>
 		   </table>
 		</div>
