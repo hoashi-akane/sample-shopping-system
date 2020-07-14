@@ -32,7 +32,7 @@ public class HiddenBuyHistoryServlet extends HttpServlet {
     	int id = Integer.parseInt(request.getParameter("id"));
     	BuyHistoryDao buyHistoryDao = new BuyHistoryDao();
 
-    	if(BuyHistoryDao.hiddenBuyHistory(id)) {
+    	if(buyHistoryDao.hiddenBuyHistory(id)) {
 			response.sendRedirect("/SampleShopping/menu");
 		}else{
 			response.sendRedirect("/SampleShopping/dispbuyhistory");
