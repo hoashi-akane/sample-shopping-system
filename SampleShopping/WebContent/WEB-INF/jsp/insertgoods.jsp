@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
@@ -9,7 +9,8 @@
 				<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
 				<link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
 				<link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap" rel="stylesheet">				<script
+				<link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap" rel="stylesheet">				
+				<script
 				src="https://code.jquery.com/jquery-2.2.4.min.js"
 				integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 				crossorigin="anonymous"></script>
@@ -48,8 +49,7 @@
 	<form action="/SampleShopping/insertgoods" method="post" enctype="multipart/form-data">
 		<div align="center">
 		   <div class="asd">
-			   <table id="gaiyou">
-
+		   <table id="gaiyou">
 			<tr>
 			   	 <th>商品名</th>
 			 <td><input type="text" name="goods_name"></td>

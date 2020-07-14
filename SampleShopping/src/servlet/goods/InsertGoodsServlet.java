@@ -53,6 +53,7 @@ public class InsertGoodsServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String path ="";
 		
+		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		GoodsDto goodsDto = new GoodsDto();
 		String goodsName = request.getParameter("goods_name");
