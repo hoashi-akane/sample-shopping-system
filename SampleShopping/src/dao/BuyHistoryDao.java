@@ -91,6 +91,23 @@ public class BuyHistoryDao extends DaoBase{
 		return id;
 	}
 	
+//	非表示機能を有効化
+	public boolean hiddenBuyHistory(int id) {
+		boolean isSuccess = false;
+		try {
+			con = super.dbOpen();
+			stmt = this.con.prepareStatement("UPDATE buy_history_details SET is_hidden = true WHERE id = ?");
+			stmt.setInt(1, id);
+			stmt.executeUpdate();
+			isSuccess = true;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			super.dbClose();
+		}
+		return isSuccess;
+	}
+	
 //	getBuyHistoryList用dto詰め替えメソッド
 	private List<BuyHistoryDto> buyHistoryToDto(ResultSet rs) {
 		List<BuyHistoryDto> buyHistoryDtoList = new ArrayList<BuyHistoryDto>();
