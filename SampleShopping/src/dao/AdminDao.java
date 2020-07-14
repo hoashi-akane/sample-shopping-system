@@ -1,5 +1,7 @@
 package dao;
 
+import java.sql.ResultSet;
+
 import dto.UserDto;
 
 public class AdminDao extends UserDaoBase{
@@ -29,5 +31,19 @@ public class AdminDao extends UserDaoBase{
 			e.printStackTrace();
 		}
 		return isSuccess;
+	}
+	
+	public UserDto findAdminUser(int id) {
+		UserDto userDto = null;
+		try {
+			con = super.dbOpen();
+			stmt = this.con.prepareStatement("SELECT * FROM users WHERE id=? AND is_admin=1");
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			userDto = userToDto(rs);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return userDto;
 	}
 }
