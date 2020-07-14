@@ -50,7 +50,7 @@ public class CreateAdminUserServlet extends HttpServlet {
 		if(adminDao.insertAdminUser(userDto)) {
 			response.sendRedirect("/SampleShopping/menuadmin");
 		}else{
-			request.getRequestDispatcher("WEB-INF/jsp/createadminuser.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/jsp/createadmin.jsp").forward(request, response);
 		}
 	}
 }
