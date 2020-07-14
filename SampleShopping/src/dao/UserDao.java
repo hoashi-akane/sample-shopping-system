@@ -71,4 +71,18 @@ public class UserDao extends UserDaoBase{
 		}
 		return isSuccess;
 	}
+	
+	public UserDto findUser(int id) {
+		UserDto userDto = null;
+		try {
+			con = super.dbOpen();
+			stmt = this.con.prepareStatement("SELECT * FROM users WHERE id=? AND is_admin=0");
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			userDto = userToDto(rs);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return userDto;
+	}
 }
