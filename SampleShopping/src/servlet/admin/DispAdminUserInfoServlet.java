@@ -32,7 +32,12 @@ public class DispAdminUserInfoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	HttpSession session = request.getSession();
 		UserDto userDto = (UserDto)session.getAttribute("userDto");
-		request.setAttribute("userDto", userDto);
-		request.getRequestDispatcher("WEB-INF/jsp/accountadmin.jsp").forward(request, response);
+
+		if(userDto==null) {
+    		getServletContext().getRequestDispatcher("/WEB-INF/jsp/menu.jsp").forward(request,response);
+    	}else{
+    		request.setAttribute("userDto", userDto);
+    		request.getRequestDispatcher("WEB-INF/jsp/accountadmin.jsp").forward(request, response);
+    	}
 	}
 }
