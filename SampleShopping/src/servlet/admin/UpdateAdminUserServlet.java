@@ -33,7 +33,7 @@ public class UpdateAdminUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     	HttpSession session = request.getSession();
-		UserDto userDto = (UserDto)session.getAttribute("adminDto");
+		UserDto userDto = (UserDto)session.getAttribute("userDto");
 		AdminDao adminDao = new AdminDao();
 
 		if(adminDao.updateUser(userDto)) {
