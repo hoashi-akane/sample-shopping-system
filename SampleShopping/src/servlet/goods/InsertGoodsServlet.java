@@ -21,6 +21,7 @@ import javax.servlet.http.Part;
 
 import dao.GoodsDao;
 import dto.GoodsDto;
+import other.SystemPath;
 
 
 @WebServlet("/insertgoods")
@@ -90,8 +91,9 @@ public class InsertGoodsServlet extends HttpServlet {
 		}
 		
 		int goodsId = goodsDao.findGoods(goodsDto);
-		String imagePath = System.getProperty("user.home")+"/output_imgfile/"+goodsId;
-		File dir = new File(imagePath);
+		String imagePath = SystemPath.getImagePath(goodsId);
+		String imageFullPath = SystemPath.getImageFullPath(imagePath);
+		File dir = new File(imageFullPath);
 		dir.mkdirs();
 		
 		if(goodsId == 0 || !goodsDao.insertImagePath(goodsId, imagePath)) {
@@ -113,7 +115,7 @@ public class InsertGoodsServlet extends HttpServlet {
 				response.sendRedirect(path);
 				return;
 			}
-			String pass = imagePath +"/"+i+"."+fileType.substring(fileType.lastIndexOf("/")+1);
+			String pass = imageFullPath +"/"+i+"."+fileType.substring(fileType.lastIndexOf("/")+1);
 			part.write(pass);
 			i++;
 		}
