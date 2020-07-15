@@ -73,7 +73,8 @@
 		   </tr>
 		    <tr>
 		   	 <th>ブランド</th>
-		   	 <td><input type="text" name="brand_id" value="<%=goodsDto.getBrandId()%>"></td>
+		   	 <td><input type="text" name="brand_id^¥
+		   	 " value="<%=goodsDto.getBrandId()%>"></td>
 		    </tr>
 		   </table>
 		</div>
