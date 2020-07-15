@@ -33,6 +33,6 @@ public class DispAdminUserInfoServlet extends HttpServlet {
     	HttpSession session = request.getSession();
 		UserDto userDto = (UserDto)session.getAttribute("adminDto");
 		request.setAttribute("userDto", userDto);
-		request.getRequestDispatcher("WEB-INF/jsp/accountadmin.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/jsp/userinfo.jsp").forward(request, response);
 	}
 }
