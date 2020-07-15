@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class MenuAdminServlet
  */
-@WebServlet("/MenuAdminServlet")
+@WebServlet("/menuadmin")
 public class MenuAdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
