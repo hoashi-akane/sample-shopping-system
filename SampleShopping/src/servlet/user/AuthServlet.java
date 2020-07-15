@@ -42,10 +42,10 @@ public class AuthServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		if(userDto==null) {
 			session.setAttribute("message", "ログインに失敗しました");
-			response.sendRedirect("/login");
+			response.sendRedirect("/SampleShopping/login");
 		}else {
 			session.setAttribute("userDto",userDto );
-			response.sendRedirect("/menu");
+			response.sendRedirect("/SampleShopping//menu");
 		}
 	}
 

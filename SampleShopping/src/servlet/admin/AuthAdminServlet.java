@@ -43,10 +43,10 @@ public class AuthAdminServlet extends HttpServlet {
 		String path ="";
 		if(userDto != null) {
 			session.setAttribute("userDto", userDto);
-			path = "menu";
+			path = "/SampleShopping/menu";
 			response.sendRedirect(path);
 		} else {
-			path = "loginadmin";
+			path = "/SampleShopping/loginadmin";
 			response.sendRedirect(path);
 	}
 		}catch(Exception e){
