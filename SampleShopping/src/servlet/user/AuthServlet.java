@@ -45,7 +45,7 @@ public class AuthServlet extends HttpServlet {
 			response.sendRedirect("/SampleShopping/login");
 		}else {
 			session.setAttribute("userDto",userDto );
-			response.sendRedirect("/SampleShopping//menu");
+			response.sendRedirect("/SampleShopping/menu");
 		}
 	}
 
