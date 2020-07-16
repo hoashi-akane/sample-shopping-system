@@ -33,9 +33,14 @@ public class DispGoodsImageServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub 
 		String imagePath = (String)request.getParameter("imagePath");
-		goodsService.outputImages(SystemPath.getImageFullPath(imagePath), response);
+		String fullPath = SystemPath.getImageFullPath(imagePath);
+//		商品一覧の場合は受け取ったimagePathの最後にfirstが入っている→パスを商品の画像に再設定
+		if (imagePath.substring(imagePath.lastIndexOf("/")+1).equals("first")){
+			fullPath = fullPath.substring(0, fullPath.lastIndexOf("/")+1);
+			fullPath = goodsService.findImageFile(fullPath).getPath();
+		}
+		goodsService.outputImages(fullPath, response);
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

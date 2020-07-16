@@ -17,6 +17,13 @@ public class GoodsService {
 		return fileList;
 	}
 	
+	
+//	商品のファイルの一番最初のこんてんつを返すメソッド
+	public File findImageFile(String imageDir) {
+		File file = new File(imageDir);
+		return file.listFiles()[0];
+	}
+	
 //	画像を出力するサービス
 	public void outputImages(String imagePath, HttpServletResponse response) {
 		// TODO 自動生成されたメソッド・スタブ

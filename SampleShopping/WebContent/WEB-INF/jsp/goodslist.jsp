@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
     <%@page import="java.util.*" %>
 <%@page import="dto.*" %>
-
     <%List<GoodsDto> goodsDtoList= (ArrayList<GoodsDto>)request.getAttribute("goodsDtoList");%>
     <%String action=""; %>
 <!DOCTYPE html>
@@ -58,7 +57,7 @@
 		<%for(GoodsDto goodsDto:goodsDtoList){ %>
 		<form id ='form' name = 'inputForm' action="">
 				<tr>
-					<td rowspan="3"><img src="<%=goodsDto.getImageDir()%>" alt="" id="goodsimg"></td>
+				<td rowspan="3"><img src='dispgoodsimage?imagePath=/output_imgfile/<%=goodsDto.getId() %>/first' alt="" id="goodsimg"></td>
 					<td colspan="5" id="goodsName"><%=goodsDto.getGoodsName()%></td>
 				</tr>
 				<tr class="mt-2">
@@ -77,8 +76,8 @@
 					</td>
 					<td id="goodsName"><a href="#"><img src="" alt="" id="cartimg"></a></td>
 				</tr>
-		</form>
-				<%} %>
+			</form>
+			<%} %>
 			</table>
 			<!--フッター-->
 	<footer>
