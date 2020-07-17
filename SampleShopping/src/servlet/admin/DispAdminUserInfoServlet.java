@@ -14,7 +14,7 @@ import dto.UserDto;
 /**
  * Servlet implementation class LogoutServlet
  */
-@WebServlet("/dispuserinfo")
+@WebServlet("/dispadminuserinfo")
 public class DispAdminUserInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
