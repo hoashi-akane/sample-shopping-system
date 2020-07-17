@@ -15,7 +15,7 @@ import dto.UserDto;
 /**
  * Servlet implementation class LogoutServlet
  */
-@WebServlet("/updateuser")
+@WebServlet("/updateadminuser")
 public class UpdateAdminUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
