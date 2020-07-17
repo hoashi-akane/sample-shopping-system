@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
       <%@page import="java.util.*" %>
+      <%@page import="java.io.File" %>
 <%@page import="dto.*" %>
-    <%GoodsDto goodsDto = (GoodsDto)request.getAttribute("goodsDto");%>
-    <%String action=""; %>
+    <%GoodsDto goodsDto = (GoodsDto)request.getAttribute("goodsDto");
+    String action=""; 
+    File[] fileList = (File[])request.getAttribute("fileList");
+    %>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
 	<head>
@@ -55,7 +58,9 @@
 				<table id="goodsTable" align="center">
 		<form id ='form' name = 'inputForm' action="">
 				<tr>
-					<td rowspan="3"><img src="<%=goodsDto.getImageDir()%>" alt="" id="goodsimg"></td>
+					<% for(File file : fileList){ %>
+					<td rowspan="3"><img src='dispgoodsimage?imagePath=/output_imgfile/<%=goodsDto.getId() %>/<%= file.getName() %>' alt="" id="goodsimg"></td>
+					<% } %>
 					<td colspan="5" id="goodsName"><%=goodsDto.getGoodsName()%></td>
 				</tr>
 				<tr class="mt-2">
