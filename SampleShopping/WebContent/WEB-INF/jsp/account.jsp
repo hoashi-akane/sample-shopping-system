@@ -9,38 +9,13 @@
 	<head>
 		<meta charset="utf-8">
 		<title>SampleShopping</title>
-				<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-				<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap" rel="stylesheet">				<script
-				src="https://code.jquery.com/jquery-2.2.4.min.js"
-				integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-				crossorigin="anonymous"></script>
-				<style>
- 					<%@ include file = "../../css/style.css"%>
- 				</style>
+							<%@include file="head.jsp" %>
+
 	</head>
 
 	<body>
-				<!--メニュ-->
-	 	<div class="el_humburger"><!--ハンバーガーボタン-->
-		    <div class="el_humburger_wrapper">
-		      <span class="el_humburger_bar top"></span>
-		      <span class="el_humburger_bar middle"></span>
-		      <span class="el_humburger_bar bottom"></span>
-		    </div>
-		  </div>
+							<%@include file="userheader.jsp" %>
 
-		<header class="navi">
-	     <div class="navi_inner">
-	       <div class="navi_item"><a href="top.html">Home</a></div>
-	       <div class="navi_item"><a href="goods.html">Goods</a></div>
-	       <div class="navi_item"><a href="contact.html">Contact</a></div>
-		   <div class="navi_item"><a href="cart.html">Cart</a></div>
-		   <div class="navi_item"><a href="account.html">Account</a></div>
-	     </div>
-	 	</header>
 
 	<div class="mainView">
 	<!--ページコンテンツ-->

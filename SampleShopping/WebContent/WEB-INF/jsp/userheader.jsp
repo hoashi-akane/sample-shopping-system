@@ -12,10 +12,9 @@
        <div class="navi_item"><a href="menu">Home</a></div>
        <div class="navi_item"><a href="dispgoodslist">Goods</a></div>
 	   <div class="navi_item"><a href="dispcart">Cart</a></div>
+	   	   <div class="navi_item"><a href="dispbuyhistory">BuyHistory</a></div>
 	   <div class="navi_item"><a href="dispuserinfo">Account</a></div>
      </div>
  	</header>
 
-<div class="mainView">
-<!--ページコンテンツ-->
-</div>
+

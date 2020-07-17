@@ -11,7 +11,7 @@
      <div class="navi_inner">
        <div class="navi_item"><a href="menuadmin">Home</a></div>
        <div class="navi_item"><a href="dispgoodslistadmin">Goods</a></div>
-	   <div class="navi_item"><a href="dispcart">Cart</a></div>
+	   <div class="navi_item"><a href="insertgoods">CreateGoods</a></div>
 	   <div class="navi_item"><a href="dispuserinfo">Account</a></div>
      </div>
  	</header>
