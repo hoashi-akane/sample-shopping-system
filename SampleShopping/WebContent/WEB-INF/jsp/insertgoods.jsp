@@ -5,44 +5,20 @@
 	<head>
 		<meta charset="utf-8">
 		<title>SampleShopping</title>
-				<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-				<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap" rel="stylesheet">				
-				<script
-				src="https://code.jquery.com/jquery-2.2.4.min.js"
-				integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-				crossorigin="anonymous"></script>
-				<style>
- 					<%@ include file = "../../css/style.css"%>
- 				</style>
+						<%@include file="head.jsp" %>
+
 	</head>
 
 	<body>
-				<!--メニュ-->
-	 	<div class="el_humburger"><!--ハンバーガーボタン-->
-		    <div class="el_humburger_wrapper">
-		      <span class="el_humburger_bar top"></span>
-		      <span class="el_humburger_bar middle"></span>
-		      <span class="el_humburger_bar bottom"></span>
-		    </div>
-		  </div>
+					<%@include file="adminheader.jsp" %>
 
-		<header class="navi">
-	     <div class="navi_inner">
-	       <div class="navi_item"><a href="topadmin.html">Home</a></div>
-	       <div class="navi_item"><a href="goods.html">Goods</a></div>
-		   <div class="navi_item"><a href="accountadmin.html">Account</a></div>
-	     </div>
-	 	</header>
 
 	<div class="mainView">
 	<!--ページコンテンツ-->
 	</div>
 			<!--タイトル-->
 	<div align="center">
-		<a href="top.html" id="title3a"><h3 id="title3">SampleShopping</h3></a>
+		<a href="menuadmin" id="title3a"><h3 id="title3">SampleShopping</h3></a>
 		<p id="title2">- CreateGoods -</p>
 	</div>
 
@@ -164,8 +140,8 @@
 		    }
 		  }
 		};
-		
-		
+
+
 		$('.custom-file-input').on('change', handleFileSelect);
 		function handleFileSelect(evt) {
 		        $('#preview').remove();// 繰り返し実行時の処理
