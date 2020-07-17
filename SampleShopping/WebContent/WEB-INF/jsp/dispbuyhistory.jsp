@@ -60,8 +60,8 @@
         </div>
         <div class="col-md-6 mt-3 shadow-sm">
             <h5 class="ml-4"></h5>
-            <div class="ml-5 text-secondary"><%=BuyHistory.getGoodsDtoList().getGoodsName()%></div>
-            <div class="text-danger ml-5"><%=BuyHistory.getBuyDate()%>にお届けしました。</div>
+<!--   <div class="ml-5 text-secondary"></div> -->
+           <div class="text-danger ml-5"><%=BuyHistory.getBuyDate()%>にお届けしました。</div>
 
                 <form method="POST">
 
