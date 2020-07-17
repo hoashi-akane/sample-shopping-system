@@ -25,6 +25,11 @@
 	font-size: 30px;
 }
 
+#name{
+	    font-family: 'Noto Sans TC', sans-serif;
+	    color:#000000;
+}
+
 /**************メニュー***************************/
 /*ハンバーガー*/
 
@@ -40,6 +45,7 @@ a{
   width: 100vw;
   height: 0vh;
   background-color: #ccc;
+  font-family: 'Oswald', sans-serif;
 }
 /*ハンバーガーボタン*/
 .el_humburger {
@@ -189,7 +195,8 @@ a{
 .navi_item {
   margin-bottom: 28px;
   font-size: 20px;
-  font-family: "Marcellus", serif !important;
+  font-family: 'PT Serif', serif;
+  /*font-family: "Marcellus", serif !important;*/
   white-space: nowrap;
   margin-left: 90px; }
   .navi_item.op_innerLink {
@@ -212,7 +219,7 @@ footer{
 /***************************login.html*****************************/
 #loginTable{
 	margin-top: 50px;
-}
+    font-family: 'Sawarabi Gothic', sans-serif;}
 /***************************cart.html*****************************/
 #title3{
 	font-family: 'Cookie', cursive;
@@ -257,13 +264,16 @@ font-size: 30px;
   top:100%;
   left: 0;
   border-radius: 3px;
-  background:#696969;
+  background:#a9a9a9;
+  border-style: none;
   transition: .2s;
 }
 
 .btn-border-bottom:hover:before {
   top: -webkit-calc(100% - 3px);
   top: calc(100% - 3px);
+  text-decoration: none;
+
 }
 
 #accountbtn{
