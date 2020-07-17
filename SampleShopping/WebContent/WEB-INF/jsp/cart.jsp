@@ -25,7 +25,7 @@ int totalPrice = 0;
 	</div>
 			<!--タイトル-->
 			<div align="center">
-					<a href="top.html" id="title3a"><h3 id="title3">SampleShopping</h3></a>
+					<a href="menu" id="title3a"><h3 id="title3">SampleShopping</h3></a>
 					<p id="title2">- Cart -</p>
 			</div>
 
