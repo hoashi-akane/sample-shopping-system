@@ -5,19 +5,14 @@
 	<head>
 		<meta charset="utf-8">
 		<title>SampleShopping</title>
-				<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-				<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200&display=swap" rel="stylesheet">
-				<script
-				src="https://code.jquery.com/jquery-2.2.4.min.js"
-				integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-				crossorigin="anonymous"></script>
-				<link rel="stylesheet" href="../css/style.css">
+				<%@include file="head.jsp" %>
+
 	</head>
 
 		<body>
+
+					<%@include file="adminheader.jsp" %>
+
 
 	<div class="mainView">
 	<!--ページコンテンツ-->
@@ -25,7 +20,7 @@
 
 		<!--タイトル-->
 		<div align="center">
-				<a href="top.html" id="title3a"><h3 id="title3">SampleShopping</h3></a>
+				<a href="menuadmin" id="title3a"><h3 id="title3">SampleShopping</h3></a>
 				<p id="title2">- Insert -</p>
 		</div>
 
