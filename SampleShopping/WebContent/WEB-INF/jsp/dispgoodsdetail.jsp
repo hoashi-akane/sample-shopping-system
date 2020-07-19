@@ -6,6 +6,7 @@
     <%GoodsDto goodsDto = (GoodsDto)request.getAttribute("goodsDto");
     String action=""; 
     File[] fileList = (File[])request.getAttribute("fileList");
+    int i = 0;
     %>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
@@ -49,116 +50,135 @@
 	<div class="mainView">
 	<!--ページコンテンツ-->
 	</div>
-			<!--タイトル-->
-			<div align="center">
-					<a href="top.html" id="title3a"><h3 id="title3">SampleShopping</h3></a>
-					<p id="title2">- GoodsDetail -</p>
-			</div>
+		<!--タイトル-->
+		<div align="center">
+				<a href="top.html" id="title3a"><h3 id="title3">SampleShopping</h3></a>
+				<p id="title2">- GoodsDetail -</p>
+		</div>
 
-				<table id="goodsTable" align="center">
+		<table id="goodsTable" align="center" >
 		<form id ='form' name = 'inputForm' action="">
-				<tr>
-					<% for(File file : fileList){ %>
-					<td rowspan="3"><img src='dispgoodsimage?imagePath=/output_imgfile/<%=goodsDto.getId() %>/<%= file.getName() %>' alt="" id="goodsimg"></td>
-					<% } %>
-					<td colspan="5" id="goodsName"><%=goodsDto.getGoodsName()%></td>
-				</tr>
-				<tr class="mt-2">
-					<td id="goodsName"><%=goodsDto.getPrice()%></td>
-					<td id="goodsName"><%=goodsDto.getStock()%></td>
-					<td id="goodsName">数量</td>
-					<td>
-						<select name="cnt">
-							<option value="1" selected>1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-						</select>
-					</td>
-					<td id="goodsName"><a href="cart.html"><img src="../img/icon/cart.png" alt="" id="cartimg"></a></td>
-				</tr>
-				<tr>
-					<td><%=goodsDto.getBrandDto().getName()%></td>
-					<td><%=goodsDto.getCategoryDto().getName()%></td>
-				</tr>
-				<tr>
-					<td colspan="5" id="goodsName"><%=goodsDto.getDescription()%></td>
-				</tr>
-				</form>
-			</table>
-						<!--フッター-->
-				<footer>
-				<small id="footer">Copyright&copy;Kadai Website,all rightsreserved.</small>
-				</footer>
-
+			<tr>
+				<td rowspan="3" colspan="5"><img src='' class="goodsimg" id="mainImg"></td>
+				<td colspan="5" id="goodsName"><%=goodsDto.getGoodsName()%></td>
+			</tr>
+			<tr class="mt-2">
+				<td id="goodsName"><%=goodsDto.getPrice()%></td>
+				<td id="goodsName"><%=goodsDto.getStock()%></td>
+				<td id="goodsName">数量</td>
+				<td>
+					<select name="cnt">
+						<option value="1" selected>1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+				</td>
+				<td id="goodsName"><a href="cart.html"><img src="../img/icon/cart.png" alt="" id="cartimg"></a></td>
+			</tr>
+			<tr class="float-right">
+				<td><%=goodsDto.getBrandDto().getName()%></td>
+				<td><%=goodsDto.getCategoryDto().getName()%></td>
+			</tr>
+			<tr>
+			<% for(File file : fileList){ %>
+				<td>
+					<img src='dispgoodsimage?imagePath=/output_imgfile/<%=goodsDto.getId() %>/<%= file.getName() %>' class="minimumimg" id="img<%=i%>">
+				</td>
+				<% i++; } %>
+			</tr>
+			<tr>
+				<td colspan="5" id="goodsName"><p>説明文<br><%=goodsDto.getDescription()%></p></td>
+			</tr>
+			</form>
+		</table>
+					<!--フッター-->
+			<footer>
+			<small id="footer">Copyright&copy;Kadai Website,all rightsreserved.</small>
+			</footer>
+</div>
 				<!--メニュのjQuery-->
 				<!--CDNでjQuery読み込む-->
-				<script type="text/javascript">
-					//変数定義
-				var navigationOpenFlag = false;
-				var navButtonFlag = true;
-				var focusFlag = false;
+<script type="text/javascript">
+	//変数定義
+var navigationOpenFlag = false;
+var navButtonFlag = true;
+var focusFlag = false;
 
-				//ハンバーガーメニュー
-				    $(function(){
 
-				      $(document).on('click','.el_humburger',function(){
-				        if(navButtonFlag){
-				          spNavInOut.switch();
-				          //一時的にボタンを押せなくする
-				          setTimeout(function(){
-				            navButtonFlag = true;
-				          },200);
-				          navButtonFlag = false;
-				        }
-				      });
-				      $(document).on('click touchend', function(event) {
-				        if (!$(event.target).closest('.bl_header,.el_humburger').length && $('body').hasClass('js_humburgerOpen') && focusFlag) {
-				          focusFlag = false;
-				          //scrollBlocker(false);
-				          spNavInOut.switch();
-				        }
-				      });
-				    });
+$(document).ready( function(){
+	var img = document.getElementById('img0');
+	var src = img.getAttribute('src');
+	var img2 = document.getElementById('mainImg');
+	img2.setAttribute('src', src);
+});
+	 
+	 
+//ハンバーガーメニュー
+    $(function(){
 
-				//ナビ開く処理
-				function spNavIn(){
-				  $('body').removeClass('js_humburgerClose');
-				  $('body').addClass('js_humburgerOpen');
-				  setTimeout(function(){
-				    focusFlag = true;
-				  },200);
-				  setTimeout(function(){
-				    navigationOpenFlag = true;
-				  },200);
-				}
+      $(document).on('click','.el_humburger',function(){
+        if(navButtonFlag){
+          spNavInOut.switch();
+          //一時的にボタンを押せなくする
+          setTimeout(function(){
+            navButtonFlag = true;
+          },200);
+          navButtonFlag = false;
+        }
+      });
+      $(document).on('click touchend', function(event) {
+        if (!$(event.target).closest('.bl_header,.el_humburger').length && $('body').hasClass('js_humburgerOpen') && focusFlag) {
+          focusFlag = false;
+          //scrollBlocker(false);
+          spNavInOut.switch();
+        }
+      });
+    });
 
-				//ナビ閉じる処理
-				function spNavOut(){
-				  $('body').removeClass('js_humburgerOpen');
-				  $('body').addClass('js_humburgerClose');
-				  setTimeout(function(){
-				    $(".uq_spNavi").removeClass("js_appear");
-				    focusFlag = false;
-				  },200);
-				  navigationOpenFlag = false;
-				}
+//ナビ開く処理
+function spNavIn(){
+  $('body').removeClass('js_humburgerClose');
+  $('body').addClass('js_humburgerOpen');
+  setTimeout(function(){
+    focusFlag = true;
+  },200);
+  setTimeout(function(){
+    navigationOpenFlag = true;
+  },200);
+}
 
-				//ナビ開閉コントロール
-				var spNavInOut = {
-				  switch:function(){
-				    if($('body.spNavFreez').length){
-				      return false;
-				    }
-				    if($('body').hasClass('js_humburgerOpen')){
-				     spNavOut();
-				    } else {
-				     spNavIn();
-				    }
-				  }
-				};
-				</script>
+//ナビ閉じる処理
+function spNavOut(){
+  $('body').removeClass('js_humburgerOpen');
+  $('body').addClass('js_humburgerClose');
+  setTimeout(function(){
+    $(".uq_spNavi").removeClass("js_appear");
+    focusFlag = false;
+  },200);
+  navigationOpenFlag = false;
+}
+
+//ナビ開閉コントロール
+var spNavInOut = {
+  switch:function(){
+    if($('body.spNavFreez').length){
+      return false;
+    }
+    if($('body').hasClass('js_humburgerOpen')){
+     spNavOut();
+    } else {
+     spNavIn();
+    }
+  }
+};
+
+
+
+
+
+			</script>
 
 
 
