@@ -1,21 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@page import="java.util.*" %>
+        <%@page import="java.util.*" %>
 <%@page import="dto.*" %>
-    <%List<GoodsDto> goodsDtoList= (ArrayList<GoodsDto>)request.getAttribute("goodsDtoList");%>
-    <%String action=""; %>
+
+    <%List<BuyHistoryDto> listBuyHistory= (ArrayList<BuyHistoryDto>)request.getAttribute("listBuyHistory");%>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
 	<head>
 		<meta charset="utf-8">
 		<title>SampleShopping</title>
-							<%@include file="head.jsp" %>
+						<%@include file="head.jsp" %>
 
 	</head>
 
 		<body>
-							<%@include file="userheader.jsp" %>
-
+								<%@include file="userheader.jsp" %>
 
 	<div class="mainView">
 	<!--ページコンテンツ-->
@@ -23,34 +22,33 @@
 			<!--タイトル-->
 			<div align="center">
 					<a href="menu" id="title3a"><h3 id="title3">SampleShopping</h3></a>
-					<p id="title2">- Goods -</p>
+					<p id="title2">- BuyHistory -</p>
 			</div>
 
-			<table id="goodsTable" align="center">
+<%for(BuyHistoryDto BuyHistory:listBuyHistory){ %>
+			<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-1"></div>
+        <div class="p-0 col-md-4 shadow-sm">
+        </div>
+        <div class="col-md-6 mt-3 shadow-sm">
+            <h5 class="ml-4"></h5>
+<!--   <div class="ml-5 text-secondary"></div> -->
+           <div class="text-danger ml-5"><%=BuyHistory.getBuyDate()%>にお届けしました。</div>
 
-		<%for(GoodsDto goodsDto:goodsDtoList){ %>
-				<tr>
-				<td rowspan="3"><img src='dispgoodsimage?imagePath=/output_imgfile/<%=goodsDto.getId() %>/first' alt="" id="goodsimg"></td>
-					<td colspan="5" id="goodsName"><%=goodsDto.getGoodsName()%></td>
-				</tr>
-				<tr class="mt-2">
-					<td id="goodsName"><%=goodsDto.getPrice()%></td>
-					<td id="goodsName"><%=goodsDto.getStock()%></td>
+                <form method="POST">
 
-					<td id="goodsName">数量</td>
-					<td>
-						<select name="cnt">
-							<option value="1" selected>1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-						</select>
-					</td>
-					<td id="goodsName"><a href="dispgoodsdetail?id=<%=goodsDto.getId() %>"><img src="" alt="" id="cartimg">詳細</a></td>
-				</tr>
-			<%} %>
-			</table>
+                    <div class="form-group col-md-3 mb-0">
+
+                    </div>
+                    <button type="submit" class="mb-2 float-right btn btn-primary">詳細表示</button>
+                </form>
+        </div>
+    </div>
+</div>
+<%} %>
+
+
 			<!--フッター-->
 	<footer>
 	<small id="footer">Copyright&copy;Kadai Website,all rightsreserved.</small>
@@ -72,7 +70,7 @@
 	          spNavInOut.switch();
 	          //一時的にボタンを押せなくする
 	          setTimeout(function(){
-	        	  navButtonFlag = true;
+	            navButtonFlag = true;
 	          },200);
 	          navButtonFlag = false;
 	        }

@@ -27,44 +27,60 @@ public class UpdateGoodsServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/jsp/updategoods.jsp").
+		HttpSession session = request.getSession();
+		int id = 0;
+		try {
+			id = Integer.parseInt(request.getParameter("id"));
+		}catch(NumberFormatException e){
+			e.printStackTrace();
+		}
+
+		if(id == 0) {
+			request.setAttribute("message", "数値を入力してください。");
+		}else {
+
+			GoodsDao goodsDao = new GoodsDao();
+			GoodsDto goodsDto = goodsDao.getGoods(id);
+
+			request.setAttribute("goodsDto", goodsDto);
+			session.setAttribute("goodsId", goodsDto.getId());
+		}
+		request.getRequestDispatcher("/WEB-INF/jsp/correctiongoods.jsp").
 		forward(request,response);
-	}
+
+
+}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-	try {
-
 		HttpSession session = request.getSession();
-		GoodsDto goodsDto = new GoodsDto();
-	    goodsDto = (GoodsDto)session.getAttribute("goodsDto");
+		int id =(Integer)session.getAttribute("goodsId");
+		session.removeAttribute("goodsId");
 
-	    String num1 = request.getParameter("goods_id");
-		int goods_id  = Integer.parseInt(num1);
-		String goods_name = request.getParameter("goods_name");
-		String num2 = request.getParameter("price");
-		int price  = Integer.parseInt(num2);
-		String num3 = request.getParameter("stock");
-		int stock  = Integer.parseInt(num3);
+		String goodsName = request.getParameter("goods_name");
+		String price = request.getParameter("price");
+		String stock = request.getParameter("stock");
 		String description = request.getParameter("description");
-		String num4 = request.getParameter("category_id");
-		int category_id  = Integer.parseInt(num4);
-		String num5 = request.getParameter("brand_id");
-		int brand_id  = Integer.parseInt(num5);
+		String categoryId = request.getParameter("category_id");
+		String brandId = request.getParameter("brand_id");
 
-
-		goodsDto.setId(goods_id);
-		goodsDto.setGoodsName(goods_name);
-		goodsDto.setPrice(price);
-		goodsDto.setStock(stock);
-		goodsDto.setDescription(description);
-		goodsDto.setCategoryId(category_id);
-		goodsDto.setBrandId(brand_id);
+		GoodsDto goodsDto = new GoodsDto();
+		try {
+			goodsDto.setId(id);
+			goodsDto.setGoodsName(goodsName);
+			goodsDto.setPrice(Integer.parseInt(price));
+			goodsDto.setStock(Integer.parseInt(stock));
+			goodsDto.setDescription(description);
+			goodsDto.setCategoryId(Integer.parseInt(categoryId));
+			goodsDto.setBrandId(Integer.parseInt(brandId));
+		}catch(NumberFormatException e) {
+			request.setAttribute("message", "数値を入力してください");
+			request.getRequestDispatcher("WEB-INF/jsp/correctiongoods.jsp").forward(request, response);
+		}
 
 		GoodsDao goodsDao = new GoodsDao();
 		boolean successGoods = goodsDao.updateGoods(goodsDto);
-
 
 		String path ="";
 		if(successGoods) {
@@ -75,9 +91,6 @@ public class UpdateGoodsServlet extends HttpServlet {
 		} else {
 			path = "dispgoodslist";
 			response.sendRedirect(path);
-	}
-		}catch(Exception e) {
-
 		}
 	}
 }
