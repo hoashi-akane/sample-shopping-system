@@ -29,7 +29,6 @@
 			<table id="goodsTable" align="center">
 
 		<%for(GoodsDto goodsDto:goodsDtoList){ %>
-		<form id ='form' name = 'inputForm' action="">
 				<tr>
 				<td rowspan="3"><img src='dispgoodsimage?imagePath=/output_imgfile/<%=goodsDto.getId() %>/first' alt="" id="goodsimg"></td>
 					<td colspan="5" id="goodsName"><%=goodsDto.getGoodsName()%></td>
@@ -48,9 +47,8 @@
 							<option value="5">5</option>
 						</select>
 					</td>
-					<td id="goodsName"><a href="#"><img src="" alt="" id="cartimg"></a></td>
+					<td id="goodsName"><a href="dispgoodsdetail?id=<%=goodsDto.getId() %>"><img src="" alt="" id="cartimg">詳細</a></td>
 				</tr>
-			</form>
 			<%} %>
 			</table>
 			<!--フッター-->
