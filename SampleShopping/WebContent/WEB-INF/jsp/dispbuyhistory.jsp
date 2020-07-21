@@ -3,39 +3,37 @@
         <%@page import="java.util.*" %>
 <%@page import="dto.*" %>
 
-    <%List<BuyHistoryDto> listBuyHistory= (ArrayList<BuyHistoryDto>)request.getAttribute("listBuyHistory");%>
+    <%List<BuyHistoryDto> buyHistoryList= (ArrayList<BuyHistoryDto>)request.getAttribute("listBuyHistory");%>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
 	<head>
 		<meta charset="utf-8">
 		<title>SampleShopping</title>
-						<%@include file="head.jsp" %>
-
+		<%@include file="head.jsp" %>
 	</head>
-
-		<body>
-								<%@include file="userheader.jsp" %>
+	<body>
+	<%@include file="userheader.jsp" %>
 
 	<div class="mainView">
 	<!--ページコンテンツ-->
 	</div>
-			<!--タイトル-->
-			<div align="center">
-					<a href="menu" id="title3a"><h3 id="title3">SampleShopping</h3></a>
-					<p id="title2">- BuyHistory -</p>
-			</div>
+		<!--タイトル-->
+		<div align="center">
+				<a href="menu" id="title3a"><h3 id="title3">SampleShopping</h3></a>
+				<p id="title2">- BuyHistory -</p>
+		</div>
 
-<%for(BuyHistoryDto BuyHistory:listBuyHistory){ %>
-			<div class="container">
-    <div class="row mt-4">
-        <div class="col-md-1"></div>
-        <div class="p-0 col-md-4 shadow-sm">
-        </div>
-        <div class="col-md-6 mt-3 shadow-sm">
-            <h5 class="ml-4"></h5>
-<!--   <div class="ml-5 text-secondary"></div> -->
-           <div class="text-danger ml-5"><%=BuyHistory.getBuyDate()%>にお届けしました。</div>
-
+	<%for(BuyHistoryDto buyHistoryDto: buyHistoryList){ %>
+	<div class="container">
+	    <div class="row mt-4">
+	        <div class="col-md-1"></div>
+	        <div class="p-0 col-md-4 shadow-sm">
+	        </div>
+	        <div class="col-md-6 mt-3 shadow-sm">
+	            <h5 class="ml-4"></h5>
+	<!--   <div class="ml-5 text-secondary"></div> -->
+	           <div class="text-danger ml-5"><%=buyHistoryDto.getBuyDate()%>にお届けしました。</div>
+	
                 <form method="POST">
 
                     <div class="form-group col-md-3 mb-0">
@@ -43,10 +41,10 @@
                     </div>
                     <button type="submit" class="mb-2 float-right btn btn-primary">詳細表示</button>
                 </form>
-        </div>
-    </div>
-</div>
-<%} %>
+	        </div>
+	    </div>
+	</div>
+	<%} %>
 
 
 			<!--フッター-->
