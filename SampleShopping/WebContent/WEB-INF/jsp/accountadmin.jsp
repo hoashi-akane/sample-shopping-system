@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+            <%@page import="java.util.*" %>
+<%@page import="dto.*" %>
+    <%UserDto userDto= (UserDto)request.getAttribute("userDto");%>
+    <%String action=""; %>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
 	<head>
@@ -44,51 +48,60 @@
 		<a href="top.html" id="title3a"><h3 id="title3">SampleShopping</h3></a>
 		<p id="title2">- Account -</p>
 	</div>
-
+<form action ="updateadminuser" method ="post">
 	<div align="center">
    <div class="asd">
 	   <table id="gaiyou">
    <tr>
 	 <th align="center">お名前</th>
-	 <td></td>
+	 <td><%=userDto.getUserName()%></td>
    </tr>
    <tr>
 	 <th align="center">ID</th>
-   <td></td>
+   <td><%=userDto.getId()%></td>
    </tr>
    <tr>
 	 <th align="center">パスワード</th>
-	 <td></td>
+	 <td><%=userDto.getPassword()%></td>
    </tr>
    <tr>
-	 <th>郵便番号</th>
-	 <td></td>
+	 <th>郵便番号１</th>
+	 <td><%=userDto.getZipCode()%></td>
+   </tr>
+   <tr>
+	 <th>郵便番号２</th>
+	 <td><%=userDto.getZipCodeSub()%></td>
    </tr>
    <tr>
 	 <th>住所１</th>
-	 <td></td>
+	 <td><%=userDto.getAddress()%></td>
    </tr>
    <tr>
 	 <th>住所２</th>
-	 <td></td>
+	 <td><%=userDto.getAddressSub()%></td>
    </tr>
     <tr>
    	 <th>電話番号</th>
-   	 <td></td>
+   	 <td><%=userDto.getTel()%></td>
     </tr>
 	<tr>
 	 <th>メールアドレス</th>
-	 <td></td>
+	 <td><%=userDto.getMailAddress()%></td>
 	</tr>
 	 <tr>
 	  <th>性別</th>
-	  <td></td>
+	  <td><%=userDto.getGender()%></td>
 	 </tr>
    </table>
 </div>
+</div>
 
-	<a href="correctionadmin.html" class="btn-border-bottom" id="accountbtn">変更</a>
-	<a href="#" class="btn-border-bottom">退会</a>
+	<input type ="submit" value="変更" class="btn-border-bottom" id="accountbtn">
+</form>
+
+<form action ="updateadminuser" method ="post">
+	<input type="submit" value="退会" class="btn-border-bottom">
+</form>
 
 
 
