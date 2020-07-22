@@ -39,11 +39,11 @@ ArrayList<CategoryDto> categoryDtoList = (ArrayList<CategoryDto>)request.getAttr
 		
 				   <tr>
 					 <th align="center">値段</th>
-				   <td><input class="form-control" type="text" name="price" value="<%=goodsDto.getPrice()%>"></td>
+				   <td><input class="form-control" type="number" name="price" value="<%=goodsDto.getPrice()%>"></td>
 				   </tr>
 				   <tr>
 					 <th align="center">在庫数</th>
-					 <td><input class="form-control" type="password" name="stock" value="<%=goodsDto.getStock()%>"></td>
+					 <td><input class="form-control" type="number" name="stock" value="<%=goodsDto.getStock()%>"></td>
 				   </tr>
 				   <tr>
 					 <th>説明文</th>

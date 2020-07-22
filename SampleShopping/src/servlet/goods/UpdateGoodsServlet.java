@@ -11,12 +11,15 @@ import javax.servlet.http.HttpSession;
 
 import dao.GoodsDao;
 import dto.GoodsDto;
+import service.BrandService;
+import service.CategoryService;
 
 
 @WebServlet("/updategoods")
 public class UpdateGoodsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	BrandService brandService = new BrandService();
+	CategoryService categoryService = new CategoryService();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -41,7 +44,8 @@ public class UpdateGoodsServlet extends HttpServlet {
 
 			GoodsDao goodsDao = new GoodsDao();
 			GoodsDto goodsDto = goodsDao.getGoods(id);
-
+			request.setAttribute("brandDtoList",brandService.brandListService());
+			request.setAttribute("categoryDtoList", categoryService.categoryListService());
 			request.setAttribute("goodsDto", goodsDto);
 			session.setAttribute("goodsId", goodsDto.getId());
 		}
@@ -53,7 +57,7 @@ public class UpdateGoodsServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
+		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		int id =(Integer)session.getAttribute("goodsId");
 		session.removeAttribute("goodsId");
@@ -81,15 +85,15 @@ public class UpdateGoodsServlet extends HttpServlet {
 
 		GoodsDao goodsDao = new GoodsDao();
 		boolean successGoods = goodsDao.updateGoods(goodsDto);
-
+		
 		String path ="";
 		if(successGoods) {
 			session.setAttribute("goodsDto", goodsDto);
-			path = "menu";
+			path = "menuadmin";
 			response.sendRedirect(path);
 			session.removeAttribute("goodsDto");
 		} else {
-			path = "dispgoodslist";
+			path = "dispgoodslistadmin";
 			response.sendRedirect(path);
 		}
 	}
