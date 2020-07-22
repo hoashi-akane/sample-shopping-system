@@ -35,39 +35,39 @@ if(message == null){
 			   <table id="gaiyou">
 		   <tr>
 			 <th align="center">お名前<font color="red"> *</font></th>
-			 <td><input type="text" name="username" value=""></td>
+			 <td><input class="form-control" type="text" name="username" value=""></td>
 		   </tr>
 		   <tr>
 			 <th align="center">ID<font color="red"> *</font></th>
-		   <td><input type="text" name="login_id" value=""></td>
+		   <td><input class="form-control" type="text" name="login_id" value=""></td>
 		   </tr>
 		   <tr>
 			 <th align="center">パスワード</th>
-			 <td><input type="password" name="user_password" value=""></td>
+			 <td><input class="form-control" type="password" name="user_password" value=""></td>
 		   </tr>
 		   <tr>
 			 <th>郵便番号</th>
-			 <td><input type="text" name="zip_code" value=""></td>
+			 <td><input class="form-control" type="text" name="zip_code" value=""></td>
 		   </tr>
 		   <tr>
 			 <th>郵便番号2</th>
-			 <td><input type="text" name="zip_code_sub" value=""></td>
+			 <td><input class="form-control" type="text" name="zip_code_sub" value=""></td>
 		   </tr>
 		   <tr>
 			 <th>住所１</th>
-			 <td><input type="text" name="address" value=""></td>
+			 <td><input class="form-control" type="text" name="address" value=""></td>
 		   </tr>
 		   <tr>
 			 <th>住所２</th>
-			 <td><input type="text" name="address_sub" value=""></td>
+			 <td><input class="form-control" type="text" name="address_sub" value=""></td>
 		   </tr>
 		    <tr>
 		   	 <th>電話番号</th>
-		   	 <td><input type="text" name="tel" value=""></td>
+		   	 <td><input class="form-control" type="text" name="tel" value=""></td>
 		    </tr>
 			<tr>
 			 <th>メールアドレス</th>
-			 <td><input type="email" name="mailaddress" value="" id="textbox"></td>
+			 <td><input class="form-control" type="email" name="mailaddress" value="" id="textbox"></td>
 			</tr>
 			 <tr>
 			  <th>性別</th>
@@ -75,7 +75,7 @@ if(message == null){
 			  <input type="radio" name="gender" value="0">秘密
 			  <input type="radio" name="gender" value="1">女性
 		      <input type="radio" name="gender" value="2">男性
-		      <input type="radio" name="gender" value="3">その他 
+		      <input type="radio" name="gender" value="3">その他
 			  </td>
 			 </tr>
 		   </table>

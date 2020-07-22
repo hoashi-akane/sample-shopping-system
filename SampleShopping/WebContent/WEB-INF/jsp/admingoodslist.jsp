@@ -6,6 +6,7 @@
     <%String action=""; %>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
+
 <head>
 	<meta charset="utf-8">
 	<title>SampleShopping</title>
@@ -32,7 +33,7 @@
 	</div>
 			<!--タイトル-->
 			<div align="center">
-					<a href="menuadmin" id="title3a"><h3 id="title3">SampleShopping</h3></a>
+					<a href="menuadmin" id="title3"><h3 id="title3">SampleShopping</h3></a>
 					<p id="title2">- AdminGoods -</p>
 			</div>
 
@@ -58,12 +59,12 @@
 								<option value="5">5</option>
 							</select>
 						</div>
-                    <div class="form-group col-md-3 mb-0">
-                    </div>
-                    <button type="submit" value = "delete" onclick="goDelete();" id="delete" class="mb-2 float-right btn btn-primary">削除</button>
-                	<button type="submit" value ="correction" onclick="goCorrection();" id="correction"class="mb-2 mr-3 float-right btn btn-primary">修正</button>
+            <div class="form-group col-md-3 mb-0">
+            </div>
+            <button type="submit" value = "delete" onclick="goDelete();" id="delete" class="mb-2 float-right btn btn-primary">削除</button>
+            <button type="submit" value ="correction" onclick="goCorrection();" id="correction"class="mb-2 mr-3 float-right btn btn-primary">修正</button>
+            <a href="dispgoodsdetail?id=<%=goodsDto.getId() %>" id="detail" class="mb-2 float-right btn btn-primary">詳細</a>
 				</div>
-		    </div>
 		  <%} %>
 		</div>
 		</form>

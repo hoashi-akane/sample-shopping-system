@@ -28,35 +28,35 @@
 			   <table id="gaiyou">
 		   <tr>
 			 <th align="center">お名前<font color="red"> *</font></p></th>
-			 <td><input type="text" name="" value=""></td>
+			 <td><input class="form-control" type="text" name="" value=""></td>
 		   </tr>
 		   <tr>
 			 <th align="center">ID<font color="red"> *</font></p></th>
-		   <td><input type="text" name="" value=""></td>
+		   <td><input class="form-control" type="text" name="" value=""></td>
 		   </tr>
 		   <tr>
 			 <th align="center">パスワード</th>
-			 <td><input type="password" name="" value=""></td>
+			 <td><input class="form-control" type="password" name="" value=""></td>
 		   </tr>
 		   <tr>
 			 <th>郵便番号</th>
-			 <td><input type="text" name="" value=""></td>
+			 <td><input class="form-control" type="text" name="" value=""></td>
 		   </tr>
 		   <tr>
 			 <th>住所１</th>
-			 <td><input type="text" name="" value=""></td>
+			 <td><input class="form-control" type="text" name="" value=""></td>
 		   </tr>
 		   <tr>
 			 <th>住所２</th>
-			 <td><input type="text" name="" value=""></td>
+			 <td><input class="form-control" type="text" name="" value=""></td>
 		   </tr>
 		    <tr>
 		   	 <th>電話番号</th>
-		   	 <td><input type="text" name="" value=""></td>
+		   	 <td><input class="form-control" type="text" name="" value=""></td>
 		    </tr>
 			<tr>
 			 <th>メールアドレス</th>
-			 <td><input type="email" name="" value="" id="textbox"></td>
+			 <td><input class="form-control" type="email" name="" value="" id="textbox"></td>
 			</tr>
 			 <tr>
 			  <th>性別</th>
