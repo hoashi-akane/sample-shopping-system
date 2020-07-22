@@ -35,21 +35,20 @@ public class DispUserInfoServlet extends HttpServlet {
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     	HttpSession session = request.getSession();
-
     	int userId = ((UserDto)session.getAttribute("userDto")).getId();
     	UserDao userDao = new UserDao();
     	UserDto userDto = userDao.findUser(userId);
 
     	if(userDto==null) {
-    		getServletContext().getRequestDispatcher("/WEB-INF/jsp/menu.jsp").
+    		request.getRequestDispatcher("/WEB-INF/jsp/menu.jsp").
     		forward(request,response);
 
     	}else {
     		session.setAttribute("userDto", userDto);
-    		getServletContext().getRequestDispatcher("/WEB-INF/jsp/account.jsp").
+    		request.getRequestDispatcher("/WEB-INF/jsp/account.jsp").
     		forward(request,response);
     	}
 
