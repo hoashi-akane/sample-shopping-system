@@ -8,9 +8,8 @@
 <html lang="jp" dir="ltr">
 	<head>
 		<meta charset="utf-8">
-		<title>SampleShopping</title>
-							<%@include file="head.jsp" %>
-
+				<title>SampleShopping</title>
+				<%@include file="head.jsp" %>
 	</head>
 
 		<body>
@@ -26,31 +25,34 @@
 					<p id="title2">- Goods -</p>
 			</div>
 
-			<table id="goodsTable" align="center">
-
+<div class="container">
 		<%for(GoodsDto goodsDto:goodsDtoList){ %>
-				<tr>
-				<td rowspan="3"><img src='dispgoodsimage?imagePath=/output_imgfile/<%=goodsDto.getId() %>/first' alt="" id="goodsimg"></td>
-					<td colspan="5" id="goodsName"><%=goodsDto.getGoodsName()%></td>
-				</tr>
-				<tr class="mt-2">
-					<td id="goodsName"><%=goodsDto.getPrice()%></td>
-					<td id="goodsName"><%=goodsDto.getStock()%></td>
-
-					<td id="goodsName">数量</td>
-					<td>
-						<select name="cnt">
+		<input type="hidden" name="id" value="<%=goodsDto.getId() %>">
+    <div class="row mt-4 mx-auto" style="width:600px">
+        <div class="col-md-1"></div>
+        <div class="p-0 col-md-4 shadow-sm" style="height:200px;">
+            <img src='dispgoodsimage?imagePath=/output_imgfile/<%=goodsDto.getId() %>/first' alt=""  style="width:100%; height:100%;">
+        </div>
+        <div class="col-md-6 mt-3 shadow-sm">
+            <h5 class="ml-4"><%=goodsDto.getGoodsName()%></h5>
+            <div class="ml-5 text-secondary">価格：¥<%=goodsDto.getPrice()%></div>
+            <div class="text-danger ml-5">在庫数：<%=goodsDto.getStock()%>個</div>
+                        <div class="text-danger ml-5"><select name="cnt">
 							<option value="1" selected>1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
 							<option value="4">4</option>
 							<option value="5">5</option>
-						</select>
-					</td>
-					<td id="goodsName"><a href="dispgoodsdetail?id=<%=goodsDto.getId() %>"><img src="" alt="" id="cartimg">詳細</a></td>
-				</tr>
-			<%} %>
-			</table>
+						</select></div>
+                    <div class="form-group col-md-3 mb-0">
+                    </div>
+		</div>
+    </div>
+  <%} %>
+</div>
+
+					<div align="center"><a href="menu" class="btn-border-bottom">戻る</a></div>
+
 			<!--フッター-->
 	<footer>
 	<small id="footer">Copyright&copy;Kadai Website,all rightsreserved.</small>

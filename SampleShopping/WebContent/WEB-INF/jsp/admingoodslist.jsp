@@ -30,7 +30,6 @@
 			}
 		</script>
 
-			<%@include file="adminheader.jsp" %>
 
 
 
@@ -39,7 +38,7 @@
 	</div>
 			<!--タイトル-->
 			<div align="center">
-					<a href="menuadmin" id="title3a"><h3 id="title3">SampleShopping</h3></a>
+					<a href="menuadmin" id="title3"><h3 id="title3">SampleShopping</h3></a>
 					<p id="title2">- AdminGoods -</p>
 			</div>
 
