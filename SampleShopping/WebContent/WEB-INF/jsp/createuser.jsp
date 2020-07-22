@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+String message = (String)request.getAttribute("message");
+if(message == null){
+	message = "";
+}
+%>
 <html lang="jp" dir="ltr">
 	<head>
 		<meta charset="utf-8">
@@ -25,6 +31,7 @@
 <form action ="createuser" method ="post">
 			<div align="center">
 		   <div class="asd">
+				<p><%= message %>
 			   <table id="gaiyou">
 		   <tr>
 			 <th align="center">お名前<font color="red"> *</font></th>
@@ -32,19 +39,19 @@
 		   </tr>
 		   <tr>
 			 <th align="center">ID<font color="red"> *</font></th>
-		   <td><input type="text" name="loginid" value=""></td>
+		   <td><input type="text" name="login_id" value=""></td>
 		   </tr>
 		   <tr>
 			 <th align="center">パスワード</th>
-			 <td><input type="password" name="userpassword" value=""></td>
+			 <td><input type="password" name="user_password" value=""></td>
 		   </tr>
 		   <tr>
 			 <th>郵便番号</th>
-			 <td><input type="text" name="zipcode" value=""></td>
+			 <td><input type="text" name="zip_code" value=""></td>
 		   </tr>
 		   <tr>
 			 <th>郵便番号2</th>
-			 <td><input type="text" name="zipcodesub" value=""></td>
+			 <td><input type="text" name="zip_code_sub" value=""></td>
 		   </tr>
 		   <tr>
 			 <th>住所１</th>
@@ -52,7 +59,7 @@
 		   </tr>
 		   <tr>
 			 <th>住所２</th>
-			 <td><input type="text" name="addresssub" value=""></td>
+			 <td><input type="text" name="address_sub" value=""></td>
 		   </tr>
 		    <tr>
 		   	 <th>電話番号</th>
@@ -64,8 +71,11 @@
 			</tr>
 			 <tr>
 			  <th>性別</th>
-			  <td><input type="radio" name="gender" value="1">女性
-		        <input type="radio" name="gender" value="2">男性
+			  <td>
+			  <input type="radio" name="gender" value="0">秘密
+			  <input type="radio" name="gender" value="1">女性
+		      <input type="radio" name="gender" value="2">男性
+		      <input type="radio" name="gender" value="3">その他 
 			  </td>
 			 </tr>
 		   </table>
