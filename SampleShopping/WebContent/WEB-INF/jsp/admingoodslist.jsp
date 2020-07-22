@@ -72,7 +72,7 @@
                     </div>
                     <button type="submit" value = "delete" onclick="goDelete();" id="delete" class="mb-2 float-right btn btn-primary">削除</button>
                 	<button type="submit" value ="correction" onclick="goCorrection();" id="correction"class="mb-2 mr-3 float-right btn btn-primary">修正</button>
-                	<button type="submit" value = "detail" onclick="goDetail();" id="detail" class="mb-2 mr-3 float-right btn btn-primary">詳細</button>
+                    <a href="dispgoodsdetail?id=<%=goodsDto.getId() %>" id="detail" class="mb-2 float-right btn btn-primary">詳細</a>
 		</div>
     </div>
   <%} %>
