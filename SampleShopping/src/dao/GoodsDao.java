@@ -159,18 +159,16 @@ public class GoodsDao extends DaoBase{
 		boolean isSuccess = false;
 		try {
 			con = super.dbOpen();
-			stmt = this.con.prepareStatement("UPDATE SET goods_name=?,price=?,stock=?,description=?,"
-					+ "image_dir=?,sales_quantity=?,sale=?,category_id=?,brand_id=? WHERE id=?;");
+			stmt = this.con.prepareStatement("UPDATE goods SET goods_name=?,price=?,stock=?,description=?,"
+					+ "is_sale=?,category_id=?,brand_id=? WHERE id=?;");
 			stmt.setString(1, goodsDto.getGoodsName());
 			stmt.setInt(2, goodsDto.getPrice());
 			stmt.setInt(3, goodsDto.getStock());
 			stmt.setString(4, goodsDto.getDescription());
-			stmt.setString(5, goodsDto.getImageDir());
-			stmt.setInt(6, goodsDto.getSalesQuantity());
-			stmt.setBoolean(7, goodsDto.isSale());
-			stmt.setInt(8, goodsDto.getCategoryId());
-			stmt.setInt(9, goodsDto.getBrandId());
-			stmt.setInt(10, goodsDto.getId());
+			stmt.setBoolean(5, goodsDto.isSale());
+			stmt.setInt(6, goodsDto.getCategoryId());
+			stmt.setInt(7, goodsDto.getBrandId());
+			stmt.setInt(8, goodsDto.getId());
 			stmt.executeUpdate();
 			isSuccess = true;
 		}catch(Exception e) {
