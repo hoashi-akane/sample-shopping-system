@@ -7,19 +7,21 @@
     String action="";
     File[] fileList = (File[])request.getAttribute("fileList");
     int i = 0;
+    UserDto userDto = (UserDto)session.getAttribute("userDto");
     %>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
 	<head>
 		<meta charset="utf-8">
 		<title>SampleShopping</title>
-							<%@include file="head.jsp" %>
-
+			<%@include file="head.jsp" %>
 	</head>
-
 		<body>
-								<%@include file="userheader.jsp" %>
-
+			<% if(userDto.isAdmin()){%>
+				<%@include file="adminheader.jsp" %>
+			<%}else{ %>
+			<%@include file="userheader.jsp" %>
+			<%} %>
 	<div class="mainView">
 	<!--ページコンテンツ-->
 	</div>
