@@ -11,6 +11,15 @@
 				<title>SampleShopping</title>
 				<%@include file="head.jsp" %>
 	</head>
+	<script>
+
+
+			function goCart(){
+				document.getElementById('form').action = 'insertcart';
+				document.getElementById('form').method = 'post';
+
+			}
+		</script>
 
 		<body>
 							<%@include file="userheader.jsp" %>
@@ -25,6 +34,7 @@
 					<p id="title2">- Goods -</p>
 			</div>
 
+<form id ='form' name = 'inputForm' action="">
 <div class="container">
 		<%for(GoodsDto goodsDto:goodsDtoList){ %>
 		<input type="hidden" name="id" value="<%=goodsDto.getId() %>">
@@ -46,10 +56,13 @@
 						</select></div>
                     <div class="form-group col-md-3 mb-0">
                     </div>
+                    <a href="dispgoodsdetail?id=<%=goodsDto.getId() %>" id="detail" class="mb-2 float-right btn btn-primary">詳細</a>
+                	<button type="submit" value ="cart" onclick="goCart();" id="cart"class="mb-2 mr-3 float-right btn btn-primary">カートへ追加</button>
 		</div>
     </div>
   <%} %>
 </div>
+</form>
 
 					<div align="center"><a href="menu" class="btn-border-bottom">戻る</a></div>
 

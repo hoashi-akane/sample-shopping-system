@@ -34,7 +34,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<a href="insertadmin.html" class="btn-border-bottom">アカウントを作成</a>
+					<a href="createadmin" class="btn-border-bottom">アカウントを作成</a>
 				</td>
 			</tr>
 		</table>

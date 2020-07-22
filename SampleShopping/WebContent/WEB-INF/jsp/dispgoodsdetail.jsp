@@ -67,6 +67,9 @@
 			</tr>
 			</form>
 		</table>
+
+							<div align="center"><a href="dispgoodslist" class="btn-border-bottom">戻る</a></div>
+
 					<!--フッター-->
 			<footer>
 			<small id="footer">Copyright&copy;Kadai Website,all rightsreserved.</small>
@@ -87,8 +90,8 @@ $(document).ready( function(){
 	var img2 = document.getElementById('mainImg');
 	img2.setAttribute('src', src);
 });
-	 
-	 
+
+
 //ハンバーガーメニュー
     $(function(){
 
