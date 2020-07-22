@@ -2,18 +2,22 @@
     pageEncoding="UTF-8"%>
         <%@page import="java.util.*" %>
 <%@page import="dto.*" %>
-    <%GoodsDto goodsDto= (GoodsDto)request.getAttribute("goodsDto");%>
-    <%String action=""; %>
+<%
+GoodsDto goodsDto= (GoodsDto)request.getAttribute("goodsDto");
+String action=""; 
+ArrayList<BrandDto> brandDtoList = (ArrayList<BrandDto>)request.getAttribute("brandDtoList");
+ArrayList<CategoryDto> categoryDtoList = (ArrayList<CategoryDto>)request.getAttribute("categoryDtoList");
+%>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
 	<head>
 		<meta charset="utf-8">
 		<title>SampleShopping</title>
-								<%@include file="head.jsp" %>
+	<%@include file="head.jsp" %>
 	</head>
 
 	<body>
-									<%@include file="adminheader.jsp" %>
+	<%@include file="adminheader.jsp" %>
 
 
 	<div class="mainView">
@@ -24,48 +28,64 @@
 		<a href="top.html" id="title3a"><h3 id="title3">SampleShopping</h3></a>
 		<p id="title2">- CreateGoods -</p>
 	</div>
-	<form action ="updategoods" method="post">
-			<div align="center">
-		   <div class="asd">
-			   <table id="gaiyou">
-			<tr>
-			 <th>商品名</th>
-			 <td><input type="text" name="goods_name" value="<%=goodsDto.getGoodsName()%>"></td>
-		   </tr>
-
-		   <tr>
-			 <th align="center">値段</th>
-		   <td><input type="text" name="price" value="<%=goodsDto.getPrice()%>"></td>
-		   </tr>
-		   <tr>
-			 <th align="center">在庫数</th>
-			 <td><input type="password" name="stock" value="<%=goodsDto.getStock()%>"></td>
-		   </tr>
-		   <tr>
-			 <th>説明文</th>
-			 <td><textarea name="description" cols="50" rows="7" id="textbox" value="<%=goodsDto.getDescription()%>"></textarea></td>
-		   </tr>
-		   <tr>
-			 <th>カテゴリー</th>
-			 <td><input type="text" name="category_id" value="<%=goodsDto.getCategoryId()%>"></td>
-		   </tr>
-		    <tr>
-		   	 <th>ブランド</th>
-		   	 <td><input type="text" name="brand_id" value="<%=goodsDto.getBrandId()%>"></td>
-		    </tr>
-		     <th>セール</th>
-		   	 <td><input type="Checkbox" name="sale" value="">セール中
-		    </tr>
-		   </table>
+	<form class="mt-5" action ="updategoods" method="post">
+		<div align="center">
+	   		<div class="asd">
+		   		<table id="gaiyou">
+					<tr>
+					 <th>商品名</th>
+					 <td><input class="form-control" type="text" name="goods_name" value="<%=goodsDto.getGoodsName()%>"></td>
+				   </tr>
+		
+				   <tr>
+					 <th align="center">値段</th>
+				   <td><input class="form-control" type="text" name="price" value="<%=goodsDto.getPrice()%>"></td>
+				   </tr>
+				   <tr>
+					 <th align="center">在庫数</th>
+					 <td><input class="form-control" type="password" name="stock" value="<%=goodsDto.getStock()%>"></td>
+				   </tr>
+				   <tr>
+					 <th>説明文</th>
+					 <td><textarea class="form-control" name="description" cols="50" rows="7" id="textbox" value="<%=goodsDto.getDescription()%>"></textarea></td>
+				   </tr>
+				   <tr>
+					 <th>カテゴリー</th>
+					 <td>
+					 	<select class="form-control" name="category_id">
+					 	<% for(CategoryDto categoryDto: categoryDtoList){ %>
+					 	<option value="<%=categoryDto.getId()%>"><%=categoryDto.getName() %></option>
+					 	<%} %>
+					 	</select>
+					 </td>
+				   </tr>
+				    <tr>
+				   	 <th>ブランド</th>
+				   	 <td>
+				   	 	<select class="form-control" name="brand_id">
+						<% for(BrandDto brandDto: brandDtoList){ %>
+					 	<option value="<%=brandDto.getId()%>"><%=brandDto.getName() %></option>
+					 	<%} %>
+					 	</select>
+					</td>
+				    </tr>
+				    <tr>
+				     	<th>セール</th>
+				   	 	<td><input type="Checkbox" name="sale" value="">セール中</td>
+				    </tr>
+		   		</table>
 		</div>
-             <button type="submit" class="mb-2 float-right btn btn-primary">登録</button>
-             </div>
-             </form>
+			<button type="submit" class="mb-2 btn btn-primary">登録</button>
 			<a href="dispgoodslistadmin" class="btn-border-bottom" id="accountbtn">戻る</a>
-				<!--フッター-->
-		<footer>
-		<small id="footer">Copyright&copy;Kadai Website,all rightsreserved.</small>
-		</footer>
+		</div>
+     </form>
+
+	<!--フッター-->
+				
+	<footer>
+	<small id="footer">Copyright&copy;Kadai Website,all rightsreserved.</small>
+	</footer>
+	</body>
 
 		<!--メニュのjQuery-->
 		<!--CDNでjQuery読み込む-->
