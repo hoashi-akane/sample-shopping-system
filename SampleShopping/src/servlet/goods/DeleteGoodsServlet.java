@@ -38,10 +38,10 @@ public class DeleteGoodsServlet extends HttpServlet {
 
 		String path ="";
 		if(isSuccess) {
-			path = "menu";
+			path = "menuadmin";
 			response.sendRedirect(path);
 		} else {
-			path = "dispgoodslist";
+			path = "dispgoodslistadmin";
 			response.sendRedirect(path);
 		}
 
