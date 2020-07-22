@@ -69,11 +69,11 @@
 				</td>
 		   <tr>
 			 <th align="center">値段</th>
-		   <td><input type="number" name="price"></td>
+		   <td><input type="number" name="price">円</td>
 		   </tr>
 		   <tr>
 			 <th align="center">在庫数</th>
-			 <td><input type="number" name="stock"></td>
+			 <td><input type="number" name="stock">個</td>
 		   </tr>
 		   <tr>
 			 <th>説明文</th>
@@ -90,9 +90,12 @@
 		   </table>
 		</div>
 		</div>
+		<div class="btn1">
 		<input type ="submit" value="登録">
-	</form>
 				<input type ="submit"  id="accountbtn" value="戻る">
+		</div>
+					</form>
+
 				<!--フッター-->
 		<footer>
 		<small id="footer">Copyright&copy;Kadai Website,all rightsreserved.</small>
@@ -164,8 +167,8 @@
 		    }
 		  }
 		};
-		
-		
+
+
 		$('.custom-file-input').on('change', handleFileSelect);
 		function handleFileSelect(evt) {
 		        $('#preview').remove();// 繰り返し実行時の処理
