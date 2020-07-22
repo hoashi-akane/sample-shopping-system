@@ -4,6 +4,8 @@ public class BrandDto {
 	private int id;
 	private String name;
 	
+	public BrandDto(){}
+	
 	public BrandDto(Integer id, String name) {
 		// goods用コンストラクタ dbではnullだけどrs.getIntはintで返すため0となる
 		if(id == 0) {

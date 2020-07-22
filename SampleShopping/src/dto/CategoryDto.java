@@ -16,6 +16,11 @@ public class CategoryDto {
 	}
 	
 	
+	public CategoryDto() {
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
+
+
 	public int getId() {
 		return id;
 	}
