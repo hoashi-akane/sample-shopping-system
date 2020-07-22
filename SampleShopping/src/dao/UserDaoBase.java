@@ -83,6 +83,7 @@ public class UserDaoBase extends DaoBase{
 			userDto.setAdmin(rs.getBoolean("is_admin"));
 		} catch (SQLException e) {
 			userDto = null;
+			e.printStackTrace();
 		}
 		return userDto;
 	}
