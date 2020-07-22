@@ -44,7 +44,7 @@
 				<a href="top.html" id="title3a"><h3 id="title3">SampleShopping</h3></a>
 				<p id="title2">- Correction -</p>
 		</div>
-	<form action="updateadminuser" method="post">
+	<form action="updateuser" method="post">
 			<div align="center">
 		   <div class="asd">
 			   <table id="gaiyou">
