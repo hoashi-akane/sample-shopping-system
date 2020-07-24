@@ -1,18 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
 	<head>
 		<meta charset="utf-8">
 		<title>SampleShopping</title>
-						<%@include file="head.jsp" %>
+<%@include file="head.jsp" %>
 
 	</head>
 
 	<body>
-					<%@include file="adminheader.jsp" %>
-
-
+<%@include file="adminheader.jsp" %>
 	<div class="mainView">
 	<!--ページコンテンツ-->
 	</div>

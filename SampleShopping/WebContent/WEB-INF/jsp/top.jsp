@@ -1,22 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%><%@page import = "dto.*" %>
+<% String message = (String)request.getAttribute("message"); %>
+<% 
+if(message == null){
+	message="";
+}
+%>
 <!DOCTYPE html>
 <html lang=jp dir="ltr">
-	<head>
-		<meta charset="utf-8">
-		<title>SampleShopping</title>
-				<%@include file="head.jsp" %>
-		</head>
-
-		<% UserDto userDto = (UserDto)session.getAttribute("userDto"); %>
-
-		<% String name = userDto.getUserName(); %>
-
-
-	<body>
-						<%@include file="userheader.jsp" %>
-
-
+<head>
+	<meta charset="utf-8">
+	<title>SampleShopping</title>
+			<%@include file="head.jsp" %>
+	</head>
+	<% UserDto userDto = (UserDto)session.getAttribute("userDto"); %>
+	<% String name = userDto.getUserName(); %>
+<body>
+	<%@include file="userheader.jsp" %>
 
 <div class="mainView">
 <!--ページコンテンツ-->
@@ -28,6 +28,7 @@
 				<h1 id="title1">SampleShopping</h1>
 				<p id="title2">if you can dreamit, you can do it.</p>
 		</div>
+		<div class="mx-auto text-center text-danger"><%=message %></div>
 
 <!--画像のスライド-->
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="2500" data-pause="hover">

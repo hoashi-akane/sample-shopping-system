@@ -29,7 +29,12 @@ public class MenuServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		HttpSession session=request.getSession();
+		String message = (String)session.getAttribute("message");
+		if(message != null) {
+			request.setAttribute("message", message);
+			session.removeAttribute("message");
+		}
 		request.getRequestDispatcher("/WEB-INF/jsp/top.jsp").forward(request,response);
 
 	}
