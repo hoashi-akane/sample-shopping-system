@@ -32,12 +32,18 @@ public class DispAdminUserInfoServlet extends HttpServlet {
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	HttpSession session = request.getSession();
-		UserDto userDto = (UserDto)session.getAttribute("userDto");
+//		checkPasswordFlagが発行されていない限り入れない
+    	if(!(boolean)session.getAttribute("checkPasswordFlag")) {
+    		response.sendRedirect("/SampleShopping/menuadmin");
+    		return;
+    	}
+    	
+    	UserDto userDto = (UserDto)session.getAttribute("userDto");
 		AdminDao adminDao = new AdminDao();
 		userDto = adminDao.findAdminUser(userDto.getId());
 		
 		if(userDto==null) {
-    		request.getRequestDispatcher("/WEB-INF/jsp/menu.jsp").forward(request,response);
+    		request.getRequestDispatcher("/WEB-INF/jsp/topadmin.jsp").forward(request,response);
     	}else{
     		session.setAttribute("userDto", userDto);
     		request.getRequestDispatcher("WEB-INF/jsp/accountadmin.jsp").forward(request, response);
