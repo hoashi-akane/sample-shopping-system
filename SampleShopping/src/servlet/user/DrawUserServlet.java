@@ -30,14 +30,15 @@ public class DrawUserServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	HttpSession session = request.getSession();
 		UserDto userDto = (UserDto)session.getAttribute("userDto");
 		int id = userDto.getId();
 
 		UserDao userDao = new UserDao();
 		if(userDao.deleteUser(id)) {
-			response.sendRedirect("/SampleShopping/menu");
+			session.invalidate();
+			response.sendRedirect("/SampleShopping/login");
 		}else{
 			response.sendRedirect("/SampleShopping/dispuserinfo");
 		}
