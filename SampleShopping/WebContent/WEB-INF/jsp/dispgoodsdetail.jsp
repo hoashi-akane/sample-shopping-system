@@ -1,159 +1,163 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
       <%@page import="java.util.*" %>
+      <%@page import="java.io.File" %>
 <%@page import="dto.*" %>
-    <%GoodsDto goodsDto = (GoodsDto)request.getAttribute("goodsDto");%>
-    <%String action=""; %>
+    <%GoodsDto goodsDto = (GoodsDto)request.getAttribute("goodsDto");
+    String action="";
+    File[] fileList = (File[])request.getAttribute("fileList");
+    int i = 0;
+    UserDto userDto = (UserDto)session.getAttribute("userDto");
+    %>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
 	<head>
 		<meta charset="utf-8">
 		<title>SampleShopping</title>
-				<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-				<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200&display=swap" rel="stylesheet">
-				<script
-				src="https://code.jquery.com/jquery-2.2.4.min.js"
-				integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-				crossorigin="anonymous"></script>
-				<style>
- 					<%@ include file = "../../css/style.css"%>
- 				</style>
+			<%@include file="head.jsp" %>
 	</head>
-
 		<body>
-				<!--メニュ-->
-	 <div class="el_humburger"><!--ハンバーガーボタン-->
-	    <div class="el_humburger_wrapper">
-	      <span class="el_humburger_bar top"></span>
-	      <span class="el_humburger_bar middle"></span>
-	      <span class="el_humburger_bar bottom"></span>
-	    </div>
-	  </div>
-
-			<header class="navi">
-		     <div class="navi_inner">
-		       <div class="navi_item"><a href="top.html">Home</a></div>
-		       <div class="navi_item"><a href="goods.html">Goods</a></div>
-		       <div class="navi_item"><a href="contact.html">Contact</a></div>
-			   <div class="navi_item"><a href="cart.html">Cart</a></div>
-			   <div class="navi_item"><a href="account.html">Account</a></div>
-		     </div>
-		 	</header>
-
+			<% if(userDto.isAdmin()){%>
+				<%@include file="adminheader.jsp" %>
+			<%}else{ %>
+			<%@include file="userheader.jsp" %>
+			<%} %>
 	<div class="mainView">
 	<!--ページコンテンツ-->
 	</div>
+
 			<!--タイトル-->
 			<div align="center">
-					<a href="top.html" id="title3a"><h3 id="title3">SampleShopping</h3></a>
+					<a href="menu" id="title3a"><h3 id="title3">SampleShopping</h3></a>
 					<p id="title2">- GoodsDetail -</p>
 			</div>
 
-				<table id="goodsTable" align="center">
+		<table id="goodsTable" align="center" >
 		<form id ='form' name = 'inputForm' action="">
-				<tr>
-					<td rowspan="3"><img src="<%=goodsDto.getImageDir()%>" alt="" id="goodsimg"></td>
-					<td colspan="5" id="goodsName"><%=goodsDto.getGoodsName()%></td>
-				</tr>
-				<tr class="mt-2">
-					<td id="goodsName"><%=goodsDto.getPrice()%></td>
-					<td id="goodsName"><%=goodsDto.getStock()%></td>
-					<td id="goodsName">数量</td>
-					<td>
-						<select name="cnt">
-							<option value="1" selected>1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-						</select>
-					</td>
-					<td id="goodsName"><a href="cart.html"><img src="../img/icon/cart.png" alt="" id="cartimg"></a></td>
-				</tr>
-				<tr>
-					<td><%=goodsDto.getBrandDto().getName()%></td>
-					<td><%=goodsDto.getCategoryDto().getName()%></td>
-				</tr>
-				<tr>
-					<td colspan="5" id="goodsName"><%=goodsDto.getDescription()%></td>
-				</tr>
-				</form>
-			</table>
-						<!--フッター-->
-				<footer>
-				<small id="footer">Copyright&copy;Kadai Website,all rightsreserved.</small>
-				</footer>
+			<tr>
+				<td rowspan="3" colspan="5"><img src='' class="goodsimg" id="mainImg"></td>
+				<td colspan="5" id="goodsName"><%=goodsDto.getGoodsName()%></td>
+			</tr>
+			<tr class="mt-2">
+				<td id="goodsName"><%=goodsDto.getPrice()%></td>
+				<td id="goodsName"><%=goodsDto.getStock()%></td>
+				<td id="goodsName">数量</td>
+				<td>
+					<select name="cnt">
+						<option value="1" selected>1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+				</td>
+				<td id="goodsName"><a href="cart.html"><img src="../img/icon/cart.png" alt="" id="cartimg"></a></td>
+			</tr>
+			<tr class="float-right">
+				<td><%=goodsDto.getBrandDto().getName()%></td>
+				<td><%=goodsDto.getCategoryDto().getName()%></td>
+			</tr>
+			<tr>
+			<% for(File file : fileList){ %>
+				<td>
+					<img src='dispgoodsimage?imagePath=/output_imgfile/<%=goodsDto.getId() %>/<%= file.getName() %>' class="minimumimg" id="img<%=i%>">
+				</td>
+				<% i++; } %>
+			</tr>
+			<tr>
+				<td colspan="5" id="goodsName"><p>説明文<br><%=goodsDto.getDescription()%></p></td>
+			</tr>
+			</form>
+		</table>
 
+							<div align="center"><a href="dispgoodslist" class="btn-border-bottom">戻る</a></div>
+
+					<!--フッター-->
+			<footer>
+			<small id="footer">Copyright&copy;Kadai Website,all rightsreserved.</small>
+			</footer>
+</div>
 				<!--メニュのjQuery-->
 				<!--CDNでjQuery読み込む-->
-				<script type="text/javascript">
-					//変数定義
-				var navigationOpenFlag = false;
-				var navButtonFlag = true;
-				var focusFlag = false;
+<script type="text/javascript">
+	//変数定義
+var navigationOpenFlag = false;
+var navButtonFlag = true;
+var focusFlag = false;
 
-				//ハンバーガーメニュー
-				    $(function(){
 
-				      $(document).on('click','.el_humburger',function(){
-				        if(navButtonFlag){
-				          spNavInOut.switch();
-				          //一時的にボタンを押せなくする
-				          setTimeout(function(){
-				            navButtonFlag = true;
-				          },200);
-				          navButtonFlag = false;
-				        }
-				      });
-				      $(document).on('click touchend', function(event) {
-				        if (!$(event.target).closest('.bl_header,.el_humburger').length && $('body').hasClass('js_humburgerOpen') && focusFlag) {
-				          focusFlag = false;
-				          //scrollBlocker(false);
-				          spNavInOut.switch();
-				        }
-				      });
-				    });
+$(document).ready( function(){
+	var img = document.getElementById('img0');
+	var src = img.getAttribute('src');
+	var img2 = document.getElementById('mainImg');
+	img2.setAttribute('src', src);
+});
 
-				//ナビ開く処理
-				function spNavIn(){
-				  $('body').removeClass('js_humburgerClose');
-				  $('body').addClass('js_humburgerOpen');
-				  setTimeout(function(){
-				    focusFlag = true;
-				  },200);
-				  setTimeout(function(){
-				    navigationOpenFlag = true;
-				  },200);
-				}
 
-				//ナビ閉じる処理
-				function spNavOut(){
-				  $('body').removeClass('js_humburgerOpen');
-				  $('body').addClass('js_humburgerClose');
-				  setTimeout(function(){
-				    $(".uq_spNavi").removeClass("js_appear");
-				    focusFlag = false;
-				  },200);
-				  navigationOpenFlag = false;
-				}
+//ハンバーガーメニュー
+    $(function(){
 
-				//ナビ開閉コントロール
-				var spNavInOut = {
-				  switch:function(){
-				    if($('body.spNavFreez').length){
-				      return false;
-				    }
-				    if($('body').hasClass('js_humburgerOpen')){
-				     spNavOut();
-				    } else {
-				     spNavIn();
-				    }
-				  }
-				};
-				</script>
+      $(document).on('click','.el_humburger',function(){
+        if(navButtonFlag){
+          spNavInOut.switch();
+          //一時的にボタンを押せなくする
+          setTimeout(function(){
+            navButtonFlag = true;
+          },200);
+          navButtonFlag = false;
+        }
+      });
+      $(document).on('click touchend', function(event) {
+        if (!$(event.target).closest('.bl_header,.el_humburger').length && $('body').hasClass('js_humburgerOpen') && focusFlag) {
+          focusFlag = false;
+          //scrollBlocker(false);
+          spNavInOut.switch();
+        }
+      });
+    });
+
+//ナビ開く処理
+function spNavIn(){
+  $('body').removeClass('js_humburgerClose');
+  $('body').addClass('js_humburgerOpen');
+  setTimeout(function(){
+    focusFlag = true;
+  },200);
+  setTimeout(function(){
+    navigationOpenFlag = true;
+  },200);
+}
+
+//ナビ閉じる処理
+function spNavOut(){
+  $('body').removeClass('js_humburgerOpen');
+  $('body').addClass('js_humburgerClose');
+  setTimeout(function(){
+    $(".uq_spNavi").removeClass("js_appear");
+    focusFlag = false;
+  },200);
+  navigationOpenFlag = false;
+}
+
+//ナビ開閉コントロール
+var spNavInOut = {
+  switch:function(){
+    if($('body.spNavFreez').length){
+      return false;
+    }
+    if($('body').hasClass('js_humburgerOpen')){
+     spNavOut();
+    } else {
+     spNavIn();
+    }
+  }
+};
+
+
+
+
+
+			</script>
 
 
 

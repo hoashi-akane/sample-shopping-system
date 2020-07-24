@@ -2,100 +2,75 @@
     pageEncoding="UTF-8"%>
     <%@page import="java.util.*" %>
 <%@page import="dto.*" %>
-    <%List<GoodsDto> list= (ArrayList<GoodsDto>)request.getAttribute("goodsDtoList");%>
+    <%List<GoodsDto> goodsDtoList= (ArrayList<GoodsDto>)request.getAttribute("goodsDtoList");%>
     <%String action=""; %>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
-	<head>
-		<meta charset="utf-8">
-		<title>SampleShopping</title>
-				<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-				<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200&display=swap" rel="stylesheet">
-				<script
-				src="https://code.jquery.com/jquery-2.2.4.min.js"
-				integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-				crossorigin="anonymous"></script>
-				<style>
- 					<%@ include file = "../../css/style.css"%>
- 				</style>
-	</head>
 
-		<body>
-		<script>
-			function goDelete(){
-				document.getElementById('form').action = 'deletegoods';
-			}
+<head>
+	<meta charset="utf-8">
+	<title>SampleShopping</title>
+	<%@include file="head.jsp" %>
+	<script>
+		function goDelete(){
+			document.getElementById('form').action = 'deletegoods';
+			document.getElementById('form').method = 'post';
 
-			function goCorrection(){
-				document.getElementById('form').action = 'updategoods';
-				document.getElementById('form').method = 'get';
+		}
 
-			}
-		</script>
+		function goCorrection(){
+			document.getElementById('form').action = 'updategoods';
+			document.getElementById('form').method = 'get';
 
-				<!--メニュ-->
-	 <div class="el_humburger"><!--ハンバーガーボタン-->
-	    <div class="el_humburger_wrapper">
-	      <span class="el_humburger_bar top"></span>
-	      <span class="el_humburger_bar middle"></span>
-	      <span class="el_humburger_bar bottom"></span>
-	    </div>
-	  </div>
+		}
+	</script>
+</head>
 
-			<header class="navi">
-		     <div class="navi_inner">
-		       <div class="navi_item"><a href="top.html">Home</a></div>
-		       <div class="navi_item"><a href="goods.html">Goods</a></div>
-		       <div class="navi_item"><a href="contact.html">Contact</a></div>
-			   <div class="navi_item"><a href="cart.html">Cart</a></div>
-			   <div class="navi_item"><a href="account.html">Account</a></div>
-		     </div>
-		 	</header>
-
+	<body>
+		<%@include file="adminheader.jsp" %>
 	<div class="mainView">
 	<!--ページコンテンツ-->
 	</div>
 			<!--タイトル-->
 			<div align="center">
-					<a href="top.html" id="title3a"><h3 id="title3">SampleShopping</h3></a>
+					<a href="menuadmin" id="title3"><h3 id="title3">SampleShopping</h3></a>
 					<p id="title2">- AdminGoods -</p>
 			</div>
 
-			<table id="goodsTable" align="center">
-		<%for(GoodsDto bean:list){ %>
-		<form id ='form' name = 'inputForm' method="post">
-		<input type="hidden" name="id" value="<%=bean.getId()%>">
-				<tr>
-					<td rowspan="3"><img src="<%=bean.getImageDir()%>" alt="" id="goodsimg"></td>
-					<td colspan="5" id="goodsName" name="goods_name"><%=bean.getGoodsName()%></td>
-				</tr>
-				<tr class="mt-2">
-					<td id="goodsName" name="price"><%=bean.getPrice()%></td>
-					<td id="goodsName" name="stock"><%=bean.getStock()%></td>
-					<td id="goodsName">数量</td>
-					<td>
-						<select name="cnt">
-							<option value="1" selected>1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-						</select>
-					</td>
-
-<td><button type="submit" value = "delete" onclick="goDelete();" id="delete">削除</button></td>
-<td><button type="submit" value ="correction" onclick="goCorrection();" id="correction">修正</button></td>
-				</tr>
+		<form id ='form' name = 'inputForm' action="">
+		<div class="container">
+				<%for(GoodsDto goodsDto:goodsDtoList){ %>
+				<input type="hidden" name="id" value="<%=goodsDto.getId() %>">
+		    <div class="row mt-4 mx-auto" style="width:600px">
+		        <div class="col-md-1"></div>
+		        <div class="p-0 col-md-4 shadow-sm" style="height:200px;">
+		            <img src='dispgoodsimage?imagePath=/output_imgfile/<%=goodsDto.getId() %>/first' alt=""  style="width:100%; height:100%;">
+		        </div>
+		        <div class="col-md-6 mt-3 shadow-sm">
+		            <h5 class="ml-4"><a href="dispgoodsdetail?id=<%=goodsDto.getId() %>"><%=goodsDto.getGoodsName()%></a></h5>
+		            <div class="ml-5 text-secondary">価格：¥<%=goodsDto.getPrice()%></div>
+		            <div class="text-danger ml-5">在庫数：<%=goodsDto.getStock()%>個</div>
+                        <div class="text-danger ml-5">
+                        <select name="cnt">
+								<option value="1" selected>1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+						</div>
+            <div class="form-group col-md-3 mb-0">
+            </div>
+            <button type="submit" value = "delete" onclick="goDelete();" id="delete" class="mb-2 float-right btn btn-primary">削除</button>
+            <button type="submit" value ="correction" onclick="goCorrection();" id="correction"class="mb-2 mr-3 float-right btn btn-primary">修正</button>
+            <a href="dispgoodsdetail?id=<%=goodsDto.getId() %>" id="detail" class="mb-2 float-right btn btn-primary">詳細</a>
+				</div>
+		  <%} %>
+		</div>
 		</form>
-				<%} %>
-			</table>
+		<div align="center"><a href="menuadmin" class="btn-border-bottom">戻る</a></div>
 
-			<a href="MenuServlet" class="btn btn-outline-info">戻る</a>
-
-			<!--フッター-->
+	<!--フッター-->
 	<footer>
 	<small id="footer">Copyright&copy;Kadai Website,all rightsreserved.</small>
 	</footer>

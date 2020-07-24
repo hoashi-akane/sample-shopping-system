@@ -1,9 +1,9 @@
 package servlet.user;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +15,7 @@ import dto.UserDto;
 /**
  * Servlet implementation class EntryServlet
  */
+@WebServlet("/dispuserinfo")
 public class DispUserInfoServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -34,21 +35,20 @@ public class DispUserInfoServlet extends HttpServlet {
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     	HttpSession session = request.getSession();
-
     	int userId = ((UserDto)session.getAttribute("userDto")).getId();
     	UserDao userDao = new UserDao();
     	UserDto userDto = userDao.findUser(userId);
 
     	if(userDto==null) {
-    		getServletContext().getRequestDispatcher("/WEB-INF/jsp/menu.jsp").
+    		request.getRequestDispatcher("/WEB-INF/jsp/menu.jsp").
     		forward(request,response);
 
     	}else {
     		session.setAttribute("userDto", userDto);
-    		getServletContext().getRequestDispatcher("/WEB-INF/jsp/account.jsp").
+    		request.getRequestDispatcher("/WEB-INF/jsp/account.jsp").
     		forward(request,response);
     	}
 

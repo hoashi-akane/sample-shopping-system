@@ -40,6 +40,7 @@ public class AdminDao extends UserDaoBase{
 			stmt = this.con.prepareStatement("SELECT * FROM users WHERE id=? AND is_admin=1");
 			stmt.setInt(1, id);
 			ResultSet rs = stmt.executeQuery();
+			rs.next();
 			userDto = userToDto(rs);
 		}catch(Exception e) {
 			e.printStackTrace();

@@ -5,49 +5,41 @@
 	<head>
 		<meta charset="utf-8">
 		<title>SampleShopping</title>
-				<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-				<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200&display=swap" rel="stylesheet">
-				<script
-				src="https://code.jquery.com/jquery-2.2.4.min.js"
-				integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-				crossorigin="anonymous"></script>
-				<style>
- 					<%@ include file = "../../css/style.css"%>
- 				</style>
+					<%@include file="head.jsp" %>
+
 	</head>
 
 		<body>
 		<!--タイトル-->
 		<div align="center">
-				<a href="top.html" id="title3a"><h3 id="title3">SampleShopping</h3></a>
+				<a href="menuadmin" id="title3a"><h3 id="title3">SampleShopping</h3></a>
 				<p id="title2">- Admin Login -</p>
 		</div>
 
+	<form action="/SampleShopping/authadmin" method="POST">
 	<div align="center">
 		<table id="loginTable">
 			<tr>
 				<th>UserId</th>
-				<td><input type="text" name="" value=""></td>
+				<td><input type="text" name="userid" value=""></td>
 			</tr>
 			<tr>
 				<th>Password</th>
-				<td><input type="password" name="" value=""></td>
+				<td><input type="password" name="password" value=""></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-						<a href="#" class="btn-border-bottom">login</a>
+					<input type="submit" value="login">
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<a href="insertadmin.html" class="btn-border-bottom">アカウントを作成</a>
+					<a href="createadmin" class="btn-border-bottom">アカウントを作成</a>
 				</td>
 			</tr>
 		</table>
 	</div>
+	</form>
 
 
 			<!--フッター-->

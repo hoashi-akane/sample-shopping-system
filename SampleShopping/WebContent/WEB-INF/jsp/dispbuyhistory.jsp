@@ -2,79 +2,49 @@
     pageEncoding="UTF-8"%>
         <%@page import="java.util.*" %>
 <%@page import="dto.*" %>
-    <%UserDto userDto= (UserDto)request.getAttribute("userDto");%>
-    <%String action=""; %>
+
+    <%List<BuyHistoryDto> buyHistoryList= (ArrayList<BuyHistoryDto>)request.getAttribute("listBuyHistory");%>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
 	<head>
 		<meta charset="utf-8">
 		<title>SampleShopping</title>
-							<%@include file="head.jsp" %>
-
+		<%@include file="head.jsp" %>
 	</head>
-
 	<body>
-							<%@include file="userheader.jsp" %>
-
+	<%@include file="userheader.jsp" %>
 
 	<div class="mainView">
 	<!--ページコンテンツ-->
 	</div>
-			<!--タイトル-->
-	<div align="center">
-		<a href="menu" id="title3a"><h3 id="title3">SampleShopping</h3></a>
-		<p id="title2">- Account -</p>
+		<!--タイトル-->
+		<div align="center">
+				<a href="menu" id="title3a"><h3 id="title3">SampleShopping</h3></a>
+				<p id="title2">- BuyHistory -</p>
+		</div>
+
+	<%for(BuyHistoryDto buyHistoryDto: buyHistoryList){ %>
+	<div class="container">
+	    <div class="row mt-4">
+	        <div class="col-md-1"></div>
+	        <div class="p-0 col-md-4 shadow-sm">
+	        </div>
+	        <div class="col-md-6 mt-3 shadow-sm">
+	            <h5 class="ml-4"></h5>
+	<!--   <div class="ml-5 text-secondary"></div> -->
+	           <div class="text-danger ml-5"><%=buyHistoryDto.getBuyDate()%>にお届けしました。</div>
+	
+                <form method="POST">
+
+                    <div class="form-group col-md-3 mb-0">
+
+                    </div>
+                    <button type="submit" class="mb-2 float-right btn btn-primary">詳細表示</button>
+                </form>
+	        </div>
+	    </div>
 	</div>
-
-	<div align="center">
-   <div class="asd">
-	   <table id="gaiyou">
-   <tr>
-	 <th align="center">お名前</th>
-	 <td><%=userDto.getUserName()%></td>
-   </tr>
-   <tr>
-	 <th align="center">ID</th>
-   <td><%=userDto.getId()%></td>
-   </tr>
-   <tr>
-	 <th align="center">パスワード</th>
-	 <td><%=userDto.getPassword()%></td>
-   </tr>
-   <tr>
-	 <th>郵便番号1</th>
-	 <td><%=userDto.getZipCode()%></td>
-   </tr>
-   <tr>
-	 <th>住所１</th>
-	 <td><%=userDto.getAddress()%></td>
-   </tr>
-   <tr>
-     <tr>
-	 <th>郵便番号2</th>
-	 <td><%=userDto.getZipCodeSub()%></td>
-   </tr>
-	 <th>住所２</th>
-	 <td><%=userDto.getAddressSub()%></td>
-   </tr>
-    <tr>
-   	 <th>電話番号</th>
-   	 <td><%=userDto.getTel()%></td>
-    </tr>
-	<tr>
-	 <th>メールアドレス</th>
-	 <td><%=userDto.getMailAddress()%></td>
-	</tr>
-	 <tr>
-	  <th>性別</th>
-	  <td><%=userDto.getGender()%></td>
-	 </tr>
-   </table>
-</div>
-
-	<a href="correction.html" class="btn-border-bottom" id="accountbtn">変更</a>
-	<a href="#" class="btn-border-bottom">退会</a>
-
+	<%} %>
 
 
 			<!--フッター-->

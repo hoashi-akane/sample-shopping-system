@@ -9,12 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.AdminDao;
 import dto.UserDto;
 
 /**
  * Servlet implementation class LogoutServlet
  */
-@WebServlet("/dispuserinfo")
+@WebServlet("/dispadminuserinfo")
 public class DispAdminUserInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -29,14 +30,16 @@ public class DispAdminUserInfoServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	HttpSession session = request.getSession();
 		UserDto userDto = (UserDto)session.getAttribute("userDto");
-
+		AdminDao adminDao = new AdminDao();
+		userDto = adminDao.findAdminUser(userDto.getId());
+		
 		if(userDto==null) {
-    		getServletContext().getRequestDispatcher("/WEB-INF/jsp/menu.jsp").forward(request,response);
+    		request.getRequestDispatcher("/WEB-INF/jsp/menu.jsp").forward(request,response);
     	}else{
-    		request.setAttribute("userDto", userDto);
+    		session.setAttribute("userDto", userDto);
     		request.getRequestDispatcher("WEB-INF/jsp/accountadmin.jsp").forward(request, response);
     	}
 	}
