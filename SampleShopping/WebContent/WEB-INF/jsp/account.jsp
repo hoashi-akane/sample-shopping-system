@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
         <%@page import="java.util.*" %>
 <%@page import="dto.*" %>
-    <%UserDto userDto= (UserDto)request.getAttribute("userDto");%>
+    <%UserDto userDto= (UserDto)session.getAttribute("userDto");%>
     <%String action=""; %>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
@@ -72,8 +72,29 @@
    </table>
 </div>
 
-	<a href="correction.html" class="btn-border-bottom" id="accountbtn">変更</a>
-	<a href="#" class="btn-border-bottom">退会</a>
+	<a href="updateuser" class="btn-border-bottom" id="accountbtn">変更</a>
+	<a href="#" class="btn-border-bottom" data-toggle="modal" data-target="#drawModal">退会</a>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="drawModal" tabindex="-1" role="dialog" aria-labelledby="drawModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="drawModalLabel">ユーザー退会</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        本当に退会しますか？
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">戻る</button>
+	        <a href="drawuser" class="btn btn-secondary">退会</a>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
 
 

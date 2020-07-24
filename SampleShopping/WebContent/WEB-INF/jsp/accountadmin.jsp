@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
             <%@page import="java.util.*" %>
 <%@page import="dto.*" %>
-    <%UserDto userDto= (UserDto)request.getAttribute("userDto");%>
-    <%String action=""; %>
+<%UserDto userDto= (UserDto)session.getAttribute("userDto");%>
+<%String action=""; %>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
 	<head>
@@ -34,8 +34,8 @@
 	 <td><%=userDto.getUserName()%></td>
    </tr>
    <tr>
-	 <th align="center">ID</th>
-   <td><%=userDto.getId()%></td>
+	 <th align="center">ログインID</th>
+   <td><%=userDto.getLoginId()%></td>
    </tr>
    <tr>
 	 <th align="center">パスワード</th>
@@ -71,18 +71,32 @@
 	 </tr>
    </table>
 </div>
+	<a href="updateadminuser" class="btn-border-bottom" id="accountbtn">変更</a>
+	<a href="#" class="btn-border-bottom" data-toggle="modal" data-target="#drawModal">退会</a>
 </div>
 
-	<input type ="submit" value="変更" class="btn-border-bottom" id="accountbtn">
-</form>
-
-<form action ="updateadminuser" method ="post">
-	<input type="submit" value="退会" class="btn-border-bottom">
-</form>
-
-
-
-			<!--フッター-->
+	
+	<!-- Modal -->
+	<div class="modal fade" id="drawModal" tabindex="-1" role="dialog" aria-labelledby="drawModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="drawModalLabel">ユーザー退会</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        本当に退会しますか？
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">戻る</button>
+	        <a href="drawadminuser" class="btn btn-secondary">退会</a>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+<!--フッター-->
 	<footer>
 	<small id="footer">Copyright&copy;Kadai Website,all rightsreserved.</small>
 	</footer>
