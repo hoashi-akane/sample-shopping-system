@@ -37,7 +37,7 @@
 <form id ='form' name = 'inputForm' action="">
 <div class="container">
 		<%for(GoodsDto goodsDto:goodsDtoList){ %>
-		<input type="hidden" name="id" value="<%=goodsDto.getId() %>">
+		<input type="hidden" name="goods_id" value="<%=goodsDto.getId() %>">
     <div class="row mt-4 mx-auto" style="width:600px">
         <div class="col-md-1"></div>
         <div class="p-0 col-md-4 shadow-sm" style="height:200px;">
@@ -47,7 +47,7 @@
             <h5 class="ml-4"><%=goodsDto.getGoodsName()%></h5>
             <div class="ml-5 text-secondary">価格：¥<%=goodsDto.getPrice()%></div>
             <div class="text-danger ml-5">在庫数：<%=goodsDto.getStock()%>個</div>
-                        <div class="text-danger ml-5"><select name="cnt">
+                        <div class="text-danger ml-5"><select name="volume">
 							<option value="1" selected>1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>

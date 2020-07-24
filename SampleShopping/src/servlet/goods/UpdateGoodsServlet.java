@@ -33,7 +33,7 @@ public class UpdateGoodsServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		int id = 0;
 		try {
-			id = Integer.parseInt(request.getParameter("id"));
+			id = Integer.parseInt(request.getParameter("goods_id"));
 		}catch(NumberFormatException e){
 			e.printStackTrace();
 		}
@@ -89,10 +89,12 @@ public class UpdateGoodsServlet extends HttpServlet {
 		String path ="";
 		if(successGoods) {
 			session.setAttribute("goodsDto", goodsDto);
-			path = "menuadmin";
+			session.setAttribute("message", "編集に成功しました。");
+			path = "dispgoodslistadmin";
 			response.sendRedirect(path);
 			session.removeAttribute("goodsDto");
 		} else {
+			session.setAttribute("message", "編集に失敗しました。");
 			path = "dispgoodslistadmin";
 			response.sendRedirect(path);
 		}
