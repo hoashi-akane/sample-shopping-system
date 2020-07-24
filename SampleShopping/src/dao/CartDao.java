@@ -15,7 +15,7 @@ public class CartDao extends DaoBase{
 		boolean isSuccess = false;
 		try {
 			con = super.dbOpen();
-			stmt = con.prepareStatement("DELETE FROM cart WHERE id=? AND user_id=?");
+			stmt = con.prepareStatement("DELETE FROM carts WHERE id=? AND user_id=?");
 			stmt.setInt(1, cartId);
 			stmt.setInt(2, userId);
 			stmt.executeUpdate();

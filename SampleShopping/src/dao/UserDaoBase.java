@@ -7,13 +7,14 @@ import dto.UserDto;
 
 public class UserDaoBase extends DaoBase{
 //	ログイン可能か調べユーザ情報を返す。
-	public UserDto login(String loginId, String password) {
+	public UserDto login(String loginId, String password, boolean isAdmin) {
 		UserDto userDto = null;
 		try {
 			con = super.dbOpen();
-			stmt = this.con.prepareStatement("SELECT * FROM users WHERE login_id=? AND user_password=?");
+			stmt = this.con.prepareStatement("SELECT * FROM users WHERE login_id=? AND user_password=? AND is_admin=?");
 			this.stmt.setString(1, loginId);
 			this.stmt.setString(2, password);
+			stmt.setBoolean(3, isAdmin);
 			ResultSet rs = this.stmt.executeQuery();
 			if(rs.next()) {
 				userDto = userToDto(rs);
@@ -24,6 +25,26 @@ public class UserDaoBase extends DaoBase{
 		super.dbClose();
 		return userDto;
 	}
+	
+//	ユーザが存在するか確認する
+	public boolean exists(int id, String inputPassword) {
+		boolean isSuccess = false;
+		try {
+			con = super.dbOpen();
+			stmt = this.con.prepareStatement("SELECT * FROM users WHERE id=? AND user_password=?");
+			this.stmt.setInt(1, id);
+			this.stmt.setString(2, inputPassword);
+			ResultSet rs = this.stmt.executeQuery();
+			if(rs.next()) {
+				isSuccess = true;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		super.dbClose();
+		return isSuccess;
+	}
+	
 	
 //	ユーザ削除を行う。
 	public boolean deleteUser(int id) {
@@ -48,7 +69,7 @@ public class UserDaoBase extends DaoBase{
 			stmt = this.con.prepareStatement(
 					"UPDATE users SET login_id=?, user_password=?, user_name=?,"
 					+ " address=?, zip_code=?, address_sub=?, zip_code_sub=?, tel=?,"
-					+ " gernder=?, mail_address=? WHERE id = ?");
+					+ " gender=?, mail_address=? WHERE id = ?");
 			stmt.setString(1, userDto.getLoginId());
 			stmt.setString(2, userDto.getPassword());
 			stmt.setString(3, userDto.getUserName());

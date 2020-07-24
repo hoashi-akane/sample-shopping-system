@@ -44,6 +44,7 @@ public class AdminDao extends UserDaoBase{
 			userDto = userToDto(rs);
 		}catch(Exception e) {
 			e.printStackTrace();
+			super.dbClose();
 		}
 		return userDto;
 	}
