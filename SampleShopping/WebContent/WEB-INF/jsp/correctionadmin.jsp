@@ -22,53 +22,61 @@
 				<a href="menuadmin" id="title3a"><h3 id="title3">SampleShopping</h3></a>
 				<p id="title2">- Correction -</p>
 		</div>
-
+	<form action="updateuser" method="post">
 			<div align="center">
 		   <div class="asd">
 			   <table id="gaiyou">
 		   <tr>
-			 <th align="center">お名前<font color="red"> *</font></p></th>
-			 <td><input class="form-control" type="text" name="" value=""></td>
+			 <th align="center">お名前<p><font color="red"> *</font></p></th>
+			 <td><input type="text" name="username" value=""></td>
 		   </tr>
 		   <tr>
-			 <th align="center">ID<font color="red"> *</font></p></th>
-		   <td><input class="form-control" type="text" name="" value=""></td>
+			 <th align="center">ID<p><font color="red"> *</font></p></th>
+		   <td><input type="text" name="login_id" value=""></td>
 		   </tr>
 		   <tr>
 			 <th align="center">パスワード</th>
-			 <td><input class="form-control" type="password" name="" value=""></td>
+			 <td><input type="password" name="user_password" value=""></td>
 		   </tr>
 		   <tr>
-			 <th>郵便番号</th>
-			 <td><input class="form-control" type="text" name="" value=""></td>
+			 <th>郵便番号1</th>
+			 <td><input type="text" name="zip_code" value=""></td>
+		   </tr>
+		   <tr>
+			 <th>郵便番号2</th>
+			 <td><input type="text" name="zip_code_sub" value=""></td>
 		   </tr>
 		   <tr>
 			 <th>住所１</th>
-			 <td><input class="form-control" type="text" name="" value=""></td>
+			 <td><input type="text" name="address" value=""></td>
 		   </tr>
 		   <tr>
 			 <th>住所２</th>
-			 <td><input class="form-control" type="text" name="" value=""></td>
+			 <td><input type="text" name="address_sub" value=""></td>
 		   </tr>
 		    <tr>
 		   	 <th>電話番号</th>
-		   	 <td><input class="form-control" type="text" name="" value=""></td>
+		   	 <td><input type="text" name="tel" value=""></td>
 		    </tr>
 			<tr>
 			 <th>メールアドレス</th>
-			 <td><input class="form-control" type="email" name="" value="" id="textbox"></td>
+			 <td><input type="email" name="mailaddress" value="" id="textbox"></td>
 			</tr>
 			 <tr>
 			  <th>性別</th>
-			  <td><input type="radio" name="example" value="1">女性
-		        <input type="radio" name="example" value="2">男性
+			  <td><input type="radio" name="gender" value="1">女性
+		        <input type="radio" name="gender" value="2">男性
 			  </td>
 			 </tr>
 		   </table>
-		</div>
+	</div>
+		<input type="submit" value="変更" class="btn-border-bottom">
+	</form>
 
-			<a href="account.html" class="btn-border-bottom" id="accountbtn">戻る</a>
-			<a href="#" class="btn-border-bottom">変更</a>
+		<form action="dispadminuserinfo" method="post">
+			<input type="submit" value="戻る" class="btn-border-bottom" id="accountbtn">
+		</form>
+
 			<!--フッター-->
 	<footer>
 	<small id="footer">Copyright&copy;Kadai Website,all rightsreserved.</small>
