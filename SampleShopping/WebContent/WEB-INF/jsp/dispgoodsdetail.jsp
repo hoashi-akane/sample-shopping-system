@@ -17,10 +17,13 @@
 			<%@include file="head.jsp" %>
 	</head>
 		<body>
+		<%String  transition="";%>
 			<% if(userDto.isAdmin()){%>
 				<%@include file="adminheader.jsp" %>
+				<%transition = "dispgoodslistadmin";%>
 			<%}else{ %>
 			<%@include file="userheader.jsp" %>
+			<%transition ="dispgoodslist";%>
 			<%} %>
 	<div class="mainView">
 	<!--ページコンテンツ-->
@@ -70,7 +73,7 @@
 			</form>
 		</table>
 
-							<div align="center"><a href="dispgoodslist" class="btn-border-bottom">戻る</a></div>
+							<div align="center"><a href="<%=transition %>" class="btn-border-bottom">戻る</a></div>
 
 					<!--フッター-->
 			<footer>
