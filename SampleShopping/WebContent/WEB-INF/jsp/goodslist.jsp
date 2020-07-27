@@ -33,7 +33,13 @@
 					<a href="menu" id="title3a"><h3 id="title3">SampleShopping</h3></a>
 					<p id="title2">- Goods -</p>
 			</div>
-
+<div class="container-fluid row">
+	<div class="col-md-10 md-offset-1 text-center mx-auto">
+		<form action="/SampleShopping/searchgoods" method="POST">
+			<input type="text" name="input" placeholder="検索"><input type="submit" class="btn">
+		</form>
+	</div>
+</div>
 <form id ='form' name = 'inputForm' action="">
 <div class="container">
 		<%for(GoodsDto goodsDto:goodsDtoList){ %>

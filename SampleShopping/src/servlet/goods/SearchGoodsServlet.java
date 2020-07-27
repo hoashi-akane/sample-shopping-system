@@ -32,9 +32,11 @@ public class SearchGoodsServlet extends HttpServlet {
 	 */
 //	検索欄から飛んできた文字から商品を検索し一覧表示させるサーブレット
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+    	request.setCharacterEncoding("UTF-8");
     	List<GoodsDto> goodsDtoList = null;
     	GoodsDao goodsDao  = new GoodsDao();
-    	String input = (String)request.getAttribute("input");
+    	String input = request.getParameter("input");
     	goodsDtoList = goodsDao.getGoodsList(input);
     	if(goodsDtoList != null) {
     		request.setAttribute("goodsDtoList", goodsDtoList);
