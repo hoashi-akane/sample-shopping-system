@@ -73,6 +73,7 @@ int totalPrice = 0;
 				<td colspan="6" id="cartTotal"><div align="center">合計 <%= totalPrice %>円</div></td>
 			</tr>
 		</table>
+		<a href="/SampleShopping/payment" class="btn-border-bottom">決済画面へ</a>
 	</div>
 
 			<!--フッター-->
