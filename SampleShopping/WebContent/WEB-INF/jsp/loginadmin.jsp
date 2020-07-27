@@ -20,21 +20,16 @@
 	<div align="center">
 		<table id="loginTable">
 			<tr>
-				<th>UserId</th>
-				<td><input type="text" name="userid" value=""></td>
+				<th>ユーザーID</th>
+				<td><input class="form-control" type="text" name="userid" value=""></td>
 			</tr>
 			<tr>
-				<th>Password</th>
-				<td><input type="password" name="password" value=""></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center">
-					<input type="submit" value="login">
-				</td>
+				<th>パスワード</th>
+				<td><input class="form-control" type="password" name="password" value=""></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<a href="createadmin" class="btn-border-bottom">アカウントを作成</a>
+					<input class="mt-3" type="submit" value="ログイン">
 				</td>
 			</tr>
 		</table>

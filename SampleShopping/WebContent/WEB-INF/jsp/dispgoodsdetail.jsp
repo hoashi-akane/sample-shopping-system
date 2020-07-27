@@ -32,16 +32,19 @@
 					<p id="title2">- GoodsDetail -</p>
 			</div>
 
-		<table id="goodsTable" align="center" >
+		<table id="goodsTable" align="center" class="table table-borderless mt-5">
 		<form id ='form' name = 'inputForm' action="">
+		<tbody>
 			<tr>
-				<td rowspan="3" colspan="5"><img src='' class="goodsimg" id="mainImg"></td>
+				<td rowspan="5" colspan="5"><img src='' class="goodsimg" id="mainImg"></td>
 				<td colspan="5" id="goodsName"><%=goodsDto.getGoodsName()%></td>
 			</tr>
 			<tr class="mt-2">
-				<td id="goodsName"><%=goodsDto.getPrice()%></td>
-				<td id="goodsName"><%=goodsDto.getStock()%></td>
-				<td id="goodsName">数量</td>
+				<td id="goodsName">値段：<%=goodsDto.getPrice()%></td>
+				<td id="goodsName">在庫量：<%=goodsDto.getStock()%></td>
+			</tr>
+			<tr>	
+			<td id="goodsName">数量</td>
 				<td>
 					<select name="cnt">
 						<option value="1" selected>1</option>
@@ -51,11 +54,12 @@
 						<option value="5">5</option>
 					</select>
 				</td>
-				<td id="goodsName"><a href="cart.html"><img src="../img/icon/cart.png" alt="" id="cartimg"></a></td>
 			</tr>
-			<tr class="float-right">
-				<td><%=goodsDto.getBrandDto().getName()%></td>
-				<td><%=goodsDto.getCategoryDto().getName()%></td>
+			<tr >
+				<td>ブランド名：<%=goodsDto.getBrandDto().getName()%></td>
+			</tr>
+			<tr>
+				<td>カテゴリ名：<%=goodsDto.getCategoryDto().getName()%></td>
 			</tr>
 			<tr>
 			<% for(File file : fileList){ %>
@@ -67,6 +71,7 @@
 			<tr>
 				<td colspan="5" id="goodsName"><p>説明文<br><%=goodsDto.getDescription()%></p></td>
 			</tr>
+			</tbody>
 			</form>
 		</table>
 

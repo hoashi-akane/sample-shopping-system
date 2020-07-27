@@ -21,12 +21,12 @@
 	<div align="center">
 		<table id="loginTable">
 			<tr>
-				<th>UserId</th>
-				<td><input type="text" name="login_Id"></input></td>
+				<th>ユーザーID</th>
+				<td><input class="form-control" type="text" name="login_Id"></input></td>
 			</tr>
 			<tr>
-				<th>Password</th>
-				<td><input type="password" name="password"></input></td>
+				<th>パスワード</th>
+				<td><input class="form-control" type="password" name="password"></input></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">

@@ -28,65 +28,62 @@ if(message == null){
 				<p id="title2">- Create -</p>
 		</div>
 
-<form action ="createuser" method ="post">
+		<form action ="createuser" method ="post">
 			<div align="center">
 		   <div class="asd">
 				<p><%= message %>
-			   <table id="gaiyou">
-		   <tr>
-			 <th align="center">お名前<font color="red"> *</font></th>
-			 <td><input class="form-control" type="text" name="username" value=""></td>
-		   </tr>
-		   <tr>
-			 <th align="center">ID<font color="red"> *</font></th>
-		   <td><input class="form-control" type="text" name="login_id" value=""></td>
-		   </tr>
-		   <tr>
-			 <th align="center">パスワード</th>
-			 <td><input class="form-control" type="password" name="user_password" value=""></td>
-		   </tr>
-		   <tr>
-			 <th>郵便番号</th>
-			 <td><input class="form-control" type="text" name="zip_code" value=""></td>
-		   </tr>
-		   <tr>
-			 <th>郵便番号2</th>
-			 <td><input class="form-control" type="text" name="zip_code_sub" value=""></td>
-		   </tr>
-		   <tr>
-			 <th>住所１</th>
-			 <td><input class="form-control" type="text" name="address" value=""></td>
-		   </tr>
-		   <tr>
-			 <th>住所２</th>
-			 <td><input class="form-control" type="text" name="address_sub" value=""></td>
-		   </tr>
-		    <tr>
-		   	 <th>電話番号</th>
-		   	 <td><input class="form-control" type="text" name="tel" value=""></td>
-		    </tr>
-			<tr>
-			 <th>メールアドレス</th>
-			 <td><input class="form-control" type="email" name="mailaddress" value="" id="textbox"></td>
-			</tr>
-			 <tr>
-			  <th>性別</th>
-			  <td>
-			  <input type="radio" name="gender" value="0">秘密
-			  <input type="radio" name="gender" value="1">女性
-		      <input type="radio" name="gender" value="2">男性
-		      <input type="radio" name="gender" value="3">その他
-			  </td>
-			 </tr>
+		   <table id="gaiyou">
+			   <tr>
+				 <th align="center">お名前<font color="red"> *</font></th>
+				 <td><input class="form-control" type="text" name="username" value=""></td>
+			   </tr>
+			   <tr>
+				 <th align="center">ID<font color="red"> *</font></th>
+			   <td><input class="form-control" type="text" name="login_id" value=""></td>
+			   </tr>
+			   <tr>
+				 <th align="center">パスワード</th>
+				 <td><input class="form-control" type="password" name="user_password" value=""></td>
+			   </tr>
+			   <tr>
+				 <th>郵便番号</th>
+				 <td><input class="form-control" type="text" name="zip_code" value=""></td>
+			   </tr>
+			   <tr>
+				 <th>郵便番号2</th>
+				 <td><input class="form-control" type="text" name="zip_code_sub" value=""></td>
+			   </tr>
+			   <tr>
+				 <th>住所１</th>
+				 <td><input class="form-control" type="text" name="address" value=""></td>
+			   </tr>
+			   <tr>
+				 <th>住所２</th>
+				 <td><input class="form-control" type="text" name="address_sub" value=""></td>
+			   </tr>
+			    <tr>
+			   	 <th>電話番号</th>
+			   	 <td><input class="form-control" type="text" name="tel" value=""></td>
+			    </tr>
+				<tr>
+				 <th>メールアドレス</th>
+				 <td><input class="form-control" type="email" name="mailaddress" value="" id="textbox"></td>
+				</tr>
+				 <tr>
+				  <th>性別</th>
+				  <td>
+				  <input type="radio" name="gender" value="0">秘密
+				  <input type="radio" name="gender" value="1">女性
+			      <input type="radio" name="gender" value="2">男性
+			      <input type="radio" name="gender" value="3">その他
+				  </td>
+				 </tr>
 		   </table>
 		</div>
+			<a href="/SampleShopping/login" class="btn-border-bottom px-4 mr-4">戻る</a>
+			<input type="submit" value="登録" class="btn-border-bottom px-4 ml-4">
 		</div>
-
-			<input type="submit" value="登録" class="btn-border-bottom">
 		</form>
-		<form action ="login" method ="get">
-			<input type="submit" value="戻る" class="btn-border-bottom" id="accountbtn">
-			</form>
 			<!--フッター-->
 	<footer>
 	<small id="footer">Copyright&copy;Kadai Website,all rightsreserved.</small>
