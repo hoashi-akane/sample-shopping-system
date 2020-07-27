@@ -36,7 +36,7 @@
 					<div id="file" class="input-group">
 					    <div class="custom-file">
 					        <input type="file" class="custom-file-input" id="customFile" name="file" multiple>
-					        <label class="custom-file-label" for="customFile" data-browse="参照">ファイル選択...</label>
+					        <label class="custom-file-label" for="customFile" data-browse="参照">ファイルを参照...</label>
 					    </div>
 					    <div class="input-group-append">
 					        <button type="button" class="btn btn-outline-secondary reset"><i class="fas fa-times fa-fw"></i>取消</button>
