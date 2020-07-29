@@ -21,13 +21,16 @@ public class BuyHistoryDao extends DaoBase{
 			con = super.dbOpen();
 			stmt = this.con.prepareStatement("SELECT history.id, history.buy_date, goods.id as goods_id, goods.goods_name FROM buy_historys AS history"
 					+ " INNER JOIN buy_history_details AS detail ON history.id = detail.buy_history_id"
-					+ "INNER JOIN goods AS goods ON detail.id = goods.id WHERE user_id=?");
+					+ " LEFT JOIN goods AS goods ON detail.goods_id = goods.id WHERE user_id=?"
+					+ " group by history.id, history.buy_date, goods_id, goods.goods_name");
 			stmt.setInt(1, userId);
 			ResultSet rs = stmt.executeQuery();
 			buyHistoryDtoList = buyHistoryToDto(rs);
 		}catch(Exception e) {
 			buyHistoryDtoList = null;
 			e.printStackTrace();
+		}finally {
+			super.dbClose();
 		}
 		return buyHistoryDtoList;
 	}
@@ -122,8 +125,15 @@ public class BuyHistoryDao extends DaoBase{
 //					1回目は必ずtrue
 					if(buyHistoryDto.getId() == rs.getInt("Id")) {
 						GoodsDto goodsDto = new GoodsDto();
-						goodsDto.setId(rs.getInt("goods_id"));
-						goodsDto.setGoodsName(rs.getString("goods_name"));
+						int goodsId = rs.getInt("goods_id");
+						String goodsName = rs.getString("goods_name");
+						if(goodsId == 0) {
+							goodsName="商品削除済み";
+						}
+	
+						goodsDto.setId(goodsId);
+						goodsDto.setGoodsName(goodsName);
+						
 						goodsDtoList.add(goodsDto);
 //						rs.next()をするのはここのみ（idが同じ限りrs.next()を、異なればdtoListに追加してbreakさせる。)
 //						データがなくならない限りtrue

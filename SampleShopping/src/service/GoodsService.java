@@ -21,7 +21,8 @@ public class GoodsService {
 //	商品のファイルの一番最初のこんてんつを返すメソッド
 	public File findImageFile(String imageDir) {
 		File file = new File(imageDir);
-		return file.listFiles()[0];
+		File[] fileList = file.listFiles();
+		return fileList[0];
 	}
 	
 //	画像を出力するサービス
