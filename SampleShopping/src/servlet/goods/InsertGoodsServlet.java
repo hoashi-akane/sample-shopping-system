@@ -22,13 +22,16 @@ import javax.servlet.http.Part;
 import dao.GoodsDao;
 import dto.GoodsDto;
 import other.SystemPath;
+import service.BrandService;
+import service.CategoryService;
 
 
 @WebServlet("/insertgoods")
 @MultipartConfig(location="/tmp", maxFileSize=1048576)
 public class InsertGoodsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	BrandService brandService = new BrandService();
+	CategoryService categoryService = new CategoryService();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -45,7 +48,8 @@ public class InsertGoodsServlet extends HttpServlet {
     		session.removeAttribute("message");
     		request.setAttribute("message", message);
     	}
-    	Path path2 = Paths.get("/WebContent");
+    	request.setAttribute("brandDtoList",brandService.brandListService());
+		request.setAttribute("categoryDtoList", categoryService.categoryListService());
 		request.getRequestDispatcher("/WEB-INF/jsp/insertgoods.jsp").
 		forward(request,response);
 
