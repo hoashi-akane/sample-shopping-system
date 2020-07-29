@@ -31,43 +31,43 @@
 	   <table id="gaiyou">
    <tr>
 	 <th align="center">お名前</th>
-	 <td><%=userDto.getUserName()%></td>
+	 <td><c:out value="<%=userDto.getUserName()%>"/></td>
    </tr>
    <tr>
 	 <th align="center">ログインID</th>
-   <td><%=userDto.getLoginId()%></td>
+   <td><c:out value="<%=userDto.getLoginId()%>"/></td>
    </tr>
    <tr>
 	 <th align="center">パスワード</th>
-	 <td><%=userDto.getPassword()%></td>
+	 <td><c:out value="<%=userDto.getPassword()%>"/></td>
    </tr>
    <tr>
 	 <th>郵便番号１</th>
-	 <td><%=userDto.getZipCode()%></td>
+	 <td><c:out value="<%=userDto.getZipCode()%>"/></td>
    </tr>
    <tr>
 	 <th>郵便番号２</th>
-	 <td><%=userDto.getZipCodeSub()%></td>
+	 <td><c:out value="<%=userDto.getZipCodeSub()%>"/></td>
    </tr>
    <tr>
 	 <th>住所１</th>
-	 <td><%=userDto.getAddress()%></td>
+	 <td><c:out value="<%=userDto.getAddress()%>"/></td>
    </tr>
    <tr>
 	 <th>住所２</th>
-	 <td><%=userDto.getAddressSub()%></td>
+	 <td><c:out value="<%=userDto.getAddressSub()%>"/></td>
    </tr>
     <tr>
    	 <th>電話番号</th>
-   	 <td><%=userDto.getTel()%></td>
+   	 <td><c:out value="<%=userDto.getTel()%>"/></td>
     </tr>
 	<tr>
 	 <th>メールアドレス</th>
-	 <td><%=userDto.getMailAddress()%></td>
+	 <td><c:out value="<%=userDto.getMailAddress()%>"/></td>
 	</tr>
 	 <tr>
 	  <th>性別</th>
-	  <td><%=userDto.getGender()%></td>
+	  <td><c:out value="<%=userDto.getGender()%>"/></td>
 	 </tr>
    </table>
 </div>

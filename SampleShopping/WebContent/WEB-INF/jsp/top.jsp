@@ -22,7 +22,7 @@ if(message == null){
 <!--ページコンテンツ-->
 </div>
 
-<h3>ようこそ<%=name%>さん</h3>
+<h3>ようこそ<c:out value="<%=name%>"/>さん</h3>
 		<!--タイトル-->
 		<div align="center">
 				<h1 id="title1">SampleShopping</h1>

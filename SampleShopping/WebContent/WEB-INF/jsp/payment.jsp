@@ -40,21 +40,21 @@
 	<div class="col-md-5  mx-auto text-center payment-border">
 		<div>
 			<h5>氏名</h5>
-			<p class="text-secondary"><%= userDto.getUserName() %></p>
+			<p class="text-secondary"><c:out value="<%= userDto.getUserName() %>"/></p>
 		</div>
 
 		<div>
 			<h5>住所</h5>
-			<p class="text-secondary">〒<%= userDto.getZipCode() %><br>
-			<%= userDto.getAddress() %></p>
+			<p class="text-secondary">〒<c:out value="<%= userDto.getZipCode() %>"/><br>
+			<c:out value="<%= userDto.getAddress() %>"/></p>
 		</div>
 		<div>
 			<h5>電話番号</h5>
-			<p class="text-secondary"><%= userDto.getTel() %></p>
+			<p class="text-secondary"><c:out value="<%= userDto.getTel() %>"/></p>
 		</div>
 		<div>
 			<h5>合計金額</h5>
-			<p class="text-secondary"><%= totalPrice %>円</p>
+			<p class="text-secondary"><c:out value="<%= totalPrice %>"/>円</p>
 		</div>
 		<div class="form-group">
 			<label class="w-50" for="exampleSelect1exampleFormControlSelect1" id="cardLabel"><button class="btn w-100" id="checkBtn">登録されたカードを利用する方</button></label>
@@ -63,7 +63,7 @@
 				<option>カードを選択</option>
 					<% for(HashMap<String,String> cardInfo : cardInfoList){ %>
 					<option value="<%= cardInfo.get("id") %>">
-					発行元：<%= cardInfo.get("cardBrand") %>　下４桁：<%= cardInfo.get("numberLastFour") %>
+					発行元：<c:out value="<%= cardInfo.get("cardBrand") %>"/>　下４桁：<c:out value="<%= cardInfo.get("numberLastFour") %>"/>
 					</option>
 					<% } %>
 			</select>
