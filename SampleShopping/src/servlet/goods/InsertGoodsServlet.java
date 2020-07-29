@@ -85,7 +85,7 @@ public class InsertGoodsServlet extends HttpServlet {
 		boolean successGoods = goodsDao.insertGoods(goodsDto);
 		
 		if(!successGoods) {
-			path = "/SampleShopping/dispgoodslist";
+			path = "/SampleShopping/dispgoodslistadmin";
 			response.sendRedirect(path);
 			return ;
 		}
@@ -98,7 +98,7 @@ public class InsertGoodsServlet extends HttpServlet {
 		
 		if(goodsId == 0 || !goodsDao.insertImagePath(goodsId, imagePath)) {
 //			商品が見つからない場合
-			path = "/SampleSHopping/dispgoodsilst";
+			path = "/SampleSHopping/dispgoodsilstadmin";
 			response.sendRedirect(path);
 			return ;
 		}
@@ -120,7 +120,7 @@ public class InsertGoodsServlet extends HttpServlet {
 			i++;
 		}
 		
-		path = "/SampleShopping/menu";
+		path = "/SampleShopping/dispgoodslistadmin";
 		response.sendRedirect(path);
 	}
 	
