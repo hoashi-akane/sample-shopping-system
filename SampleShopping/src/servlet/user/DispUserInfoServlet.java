@@ -49,7 +49,7 @@ public class DispUserInfoServlet extends HttpServlet {
     	UserDto userDto = userDao.findUser(userId);
 
     	if(userDto==null) {
-    		request.getRequestDispatcher("/WEB-INF/jsp/menu.jsp").
+    		request.getRequestDispatcher("/WEB-INF/jsp/top.jsp").
     		forward(request,response);
 
     	}else {

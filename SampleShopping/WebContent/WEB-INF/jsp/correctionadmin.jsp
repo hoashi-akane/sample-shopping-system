@@ -75,7 +75,7 @@
 			 </tr>
 		   </table>
 	</div>
-		<input type="submit" value="変更" class="btn border">
+		<input type="submit" value="変更" class="btn btn-outline-dark">
 	</form>
 	
 	<a href="dispadminuserinfo" class="btn border">戻る</a>

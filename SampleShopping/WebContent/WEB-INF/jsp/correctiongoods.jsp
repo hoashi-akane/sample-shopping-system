@@ -47,14 +47,14 @@ ArrayList<CategoryDto> categoryDtoList = (ArrayList<CategoryDto>)request.getAttr
 				   </tr>
 				   <tr>
 					 <th>説明文</th>
-					 <td><textarea class="form-control" name="description" cols="50" rows="7" id="textbox" value="<%=goodsDto.getDescription()%>"></textarea></td>
+					 <td><textarea class="form-control" name="description" cols="50" rows="7" id="textbox"><%=goodsDto.getDescription()%></textarea></td>
 				   </tr>
 				   <tr>
 					 <th>カテゴリー</th>
 					 <td>
 					 	<select class="form-control" name="category_id">
 					 	<% for(CategoryDto categoryDto: categoryDtoList){ %>
-					 	<option value="<%=categoryDto.getId()%>"><%=categoryDto.getName() %></option>
+					 	<option value="<%=categoryDto.getId()%>"><c:out value="<%=categoryDto.getName() %>"/></option>
 					 	<%} %>
 					 	</select>
 					 </td>
@@ -64,7 +64,7 @@ ArrayList<CategoryDto> categoryDtoList = (ArrayList<CategoryDto>)request.getAttr
 				   	 <td>
 				   	 	<select class="form-control" name="brand_id">
 						<% for(BrandDto brandDto: brandDtoList){ %>
-					 	<option value="<%=brandDto.getId()%>"><%=brandDto.getName() %></option>
+					 	<option value="<%=brandDto.getId()%>"><c:out value="<%=brandDto.getName() %>"></c:out></option>
 					 	<%} %>
 					 	</select>
 					</td>
@@ -75,8 +75,8 @@ ArrayList<CategoryDto> categoryDtoList = (ArrayList<CategoryDto>)request.getAttr
 				    </tr>
 		   		</table>
 		</div>
-			<button type="submit" class="mb-2 btn btn-primary">登録</button>
 			<a href="dispgoodslistadmin" class="btn-border-bottom" id="accountbtn">戻る</a>
+			<button type="submit" class="btn btn-outline-dark">登録</button>
 		</div>
      </form>
 

@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@include file="head.jsp" %>
 <% 
 String message = (String)request.getAttribute("message");
 %>

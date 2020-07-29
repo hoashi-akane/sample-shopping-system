@@ -14,22 +14,11 @@
 <head>
 	<meta charset="utf-8">
 	<title>SampleShopping</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-	
-	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200&display=swap" rel="stylesheet">
-	<script
-	src="https://code.jquery.com/jquery-2.2.4.min.js"
-	integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-	crossorigin="anonymous"></script>
+	<%@include file="head.jsp" %>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 	<script src="https://js.stripe.com/v3/"></script>
-	<style>
-		<%@ include file = "../../css/style.css"%>
-	</style>
+	
 </head>
 <body class="payment-font">
 <!--タイトル-->
@@ -63,7 +52,7 @@
 				<option>カードを選択</option>
 					<% for(HashMap<String,String> cardInfo : cardInfoList){ %>
 					<option value="<%= cardInfo.get("id") %>">
-					発行元：<c:out value="<%= cardInfo.get("cardBrand") %>"/>　下４桁：<c:out value="<%= cardInfo.get("numberLastFour") %>"/>
+					発行元：<%= cardInfo.get("cardBrand") %>　下４桁：<%= cardInfo.get("numberLastFour") %>
 					</option>
 					<% } %>
 			</select>

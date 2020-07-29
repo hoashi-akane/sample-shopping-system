@@ -81,7 +81,7 @@ if(message == null){
 		   </table>
 		</div>
 			<a href="/SampleShopping/login" class="btn-border-bottom px-4 mr-4">戻る</a>
-			<input type="submit" value="登録" class="btn-border-bottom px-4 ml-4">
+			<input type="submit" value="登録" class="btn btn-outline-dark px-4 ml-4">
 		</div>
 		</form>
 			<!--フッター-->

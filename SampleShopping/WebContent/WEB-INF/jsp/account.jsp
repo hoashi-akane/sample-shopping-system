@@ -90,7 +90,7 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">戻る</button>
-	        <a href="drawuser" class="btn btn-secondary">退会</a>
+	        <a href="drawuser" class="btn btn-outline-danger">退会</a>
 	      </div>
 	    </div>
 	  </div>

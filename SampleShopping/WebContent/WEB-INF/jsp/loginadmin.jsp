@@ -29,7 +29,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input class="mt-3" type="submit" value="ログイン">
+					<input class="mt-3 btn btn-outline-dark" type="submit" value="ログイン">
 				</td>
 			</tr>
 		</table>

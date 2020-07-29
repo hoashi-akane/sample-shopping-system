@@ -33,26 +33,27 @@
 					<a href="menu" id="title3a"><h3 id="title3">SampleShopping</h3></a>
 					<p id="title2">- Goods -</p>
 			</div>
-<div class="container-fluid row">
-	<div class="col-md-10 md-offset-1 text-center mx-auto">
+<div class="container-fluid row mx-0 px-0">
+	<div class="text-center mx-auto form-inline form-group">
 		<form action="/SampleShopping/searchgoods" method="POST">
-			<input type="text" name="input" placeholder="検索"><input type="submit" class="btn">
+			<input class="form-control" type="text" name="input" placeholder="検索"><input type="submit" class="btn" value="商品名検索">
 		</form>
 	</div>
 </div>
-<form id ='form' name = 'inputForm' action="">
+
 <div class="container">
 		<%for(GoodsDto goodsDto:goodsDtoList){ %>
-		<input type="hidden" name="goods_id" value="<%=goodsDto.getId() %>">
+		<form id ='form' name = 'inputForm' action="insertcart" method="post">
     <div class="row mt-4 mx-auto" style="width:600px">
         <div class="col-md-1"></div>
         <div class="p-0 col-md-4 shadow-sm" style="height:200px;">
             <img src='dispgoodsimage?imagePath=/output_imgfile/<%=goodsDto.getId() %>/first' alt=""  style="width:100%; height:100%;">
         </div>
-        <div class="col-md-6 mt-3 shadow-sm">
-            <h5 class="ml-4"><%=goodsDto.getGoodsName()%></h5>
-            <div class="ml-5 text-secondary">価格：¥<%=goodsDto.getPrice()%></div>
-            <div class="text-danger ml-5">在庫数：<%=goodsDto.getStock()%>個</div>
+        <div class="col-md-6 mt-0 shadow-sm">
+      		 <input type="hidden" name="goods_id" value="<%=goodsDto.getId() %>">
+            <h5 class="ml-4"><c:out value="<%=goodsDto.getGoodsName()%>"/></h5>
+            <div class="ml-5 text-secondary">価格：¥<c:out value="<%=goodsDto.getPrice()%>"/></div>
+            <div class="text-danger ml-5">在庫数：<c:out value="<%=goodsDto.getStock()%>"/>個</div>
                         <div class="text-danger ml-5"><select name="volume">
 							<option value="1" selected>1</option>
 							<option value="2">2</option>
@@ -62,13 +63,14 @@
 						</select></div>
                     <div class="form-group col-md-3 mb-0">
                     </div>
-                    <a href="dispgoodsdetail?id=<%=goodsDto.getId() %>" id="detail" class="mb-2 float-right btn btn-primary">詳細</a>
-                	<button type="submit" value ="cart" onclick="goCart();" id="cart"class="mb-2 mr-3 float-right btn btn-primary">カートへ追加</button>
+                    <a href="dispgoodsdetail?id=<%=goodsDto.getId() %>" id="detail" class="mb-2 float-right btn btn-outline-dark">詳細</a>
+                	<button type="submit" value ="cart" onclick="goCart();" id="cart"class="mb-2 mr-2 float-right btn btn-outline-dark">カートへ追加</button>
 		</div>
     </div>
+    </form>
   <%} %>
 </div>
-</form>
+
 
 					<div align="center"><a href="menu" class="btn-border-bottom">戻る</a></div>
 

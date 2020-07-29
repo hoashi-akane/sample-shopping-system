@@ -48,12 +48,12 @@ int totalPrice = 0;
 			<tr>
 				<input type="hidden" name="cart_id" value="<%= cartDto.getId() %>"></input>
 				<td id="cartTabletd"><%= i %></td>
-				<td id="cartTabletd"><%= cartDto.getGoodsDto().getGoodsName() %></td>
-				<td id="cartTabletd"><%= cartDto.getGoodsDto().getId() %></td>
-				<td id="cartTabletd"><%= cartDto.getGoodsDto().getPrice() %></td>
+				<td id="cartTabletd"><c:out value="<%= cartDto.getGoodsDto().getGoodsName() %>"/></td>
+				<td id="cartTabletd"><c:out value="<%= cartDto.getGoodsDto().getId() %>"/></td>
+				<td id="cartTabletd"><c:out value="<%= cartDto.getGoodsDto().getPrice() %>"/></td>
 				<td id="cartTabletd">
 							<select name="volume">
-								<option value="<%=cartDto.getVolume() %>" selected><%= cartDto.getVolume() %></option>
+								<option value="<%=cartDto.getVolume() %>" selected><c:out value="<%= cartDto.getVolume() %>"/></option>
 								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>

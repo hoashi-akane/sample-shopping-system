@@ -30,12 +30,12 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="submit" value="送信">
+					<input class="mt-3 btn btn-outline-dark" type="submit" value="ログイン">
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<a href="createuser" class="btn-border-bottom">アカウントを作成</a>
+					<a href="createuser" class="mt-3 btn-border-bottom">アカウントを作成</a>
 				</td>
 			</tr>
 		</table>
