@@ -10,14 +10,13 @@ int totalPrice = 0;
 %>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
-	<head>
-		<meta charset="utf-8">
-		<title>SampleShopping</title>
-							<%@include file="head.jsp" %>
-	</head>
-
-		<body>
-							<%@include file="userheader.jsp" %>
+<head>
+	<meta charset="utf-8">
+	<title>SampleShopping</title>
+<%@include file="head.jsp" %>
+</head>
+<body>
+	<%@include file="userheader.jsp" %>
 
 
 	<div class="mainView">
@@ -45,14 +44,17 @@ int totalPrice = 0;
 				<th id="cartName">小計</th>
 			</tr>
 			<% for(CartDto cartDto:cartDtoList){ %>
+			<form action="#" method="POST">
 			<tr>
-				<input type="hidden" name="cartId" value="<%= cartDto.getId() %>"></input>
+				<input type="hidden" name="cart_id" value="<%= cartDto.getId() %>"></input>
 				<td id="cartTabletd"><%= i %></td>
-				<td id="cartTabletd"><%= cartDto.getGoodsDto().getGoodsName() %></td>
-				<td id="cartTabletd"><%= cartDto.getGoodsDto().getId() %></td>
-				<td id="cartTabletd"><%= cartDto.getGoodsDto().getPrice() %></td>
-				<td id="cartTabletd"><select name="volume">
-								<option value="1" selected>1</option>
+				<td id="cartTabletd"><c:out value="<%= cartDto.getGoodsDto().getGoodsName() %>"/></td>
+				<td id="cartTabletd"><c:out value="<%= cartDto.getGoodsDto().getId() %>"/></td>
+				<td id="cartTabletd"><c:out value="<%= cartDto.getGoodsDto().getPrice() %>"/></td>
+				<td id="cartTabletd">
+							<select name="volume">
+								<option value="<%=cartDto.getVolume() %>" selected><c:out value="<%= cartDto.getVolume() %>"/></option>
+								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
 								<option value="4">4</option>
@@ -60,14 +62,18 @@ int totalPrice = 0;
 							</select></td>
 				<td id="cartTabletd"><%= (cartDto.getGoodsDto().getPrice() * cartDto.getVolume()) %></td>
 				<% totalPrice += cartDto.getGoodsDto().getPrice() * cartDto.getVolume(); %>
-				<td><input type="button" value="変更"><input type="button" value=""></td>
-			</form>
+				<td>
+				<button type="submit" class="btn" formaction="updatecart">変更</button>
+				<button type="submit" class="btn" formaction="deletecart">削除</button>
+				</td>
 			</tr>
+			</form>
 			<%} %>
 			<tr>
 				<td colspan="6" id="cartTotal"><div align="center">合計 <%= totalPrice %>円</div></td>
 			</tr>
 		</table>
+		<a href="/SampleShopping/payment" class="btn-border-bottom">決済画面へ</a>
 	</div>
 
 			<!--フッター-->
@@ -141,7 +147,9 @@ int totalPrice = 0;
 	    }
 	  }
 	};
-	</script>
+
+
+</script>
 
 
 

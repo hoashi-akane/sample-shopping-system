@@ -34,6 +34,8 @@ public class CreateAdminUserServlet extends HttpServlet {
 
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setCharacterEncoding("UTF-8");
 		UserDto userDto = new UserDto();
 		userDto.setLoginId(request.getParameter("loginid"));
 		userDto.setPassword(request.getParameter("userpassword"));

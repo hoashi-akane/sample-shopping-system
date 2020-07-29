@@ -3,7 +3,7 @@
         <%@page import="java.util.*" %>
 <%@page import="dto.*" %>
 
-    <%List<BuyHistoryDto> buyHistoryList= (ArrayList<BuyHistoryDto>)request.getAttribute("listBuyHistory");%>
+    <%List<BuyHistoryDto> buyHistoryList= (ArrayList<BuyHistoryDto>)request.getAttribute("buyHistoryList");%>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
 	<head>
@@ -32,14 +32,14 @@
 	        <div class="col-md-6 mt-3 shadow-sm">
 	            <h5 class="ml-4"></h5>
 	<!--   <div class="ml-5 text-secondary"></div> -->
-	           <div class="text-danger ml-5"><%=buyHistoryDto.getBuyDate()%>にお届けしました。</div>
+	           <div class="text-danger ml-5">購入日：<c:out value="<%=buyHistoryDto.getBuyDate()%>"/></div>
 	
                 <form method="POST">
 
                     <div class="form-group col-md-3 mb-0">
 
                     </div>
-                    <button type="submit" class="mb-2 float-right btn btn-primary">詳細表示</button>
+                    <button type="submit" class="mb-2 float-right btn btn-outline-dark">詳細表示</button>
                 </form>
 	        </div>
 	    </div>

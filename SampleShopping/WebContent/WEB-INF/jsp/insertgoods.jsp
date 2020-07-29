@@ -1,18 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import="java.util.*" %>
+    <%@page import="dto.*" %>
+<% 
+ArrayList<BrandDto> brandDtoList = (ArrayList<BrandDto>)request.getAttribute("brandDtoList");
+ArrayList<CategoryDto> categoryDtoList = (ArrayList<CategoryDto>)request.getAttribute("categoryDtoList");
+%>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
 	<head>
 		<meta charset="utf-8">
 		<title>SampleShopping</title>
-						<%@include file="head.jsp" %>
+<%@include file="head.jsp" %>
 
 	</head>
 
 	<body>
-					<%@include file="adminheader.jsp" %>
-
-
+<%@include file="adminheader.jsp" %>
 	<div class="mainView">
 	<!--ページコンテンツ-->
 	</div>
@@ -25,10 +29,10 @@
 	<form action="/SampleShopping/insertgoods" method="post" enctype="multipart/form-data">
 		<div align="center">
 		   <div class="asd">
-		   <table id="gaiyou">
+		   <table class="mt-5" id="gaiyou">
 			<tr>
 			   	 <th>商品名</th>
-			 <td><input type="text" name="goods_name"></td>
+			 <td><input class="form-control" type="text" name="goods_name"></td>
 		   </tr>
 			<tr>
 				<th>商品画像</th>
@@ -45,30 +49,42 @@
 				</td>
 		   <tr>
 			 <th align="center">値段</th>
-		   <td><input type="number" name="price"></td>
+		   <td><input class="form-control" type="number" name="price"></td>
 		   </tr>
 		   <tr>
 			 <th align="center">在庫数</th>
-			 <td><input type="number" name="stock"></td>
+			 <td><input class="form-control" type="number" name="stock"></td>
 		   </tr>
 		   <tr>
 			 <th>説明文</th>
-			 <td><textarea name="description" cols="50" rows="7" id="textbox"></textarea></td>
+			 <td><textarea class="form-control" name="description" cols="50" rows="7" id="textbox"></textarea></td>
 		   </tr>
 		   <tr>
 			 <th>カテゴリー</th>
-			 <td><input type="text" name="category_id"></td>
+			 <td>
+			 	<select class="form-control" name="category_id">
+				 	<% for(CategoryDto categoryDto: categoryDtoList){ %>
+				 	<option value="<%=categoryDto.getId()%>"><c:out value="<%=categoryDto.getName() %>"/></option>
+				 	<%} %>
+		 		</select>
+			 </td>
 		   </tr>
 		    <tr>
 		   	 <th>ブランド</th>
-		   	 <td><input type="text" name="brand_id"></td>
+		   	 <td>
+				<select class="form-control" name="brand_id">
+					<% for(BrandDto brandDto: brandDtoList){ %>
+				 	<option value="<%=brandDto.getId()%>"><c:out value="<%=brandDto.getName() %>"/></option>
+				 	<%} %>
+			 	</select>
+			</td>
 		    </tr>
 		   </table>
 		</div>
+			<a href="dispgoodslistadmin" class="btn-border-bottom" id="accountbtn">戻る</a>
+			<button type="submit" class="  btn btn-outline-dark">登録</button>
 		</div>
-		<input type ="submit" value="登録">
 	</form>
-				<input type ="submit"  id="accountbtn" value="戻る">
 				<!--フッター-->
 		<footer>
 		<small id="footer">Copyright&copy;Kadai Website,all rightsreserved.</small>

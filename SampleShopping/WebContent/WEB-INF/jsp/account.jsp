@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
         <%@page import="java.util.*" %>
 <%@page import="dto.*" %>
-    <%UserDto userDto= (UserDto)request.getAttribute("userDto");%>
+    <%UserDto userDto= (UserDto)session.getAttribute("userDto");%>
     <%String action=""; %>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
@@ -31,49 +31,70 @@
 	   <table id="gaiyou">
    <tr>
 	 <th align="center">お名前</th>
-	 <td><%=userDto.getUserName()%></td>
+	 <td><c:out value="<%=userDto.getUserName()%>"/></td>
    </tr>
    <tr>
 	 <th align="center">ID</th>
-   <td><%=userDto.getId()%></td>
+   <td><c:out value="<%=userDto.getId()%>"/></td>
    </tr>
    <tr>
 	 <th align="center">パスワード</th>
-	 <td><%=userDto.getPassword()%></td>
+	 <td><c:out value="<%=userDto.getPassword()%>"/></td>
    </tr>
    <tr>
 	 <th>郵便番号1</th>
-	 <td><%=userDto.getZipCode()%></td>
+	 <td><c:out value="<%=userDto.getZipCode()%>"/></td>
    </tr>
    <tr>
 	 <th>住所１</th>
-	 <td><%=userDto.getAddress()%></td>
+	 <td><c:out value="<%=userDto.getAddress()%>"/></td>
    </tr>
    <tr>
      <tr>
 	 <th>郵便番号2</th>
-	 <td><%=userDto.getZipCodeSub()%></td>
+	 <td><c:out value="<%=userDto.getZipCodeSub()%>"/></td>
    </tr>
 	 <th>住所２</th>
-	 <td><%=userDto.getAddressSub()%></td>
+	 <td><c:out value="<%=userDto.getAddressSub()%>"/></td>
    </tr>
     <tr>
    	 <th>電話番号</th>
-   	 <td><%=userDto.getTel()%></td>
+   	 <td><c:out value="<%=userDto.getTel()%>"/></td>
     </tr>
 	<tr>
 	 <th>メールアドレス</th>
-	 <td><%=userDto.getMailAddress()%></td>
+	 <td><c:out value="<%=userDto.getMailAddress()%>"/></td>
 	</tr>
 	 <tr>
 	  <th>性別</th>
-	  <td><%=userDto.getGender()%></td>
+	  <td><c:out value="<%=userDto.getGender()%>"/></td>
 	 </tr>
    </table>
 </div>
 
-	<a href="correction.html" class="btn-border-bottom" id="accountbtn">変更</a>
-	<a href="#" class="btn-border-bottom">退会</a>
+	<a href="updateuser" class="btn-border-bottom" id="accountbtn">変更</a>
+	<a href="#" class="btn-border-bottom" data-toggle="modal" data-target="#drawModal">退会</a>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="drawModal" tabindex="-1" role="dialog" aria-labelledby="drawModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="drawModalLabel">ユーザー退会</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        本当に退会しますか？
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">戻る</button>
+	        <a href="drawuser" class="btn btn-outline-danger">退会</a>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
 
 

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="dto.*"  %>
+<% UserDto userDto = (UserDto)session.getAttribute("userDto"); %>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
 	<head>
@@ -27,56 +29,57 @@
 		   <div class="asd">
 			   <table id="gaiyou">
 		   <tr>
-			 <th align="center">お名前<p><font color="red"> *</font></p></th>
-			 <td><input type="text" name="username" value=""></td>
+			 <th align="center"><div>お名前<font color="red"> *</font></div></th>
+			 <td><input type="text" name="username" value="<%=userDto.getUserName() %>"></td>
 		   </tr>
 		   <tr>
-			 <th align="center">ID<p><font color="red"> *</font></p></th>
-		   <td><input type="text" name="login_id" value=""></td>
+			 <th align="center"><div>ログインID<font color="red"> *</font></div></th>
+		   <td><input type="text" name="login_id" value="<%=userDto.getLoginId() %>"></td>
 		   </tr>
 		   <tr>
 			 <th align="center">パスワード</th>
-			 <td><input type="password" name="user_password" value=""></td>
+			 <td><input type="password" name="user_password" value="<%= userDto.getPassword() %>"></td>
 		   </tr>
 		   <tr>
 			 <th>郵便番号1</th>
-			 <td><input type="text" name="zip_code" value=""></td>
+			 <td><input type="text" name="zip_code" value="<%= userDto.getZipCode() %>"></td>
 		   </tr>
 		   <tr>
 			 <th>郵便番号2</th>
-			 <td><input type="text" name="zip_code_sub" value=""></td>
+			 <td><input type="text" name="zip_code_sub" value="<%= userDto.getZipCodeSub() %>"></td>
 		   </tr>
 		   <tr>
 			 <th>住所１</th>
-			 <td><input type="text" name="address" value=""></td>
+			 <td><input type="text" name="address" value="<%= userDto.getAddress() %>"></td>
 		   </tr>
 		   <tr>
 			 <th>住所２</th>
-			 <td><input type="text" name="address_sub" value=""></td>
+			 <td><input type="text" name="address_sub" value="<%= userDto.getAddressSub() %>"></td>
 		   </tr>
 		    <tr>
 		   	 <th>電話番号</th>
-		   	 <td><input type="text" name="tel" value=""></td>
+		   	 <td><input type="text" name="tel" value="<%= userDto.getTel() %>"></td>
 		    </tr>
 			<tr>
 			 <th>メールアドレス</th>
-			 <td><input type="email" name="mailaddress" value="" id="textbox"></td>
+			 <td><input type="email" name="mailaddress" value="<%= userDto.getMailAddress() %>" id="textbox"></td>
 			</tr>
 			 <tr>
 			  <th>性別</th>
-			  <td><input type="radio" name="gender" value="1">女性
-		        <input type="radio" name="gender" value="2">男性
-			  </td>
+			 	<td>
+			 		<input type="radio" name="gender" value="0">秘密
+					<input type="radio" name="gender" value="1">女性
+			       <input type="radio" name="gender" value="2">男性
+					<input type="radio" name="gender" value="3">その他
+				</td>
 			 </tr>
 		   </table>
 	</div>
-		<input type="submit" value="変更" class="btn-border-bottom">
+		<input type="submit" value="変更" class="btn btn-outline-dark">
 	</form>
-
-		<form action="dispadminuserinfo" method="post">
-			<input type="submit" value="戻る" class="btn-border-bottom" id="accountbtn">
-		</form>
-
+	
+	<a href="dispadminuserinfo" class="btn border">戻る</a>
+	</div>
 			<!--フッター-->
 	<footer>
 	<small id="footer">Copyright&copy;Kadai Website,all rightsreserved.</small>

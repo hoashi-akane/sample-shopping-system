@@ -38,12 +38,18 @@ public class DispUserInfoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     	HttpSession session = request.getSession();
+//		checkPasswordFlagが発行されていない限り入れない
+    	if(!(boolean)session.getAttribute("checkPasswordFlag")) {
+    		response.sendRedirect("/SampleShopping/menu");
+    		return;
+    	}
+    	
     	int userId = ((UserDto)session.getAttribute("userDto")).getId();
     	UserDao userDao = new UserDao();
     	UserDto userDto = userDao.findUser(userId);
 
     	if(userDto==null) {
-    		request.getRequestDispatcher("/WEB-INF/jsp/menu.jsp").
+    		request.getRequestDispatcher("/WEB-INF/jsp/top.jsp").
     		forward(request,response);
 
     	}else {

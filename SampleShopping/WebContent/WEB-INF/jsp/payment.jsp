@@ -14,22 +14,11 @@
 <head>
 	<meta charset="utf-8">
 	<title>SampleShopping</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-	
-	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200&display=swap" rel="stylesheet">
-	<script
-	src="https://code.jquery.com/jquery-2.2.4.min.js"
-	integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-	crossorigin="anonymous"></script>
+	<%@include file="head.jsp" %>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 	<script src="https://js.stripe.com/v3/"></script>
-	<style>
-		<%@ include file = "../../css/style.css"%>
-	</style>
+	
 </head>
 <body class="payment-font">
 <!--タイトル-->
@@ -40,21 +29,21 @@
 	<div class="col-md-5  mx-auto text-center payment-border">
 		<div>
 			<h5>氏名</h5>
-			<p class="text-secondary"><%= userDto.getUserName() %></p>
+			<p class="text-secondary"><c:out value="<%= userDto.getUserName() %>"/></p>
 		</div>
 
 		<div>
 			<h5>住所</h5>
-			<p class="text-secondary">〒<%= userDto.getZipCode() %><br>
-			<%= userDto.getAddress() %></p>
+			<p class="text-secondary">〒<c:out value="<%= userDto.getZipCode() %>"/><br>
+			<c:out value="<%= userDto.getAddress() %>"/></p>
 		</div>
 		<div>
 			<h5>電話番号</h5>
-			<p class="text-secondary"><%= userDto.getTel() %></p>
+			<p class="text-secondary"><c:out value="<%= userDto.getTel() %>"/></p>
 		</div>
 		<div>
 			<h5>合計金額</h5>
-			<p class="text-secondary"><%= totalPrice %>円</p>
+			<p class="text-secondary"><c:out value="<%= totalPrice %>"/>円</p>
 		</div>
 		<div class="form-group">
 			<label class="w-50" for="exampleSelect1exampleFormControlSelect1" id="cardLabel"><button class="btn w-100" id="checkBtn">登録されたカードを利用する方</button></label>

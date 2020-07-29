@@ -35,6 +35,8 @@ public class CreateUserServlet extends HttpServlet {
 
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setCharacterEncoding("UTF-8");
 		UserDto userDto = new UserDto();
 		
 		Optional<String> loginId = Optional.ofNullable(request.getParameter("login_id"));

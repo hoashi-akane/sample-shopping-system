@@ -14,7 +14,7 @@ import dto.UserDto;
 /**
  * Servlet implementation class DeleteCartServlet
  */
-@WebServlet("/DeleteCartServlet")
+@WebServlet("/deletecart")
 public class DeleteCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

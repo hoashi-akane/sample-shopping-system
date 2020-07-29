@@ -22,13 +22,16 @@ import javax.servlet.http.Part;
 import dao.GoodsDao;
 import dto.GoodsDto;
 import other.SystemPath;
+import service.BrandService;
+import service.CategoryService;
 
 
 @WebServlet("/insertgoods")
 @MultipartConfig(location="/tmp", maxFileSize=1048576)
 public class InsertGoodsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	BrandService brandService = new BrandService();
+	CategoryService categoryService = new CategoryService();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -45,7 +48,8 @@ public class InsertGoodsServlet extends HttpServlet {
     		session.removeAttribute("message");
     		request.setAttribute("message", message);
     	}
-    	Path path2 = Paths.get("/WebContent");
+    	request.setAttribute("brandDtoList",brandService.brandListService());
+		request.setAttribute("categoryDtoList", categoryService.categoryListService());
 		request.getRequestDispatcher("/WEB-INF/jsp/insertgoods.jsp").
 		forward(request,response);
 
@@ -85,7 +89,7 @@ public class InsertGoodsServlet extends HttpServlet {
 		boolean successGoods = goodsDao.insertGoods(goodsDto);
 		
 		if(!successGoods) {
-			path = "/SampleShopping/dispgoodslist";
+			path = "/SampleShopping/dispgoodslistadmin";
 			response.sendRedirect(path);
 			return ;
 		}
@@ -98,7 +102,7 @@ public class InsertGoodsServlet extends HttpServlet {
 		
 		if(goodsId == 0 || !goodsDao.insertImagePath(goodsId, imagePath)) {
 //			商品が見つからない場合
-			path = "/SampleSHopping/dispgoodsilst";
+			path = "/SampleSHopping/dispgoodsilstadmin";
 			response.sendRedirect(path);
 			return ;
 		}
@@ -120,7 +124,7 @@ public class InsertGoodsServlet extends HttpServlet {
 			i++;
 		}
 		
-		path = "/SampleShopping/menu";
+		path = "/SampleShopping/dispgoodslistadmin";
 		response.sendRedirect(path);
 	}
 	

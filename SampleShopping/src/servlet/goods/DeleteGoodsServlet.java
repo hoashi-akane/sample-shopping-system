@@ -28,7 +28,7 @@ public class DeleteGoodsServlet extends HttpServlet {
 
 	try {
 
-		String num =request.getParameter("id");
+		String num =request.getParameter("goods_id");
 		int id  = Integer.parseInt(num);
 
 

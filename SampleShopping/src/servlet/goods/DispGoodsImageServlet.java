@@ -35,7 +35,8 @@ public class DispGoodsImageServlet extends HttpServlet {
 		String imagePath = (String)request.getParameter("imagePath");
 		String fullPath = SystemPath.getImageFullPath(imagePath);
 //		商品一覧の場合は受け取ったimagePathの最後にfirstが入っている→パスを商品の画像に再設定
-		if (imagePath.substring(imagePath.lastIndexOf("/")+1).equals("first")){
+		if (imagePath.substring(imagePath.lastIndexOf("/")+1).equals("first") &&
+				goodsService.getImageFileList(fullPath.substring(0, fullPath.lastIndexOf("/"))).length != 0){
 			fullPath = fullPath.substring(0, fullPath.lastIndexOf("/")+1);
 			fullPath = goodsService.findImageFile(fullPath).getPath();
 		}

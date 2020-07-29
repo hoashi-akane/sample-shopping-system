@@ -36,7 +36,7 @@ public class AuthServlet extends HttpServlet {
 		String password = request.getParameter("password");
 
 		UserDao userDao = new UserDao();
-		UserDto userDto = userDao.login(loginId,password);
+		UserDto userDto = userDao.login(loginId, password, false);
 
 		String path = "";
 		HttpSession session = request.getSession();

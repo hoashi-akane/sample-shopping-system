@@ -36,14 +36,14 @@ public class UpdateUserServlet extends HttpServlet {
 		UserDto userDto = (UserDto)session.getAttribute("userDto");
 		int id = userDto.getId();
 		session.setAttribute("userDto", userDao.findUser(id));
-    	request.getRequestDispatcher("WEB-INF/jsp/corectionuser.jsp").forward(request,response);
+    	request.getRequestDispatcher("WEB-INF/jsp/correctionuser.jsp").forward(request,response);
     }
     
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		request.setCharacterEncoding("UTF-8");
     	HttpSession session = request.getSession();
 //    	id取得
 		UserDto userDto = (UserDto)session.getAttribute("userDto");

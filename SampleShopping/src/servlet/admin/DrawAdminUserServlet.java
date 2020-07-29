@@ -30,14 +30,15 @@ public class DrawAdminUserServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	HttpSession session = request.getSession();
     	UserDto userDto = (UserDto)session.getAttribute("userDto");
 		int id = userDto.getId();
 
 		AdminDao adminDao = new AdminDao();
 		if(adminDao.deleteUser(id)) {
-			response.sendRedirect("/SampleShopping/menuadmin");
+			session.invalidate();
+			response.sendRedirect("/SampleShopping/loginadmin");
 		}else{
 			response.sendRedirect("/SampleShopping/dispadminuserinfo");
 		}

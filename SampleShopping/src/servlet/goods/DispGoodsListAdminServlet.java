@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.GoodsDao;
 import dto.GoodsDto;
@@ -35,9 +36,18 @@ public class DispGoodsListAdminServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//　商品一覧表示用サーブレット
+		HttpSession session = request.getSession();
+
 		List<GoodsDto> goodsDtoList = null;
 	   	GoodsDao goodsDao = new GoodsDao();
 		goodsDtoList = goodsDao.getGoodsList();
+		
+		String message = (String)session.getAttribute("message");
+		if(message != null) {
+			session.removeAttribute("message");
+			request.setAttribute("message", message);
+		}
+		
 		if(goodsDtoList != null) {
 			request.setAttribute("goodsDtoList", goodsDtoList);
 		}else {

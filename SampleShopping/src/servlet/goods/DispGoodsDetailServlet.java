@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.GoodsDao;
 import dto.GoodsDto;
@@ -40,6 +41,10 @@ public class DispGoodsDetailServlet extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		GoodsDao goodsDao  = new GoodsDao();
 		GoodsDto goodsDto = goodsDao.getGoods(id);
+		if(goodsDto == null) {
+			request.getRequestDispatcher("WEB-INF/jsp/error.jsp").forward(request, response);
+			return;
+		}
 		
 		File[] fileList = goodsService.getImageFileList(SystemPath.getImageFullPath(goodsDto.getImageDir()));
 		request.setAttribute("fileList", fileList);

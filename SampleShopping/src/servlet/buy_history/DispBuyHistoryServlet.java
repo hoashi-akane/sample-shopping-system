@@ -33,16 +33,18 @@ public class DispBuyHistoryServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    	List<BuyHistoryDto> listBuyHistory = new ArrayList<BuyHistoryDto>();
+    	List<BuyHistoryDto> buyHistoryList = new ArrayList<BuyHistoryDto>();
     	BuyHistoryDao buyHistoryDao = new BuyHistoryDao();
     	HttpSession session = request.getSession();
 		UserDto userDto = (UserDto)session.getAttribute("userDto");
 		int id = userDto.getId();
 
-		listBuyHistory = buyHistoryDao.getBuyHistoryList(id);
-		request.setAttribute("listBuyHistory", listBuyHistory);
+		buyHistoryList = buyHistoryDao.getBuyHistoryList(id);
+		if(buyHistoryList != null) {
+		request.setAttribute("buyHistoryList", buyHistoryList);
 		request.getRequestDispatcher("WEB-INF/jsp/dispbuyhistory.jsp").forward(request, response);
+		}
 	}
 }

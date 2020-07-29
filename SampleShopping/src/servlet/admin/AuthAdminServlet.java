@@ -34,16 +34,16 @@ public class AuthAdminServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		String userid =request.getParameter("userid");
-		String password =request.getParameter("paasword");
+		String password =request.getParameter("password");
 
 		AdminDao adminDao = new AdminDao();
 
-		UserDto userDto = adminDao.login(userid,password);
+		UserDto userDto = adminDao.login(userid,password,true);
 
 		String path ="";
 		if(userDto != null) {
 			session.setAttribute("userDto", userDto);
-			path = "/SampleShopping/menu";
+			path = "/SampleShopping/menuadmin";
 			response.sendRedirect(path);
 		} else {
 			path = "/SampleShopping/loginadmin";

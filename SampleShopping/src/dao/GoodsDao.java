@@ -36,8 +36,8 @@ public class GoodsDao extends DaoBase{
 		List<GoodsDto> goodsDtoList= new ArrayList<GoodsDto>();
 		try {
 			con = super.dbOpen();
-			stmt = this.con.prepareStatement("SELECT * FROM goods WHERE goods_name = Like '%?%';");
-			stmt.setString(1, search);
+			stmt = this.con.prepareStatement("SELECT * FROM goods WHERE goods_name LIKE ?;");
+			stmt.setString(1, "%"+search+"%");
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				GoodsDto goodsDto = goodsToDto(rs);

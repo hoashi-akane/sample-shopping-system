@@ -2,8 +2,15 @@
     pageEncoding="UTF-8"%>
     <%@page import="java.util.*" %>
 <%@page import="dto.*" %>
-    <%List<GoodsDto> goodsDtoList= (ArrayList<GoodsDto>)request.getAttribute("goodsDtoList");%>
-    <%String action=""; %>
+
+<%List<GoodsDto> goodsDtoList= (ArrayList<GoodsDto>)request.getAttribute("goodsDtoList");%>
+<%String action=""; %>
+<%  
+   String message = (String)request.getAttribute("message");
+   if(message == null){
+   	message = "";
+    }
+%>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
 
@@ -11,19 +18,6 @@
 	<meta charset="utf-8">
 	<title>SampleShopping</title>
 	<%@include file="head.jsp" %>
-	<script>
-		function goDelete(){
-			document.getElementById('form').action = 'deletegoods';
-			document.getElementById('form').method = 'post';
-
-		}
-
-		function goCorrection(){
-			document.getElementById('form').action = 'updategoods';
-			document.getElementById('form').method = 'get';
-
-		}
-	</script>
 </head>
 
 	<body>
@@ -36,39 +30,39 @@
 					<a href="menuadmin" id="title3"><h3 id="title3">SampleShopping</h3></a>
 					<p id="title2">- AdminGoods -</p>
 			</div>
-
-		<form id ='form' name = 'inputForm' action="">
 		<div class="container">
+				<div class="mx-auto text-center text-danger"><%= message %></div> 
 				<%for(GoodsDto goodsDto:goodsDtoList){ %>
-				<input type="hidden" name="id" value="<%=goodsDto.getId() %>">
-		    <div class="row mt-4 mx-auto" style="width:600px">
-		        <div class="col-md-1"></div>
-		        <div class="p-0 col-md-4 shadow-sm" style="height:200px;">
-		            <img src='dispgoodsimage?imagePath=/output_imgfile/<%=goodsDto.getId() %>/first' alt=""  style="width:100%; height:100%;">
-		        </div>
+				<form id ='form' name = 'inputForm' action="" method="GET">
+				<input type="hidden" name="goods_id" value="<%=goodsDto.getId() %>">
+		    	<div class="row mt-4 mx-auto" style="width:600px">
+		        	<div class="col-md-1"></div>
+			        <div class="p-0 col-md-4 shadow-sm" style="height:200px;">
+			            <img src='dispgoodsimage?imagePath=/output_imgfile/<%=goodsDto.getId() %>/first' alt=""  style="width:100%; height:100%;">
+			        </div>
 		        <div class="col-md-6 mt-3 shadow-sm">
-		            <h5 class="ml-4"><a href="dispgoodsdetail?id=<%=goodsDto.getId() %>"><%=goodsDto.getGoodsName()%></a></h5>
-		            <div class="ml-5 text-secondary">価格：¥<%=goodsDto.getPrice()%></div>
-		            <div class="text-danger ml-5">在庫数：<%=goodsDto.getStock()%>個</div>
+		            <h5 class="ml-4"><a href="dispgoodsdetail?id=<%=goodsDto.getId() %>"><c:out value="<%=goodsDto.getGoodsName()%>"/></a></h5>
+		            <div class="ml-5 text-secondary">価格：¥<c:out value="<%=goodsDto.getPrice()%>"/></div>
+		            <div class="text-danger ml-5">在庫数：<c:out value="<%=goodsDto.getStock()%>"/>個</div>
                         <div class="text-danger ml-5">
-                        <select name="cnt">
+                        <select name="volume">
 								<option value="1" selected>1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
 								<option value="4">4</option>
 								<option value="5">5</option>
 							</select>
-						</div>
-            <div class="form-group col-md-3 mb-0">
-            </div>
-            <button type="submit" value = "delete" onclick="goDelete();" id="delete" class="mb-2 float-right btn btn-primary">削除</button>
-            <button type="submit" value ="correction" onclick="goCorrection();" id="correction"class="mb-2 mr-3 float-right btn btn-primary">修正</button>
-            <a href="dispgoodsdetail?id=<%=goodsDto.getId() %>" id="detail" class="mb-2 float-right btn btn-primary">詳細</a>
+							</div>
+		            <div class="form-group col-md-3 mb-0">
+		            </div>
+            <button type="submit" value="delete" formaction="deletegoods" id="delete" class="mb-2 float-right btn btn-outline-dark">削除</button>
+            <button type="submit" value="correction" formaction="updategoods" id="correction"class="mb-2 mr-2 float-right btn btn-outline-dark">修正</button>
+            <a href="dispgoodsdetail?id=<%=goodsDto.getId() %>" id="detail" class="mb-2 mr-2 float-right btn btn-outline-dark">詳細</a>
 				</div>
+		</form>
 		  <%} %>
 		</div>
-		</form>
-		<div align="center"><a href="menuadmin" class="btn-border-bottom">戻る</a></div>
+		<div class="col-md-12 text-center"><a href="menuadmin" class="btn-border-bottom">戻る</a></div>
 
 	<!--フッター-->
 	<footer>

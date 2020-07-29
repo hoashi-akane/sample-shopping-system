@@ -28,56 +28,56 @@
 		   <div class="asd">
 			   <table id="gaiyou">
 		   <tr>
-			 <th align="center">お名前<p><font color="red"> *</font></p></th>
-			 <td><input type="text" name="username" value=""></td>
+			 <th align="center">お名前<font color="red"> *</font></th>
+			 <td><input class="form-control" type="text" name="username" value=""></td>
 		   </tr>
 		   <tr>
-			 <th align="center">ID<p><font color="red"> *</font></p></th>
-		   <td><input type="text" name="loginid" value=""></td>
+			 <th align="center">ID<font color="red"> *</font></th>
+		   <td><input class="form-control" type="text" name="loginid" value=""></td>
 		   </tr>
 		   <tr>
 			 <th align="center">パスワード</th>
-			 <td><input type="password" name="userpassword" value=""></td>
+			 <td><input class="form-control" type="password" name="userpassword" value=""></td>
 		   </tr>
 		   <tr>
 			 <th>郵便番号1</th>
-			 <td><input type="text" name="zipcode" value=""></td>
+			 <td><input class="form-control" type="text" name="zipcode" value=""></td>
 		   </tr>
 		   <tr>
 			 <th>郵便番号2</th>
-			 <td><input type="text" name="zipcodesub" value=""></td>
+			 <td><input class="form-control" type="text" name="zipcodesub" value=""></td>
 		   </tr>
 		   <tr>
 			 <th>住所１</th>
-			 <td><input type="text" name="address" value=""></td>
+			 <td><input class="form-control" type="text" name="address" value=""></td>
 		   </tr>
 		   <tr>
 			 <th>住所２</th>
-			 <td><input type="text" name="addresssub" value=""></td>
+			 <td><input class="form-control" type="text" name="addresssub" value=""></td>
 		   </tr>
 		    <tr>
 		   	 <th>電話番号</th>
-		   	 <td><input type="text" name="tel" value=""></td>
+		   	 <td><input class="form-control" type="text" name="tel" value=""></td>
 		    </tr>
 			<tr>
 			 <th>メールアドレス</th>
-			 <td><input type="email" name="mailaddress" value="" id="textbox"></td>
+			 <td><input class="form-control" type="email" name="mailaddress" value="" id="textbox"></td>
 			</tr>
 			 <tr>
 			  <th>性別</th>
-			  <td><input type="radio" name="gender" value="1">女性
-		        <input type="radio" name="gender" value="2">男性
+			  <td>
+			  <input type="radio" name="gender" value="0">秘密
+			  <input type="radio" name="gender" value="1">女性
+		      <input type="radio" name="gender" value="2">男性
+		      <input type="radio" name="gender" value="3">その他
 			  </td>
 			 </tr>
 		   </table>
 		</div>
+			<a href="/SampleShopping/loginadmin" class="btn-border-bottom px-4 mr-4">戻る</a>
+			<input type="submit" value="登録" class="btn btn-outline-dark px-4 ml-4">
 		</div>
-
-			<input type="submit" value="登録" class="btn-border-bottom">
-	</form>
-
-			<a href="loginadmin" class="btn-border-bottomt" id="accountbtn">戻る</a>
-			<!--フッター-->
+		</form>
 	<footer>
 	<small id="footer">Copyright&copy;Kadai Website,all rightsreserved.</small>
 	</footer>
