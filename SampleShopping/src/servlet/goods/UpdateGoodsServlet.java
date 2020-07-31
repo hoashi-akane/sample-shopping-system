@@ -28,32 +28,6 @@ public class UpdateGoodsServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		int id = 0;
-		try {
-			id = Integer.parseInt(request.getParameter("goods_id"));
-		}catch(NumberFormatException e){
-			e.printStackTrace();
-		}
-
-		if(id == 0) {
-			request.setAttribute("message", "数値を入力してください。");
-		}else {
-
-			GoodsDao goodsDao = new GoodsDao();
-			GoodsDto goodsDto = goodsDao.getGoods(id);
-			request.setAttribute("brandDtoList",brandService.brandListService());
-			request.setAttribute("categoryDtoList", categoryService.categoryListService());
-			request.setAttribute("goodsDto", goodsDto);
-			session.setAttribute("goodsId", goodsDto.getId());
-		}
-		request.getRequestDispatcher("/WEB-INF/jsp/correctiongoods.jsp").
-		forward(request,response);
-
-
-}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

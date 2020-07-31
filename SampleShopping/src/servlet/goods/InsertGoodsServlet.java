@@ -99,8 +99,8 @@ public class InsertGoodsServlet extends HttpServlet {
 		String imageFullPath = SystemPath.getImageFullPath(imagePath);
 		File dir = new File(imageFullPath);
 		dir.mkdirs();
-		
-		if(goodsId == 0 || !goodsDao.insertImagePath(goodsId, imagePath)) {
+		boolean isSuccess = goodsDao.insertImagePath(goodsId, imagePath);
+		if(goodsId == 0 || !isSuccess) {
 //			商品が見つからない場合
 			path = "/SampleSHopping/dispgoodsilstadmin";
 			response.sendRedirect(path);
@@ -110,6 +110,11 @@ public class InsertGoodsServlet extends HttpServlet {
 //		画像受取り
 	    List<Part> fileParts = request.getParts().stream().filter(part -> "file".equals(part.getName())).collect(Collectors.toList());
 	    int i = 0;
+	    if(fileParts.get(0).getSubmittedFileName().equals("")){
+	    	path = "/SampleShopping/dispgoodslistadmin";
+			response.sendRedirect(path);
+			return;
+	    }
 	    for(Part part : fileParts) {
 			String fileType = part.getContentType();
 //			画像であるか確かめる。

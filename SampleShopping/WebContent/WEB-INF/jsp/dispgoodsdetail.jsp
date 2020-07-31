@@ -31,12 +31,14 @@
 					<a href="menu" id="title3a"><h3 id="title3">SampleShopping</h3></a>
 					<p id="title2">- GoodsDetail -</p>
 			</div>
-
+		<% if(!userDto.isAdmin()){%>			
+		<form id ='form' name = 'inputForm' action="insertcart" method="post">
+		<%} %>
+		<input type="hidden" name="goods_id" value="<%=goodsDto.getId() %>">
 		<table id="goodsTable" align="center" class="table table-borderless mt-5">
-		<form id ='form' name = 'inputForm' action="">
 		<tbody>
 			<tr>
-				<td rowspan="5" colspan="5"><img src='' class="goodsimg" id="mainImg"></td>
+				<td rowspan="5" colspan="5"><img src='' class="goodsimg" id="mainImg" alt onerror="this.onerror = null; this.src='';"></td>
 				<td colspan="5" id="goodsName"><c:out value="<%=goodsDto.getGoodsName()%>"/></td>
 			</tr>
 			<tr class="mt-2">
@@ -46,7 +48,7 @@
 			<tr>	
 			<td id="goodsName">数量</td>
 				<td>
-					<select name="cnt">
+					<select name="volume">
 						<option value="1" selected>1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
@@ -64,16 +66,25 @@
 			<tr>
 			<% for(File file : fileList){ %>
 				<td>
-					<img src='dispgoodsimage?imagePath=/output_imgfile/<%=goodsDto.getId() %>/<%= file.getName() %>' class="minimumimg" id="img<%=i%>">
+					<img src='dispgoodsimage?imagePath=/output_imgfile/<%=goodsDto.getId() %>/<%= file.getName() %>' class="minimumimg" alt id="img<%=i%>" onerror="this.onerror = null; this.src='';" >
 				</td>
 				<% i++; } %>
+			<% for(; i<5; i++){ %>
+				<td></td>
+			<%} %>
+				<td></td>
+				<td>
+				<% if(!userDto.isAdmin()){%>
+				<input class="btn" type="submit" value="カートに追加">
+				<%} %>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="5" id="goodsName"><p>説明文<br><c:out value="<%=goodsDto.getDescription()%>"/></p></td>
 			</tr>
 			</tbody>
-			</form>
 		</table>
+		</form>
 
 							<div align="center"><a href="dispgoodslist" class="btn-border-bottom">戻る</a></div>
 

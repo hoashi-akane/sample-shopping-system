@@ -11,15 +11,7 @@
 				<title>SampleShopping</title>
 				<%@include file="head.jsp" %>
 	</head>
-	<script>
 
-
-			function goCart(){
-				document.getElementById('form').action = 'insertcart';
-				document.getElementById('form').method = 'post';
-
-			}
-		</script>
 
 		<body>
 							<%@include file="userheader.jsp" %>
