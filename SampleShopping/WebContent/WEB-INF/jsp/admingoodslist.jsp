@@ -18,6 +18,11 @@
 	<meta charset="utf-8">
 	<title>SampleShopping</title>
 	<%@include file="head.jsp" %>
+	<script>
+		function delete(){
+			document.getElementById('form').method ='post';
+		}
+	</script>
 </head>
 
 	<body>
@@ -33,7 +38,7 @@
 		<div class="container">
 				<div class="mx-auto text-center text-danger"><%= message %></div> 
 				<%for(GoodsDto goodsDto:goodsDtoList){ %>
-				<form id ='form' name = 'inputForm' action="" method="GET">
+				<form id ='form' name = 'inputForm' action="" method="POST">
 				<input type="hidden" name="goods_id" value="<%=goodsDto.getId() %>">
 		    	<div class="row mt-4 mx-auto" style="width:600px">
 		        	<div class="col-md-1"></div>
@@ -56,7 +61,7 @@
 		            <div class="form-group col-md-3 mb-0">
 		            </div>
             <button type="submit" value="delete" formaction="deletegoods" id="delete" class="mb-2 float-right btn btn-outline-dark">削除</button>
-            <button type="submit" value="correction" formaction="updategoods" id="correction"class="mb-2 mr-2 float-right btn btn-outline-dark">修正</button>
+            <button type="submit" value="correction" formaction="updateloadgoods" id="correction"class="mb-2 mr-2 float-right btn btn-outline-dark">修正</button>
             <a href="dispgoodsdetail?id=<%=goodsDto.getId() %>" id="detail" class="mb-2 mr-2 float-right btn btn-outline-dark">詳細</a>
 				</div>
 		</form>

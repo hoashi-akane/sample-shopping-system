@@ -106,7 +106,7 @@ public class GoodsDao extends DaoBase{
 			stmt.setInt(2, goodsDto.getPrice());
 			stmt.setInt(3, goodsDto.getStock());
 			stmt.setString(4, goodsDto.getDescription());
-			stmt.setString(5, goodsDto.getImageDir());
+			stmt.setString(5, "");
 			stmt.setInt(6, goodsDto.getSalesQuantity());
 			stmt.setBoolean(7, goodsDto.isSale());
 			stmt.setInt(8, goodsDto.getCategoryId());
