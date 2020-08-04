@@ -30,39 +30,39 @@
 			   <table id="gaiyou">
 		   <tr>
 			 <th align="center"><div>お名前<font color="red"> *</font></div></th>
-			 <td><input type="text" name="username" value="<%=userDto.getUserName() %>"></td>
+			 <td><input type="text" name="username" value="<%=userDto.getUserName() %>" maxlength="50" required></td>
 		   </tr>
 		   <tr>
 			 <th align="center"><div>ログインID<font color="red"> *</font></div></th>
-		   <td><input type="text" name="login_id" value="<%=userDto.getLoginId() %>"></td>
+		   <td><input type="text" name="login_id" value="<%=userDto.getLoginId() %>" maxlength="11" required></td>
 		   </tr>
 		   <tr>
 			 <th align="center">パスワード</th>
-			 <td><input type="password" name="user_password" value="<%= userDto.getPassword() %>"></td>
+			 <td><input type="password" name="user_password" value="<%= userDto.getPassword() %>" maxlength="128" required></td>
 		   </tr>
 		   <tr>
 			 <th>郵便番号1</th>
-			 <td><input type="text" name="zip_code" value="<%= userDto.getZipCode() %>"></td>
+			 <td><input type="text" name="zip_code" value="<%= userDto.getZipCode() %>" maxlength="7" required></td>
 		   </tr>
 		   <tr>
 			 <th>郵便番号2</th>
-			 <td><input type="text" name="zip_code_sub" value="<%= userDto.getZipCodeSub() %>"></td>
+			 <td><input type="text" name="zip_code_sub" value="<%= userDto.getZipCodeSub() %>" maxlength="7" required></td>
 		   </tr>
 		   <tr>
 			 <th>住所１</th>
-			 <td><input type="text" name="address" value="<%= userDto.getAddress() %>"></td>
+			 <td><input type="text" name="address" value="<%= userDto.getAddress() %>" maxlength="100" required></td>
 		   </tr>
 		   <tr>
 			 <th>住所２</th>
-			 <td><input type="text" name="address_sub" value="<%= userDto.getAddressSub() %>"></td>
+			 <td><input type="text" name="address_sub" value="<%= userDto.getAddressSub() %>" maxlength="100" required></td>
 		   </tr>
 		    <tr>
 		   	 <th>電話番号</th>
-		   	 <td><input type="text" name="tel" value="<%= userDto.getTel() %>"></td>
+		   	 <td><input type="text" name="tel" value="<%= userDto.getTel() %>" maxlength="11" required></td>
 		    </tr>
 			<tr>
 			 <th>メールアドレス</th>
-			 <td><input type="email" name="mailaddress" value="<%= userDto.getMailAddress() %>" id="textbox"></td>
+			 <td><input type="email" name="mailaddress" value="<%= userDto.getMailAddress() %>" id="textbox" maxlength="40" required></td>
 			</tr>
 			 <tr>
 			  <th>性別</th>
@@ -77,7 +77,7 @@
 	</div>
 		<input type="submit" value="変更" class="btn btn-outline-dark">
 	</form>
-	
+
 	<a href="dispadminuserinfo" class="btn border">戻る</a>
 	</div>
 			<!--フッター-->

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@page import="java.util.*" %>
     <%@page import="dto.*" %>
-<% 
+<%
 ArrayList<BrandDto> brandDtoList = (ArrayList<BrandDto>)request.getAttribute("brandDtoList");
 ArrayList<CategoryDto> categoryDtoList = (ArrayList<CategoryDto>)request.getAttribute("categoryDtoList");
 %>
@@ -11,12 +11,12 @@ ArrayList<CategoryDto> categoryDtoList = (ArrayList<CategoryDto>)request.getAttr
 	<head>
 		<meta charset="utf-8">
 		<title>SampleShopping</title>
-<%@include file="head.jsp" %>
-
+		<%@include file="head.jsp" %>
 	</head>
 
-	<body>
-<%@include file="adminheader.jsp" %>
+
+<body>
+	<%@include file="adminheader.jsp" %>
 	<div class="mainView">
 	<!--ページコンテンツ-->
 	</div>
@@ -26,13 +26,15 @@ ArrayList<CategoryDto> categoryDtoList = (ArrayList<CategoryDto>)request.getAttr
 		<p id="title2">- CreateGoods -</p>
 	</div>
 
-	<form action="/SampleShopping/insertgoods" method="post" enctype="multipart/form-data">
+
+	<form action="/SampleShopping/insertgoods" method="post"  onsubmit="return input_check();" enctype="multipart/form-data" name="form">
 		<div align="center">
 		   <div class="asd">
 		   <table class="mt-5" id="gaiyou">
 			<tr>
 			   	 <th>商品名</th>
-			 <td><input class="form-control" type="text" name="goods_name"></td>
+			 <td><input class="form-control" type="text" name="goods_name" maxlength="100" required>
+			 </td>
 		   </tr>
 			<tr>
 				<th>商品画像</th>
@@ -49,15 +51,15 @@ ArrayList<CategoryDto> categoryDtoList = (ArrayList<CategoryDto>)request.getAttr
 				</td>
 		   <tr>
 			 <th align="center">値段</th>
-		   <td><input class="form-control" type="number" name="price"></td>
+		   <td><input class="form-control" type="number" name="price" maxlength="8" required></td>
 		   </tr>
 		   <tr>
 			 <th align="center">在庫数</th>
-			 <td><input class="form-control" type="number" name="stock"></td>
+			 <td><input class="form-control" type="number" name="stock" maxlength="7" required></td>
 		   </tr>
 		   <tr>
 			 <th>説明文</th>
-			 <td><textarea class="form-control" name="description" cols="50" rows="7" id="textbox"></textarea></td>
+			 <td><textarea class="form-control" name="description" cols="50" rows="7" id="textbox" maxlength="300" required></textarea></td>
 		   </tr>
 		   <tr>
 			 <th>カテゴリー</th>
@@ -82,7 +84,7 @@ ArrayList<CategoryDto> categoryDtoList = (ArrayList<CategoryDto>)request.getAttr
 		   </table>
 		</div>
 			<a href="dispgoodslistadmin" class="btn-border-bottom" id="accountbtn">戻る</a>
-			<button type="submit" class="  btn btn-outline-dark">登録</button>
+			<button type="submit" class="  btn btn-outline-dark" onclick="return check()">登録</button>
 		</div>
 	</form>
 				<!--フッター-->

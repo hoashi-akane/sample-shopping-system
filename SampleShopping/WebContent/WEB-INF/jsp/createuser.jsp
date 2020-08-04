@@ -35,39 +35,39 @@ if(message == null){
 		   <table id="gaiyou">
 			   <tr>
 				 <th align="center">お名前<font color="red"> *</font></th>
-				 <td><input class="form-control" type="text" name="username" value=""></td>
+				 <td><input class="form-control" type="text" name="username" value="" maxlength="50" required></td>
 			   </tr>
 			   <tr>
 				 <th align="center">ID<font color="red"> *</font></th>
-			   <td><input class="form-control" type="text" name="login_id" value=""></td>
+			   <td><input class="form-control" type="text" name="login_id" value="" maxlength="11" required></td>
 			   </tr>
 			   <tr>
 				 <th align="center">パスワード</th>
-				 <td><input class="form-control" type="password" name="user_password" value=""></td>
+				 <td><input class="form-control" type="password" name="user_password" value="" maxlength="128" required></td>
 			   </tr>
 			   <tr>
 				 <th>郵便番号</th>
-				 <td><input class="form-control" type="text" name="zip_code" value=""></td>
+				 <td><input class="form-control" type="text" name="zip_code" value="" maxlength="7" required></td>
 			   </tr>
 			   <tr>
 				 <th>郵便番号2</th>
-				 <td><input class="form-control" type="text" name="zip_code_sub" value=""></td>
+				 <td><input class="form-control" type="text" name="zip_code_sub" value="" maxlength="7" required></td>
 			   </tr>
 			   <tr>
 				 <th>住所１</th>
-				 <td><input class="form-control" type="text" name="address" value=""></td>
+				 <td><input class="form-control" type="text" name="address" value="" maxlength="100" required></td>
 			   </tr>
 			   <tr>
 				 <th>住所２</th>
-				 <td><input class="form-control" type="text" name="address_sub" value=""></td>
+				 <td><input class="form-control" type="text" name="address_sub" value="" maxlength="100" required></td>
 			   </tr>
 			    <tr>
 			   	 <th>電話番号</th>
-			   	 <td><input class="form-control" type="text" name="tel" value=""></td>
+			   	 <td><input class="form-control" type="text" name="tel" value="" maxlength="11" required></td>
 			    </tr>
 				<tr>
 				 <th>メールアドレス</th>
-				 <td><input class="form-control" type="email" name="mailaddress" value="" id="textbox"></td>
+				 <td><input class="form-control" type="email" name="mailaddress" value="" id="textbox" maxlength="40" required></td>
 				</tr>
 				 <tr>
 				  <th>性別</th>
