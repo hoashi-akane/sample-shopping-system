@@ -71,10 +71,13 @@
 	 </tr>
    </table>
 </div>
-	<a href="updateadminuser" class="btn-border-bottom" id="accountbtn">変更</a>
-	<a href="#" class="btn-border-bottom" data-toggle="modal" data-target="#drawModal">退会</a>
+	<a href="updateadminuser" class="mt-3 btn-border-bottom" id="accountbtn">変更</a>
+	<a href="#" class="mt-3 btn-border-bottom" data-toggle="modal" data-target="#drawModal">退会</a><br>
+	<a href="createadmin" class="btn btn-outline-dark mt-3">管理者アカウント作成</a>
 </div>
+<div>
 
+</div>
 	
 	<!-- Modal -->
 	<div class="modal fade" id="drawModal" tabindex="-1" role="dialog" aria-labelledby="drawModalLabel" aria-hidden="true">
