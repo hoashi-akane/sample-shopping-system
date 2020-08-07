@@ -27,13 +27,13 @@
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="2500" data-pause="hover">
   <div class="carousel-inner" align="center">
     <div class="carousel-item active">
-<img src="../img/header.png" alt="" id="headerimg1" class = "img-fluid">
+<img src="./img/wneY5p08HEnlKBU1596511651_1596511708.jpg" alt="" id="headerimg1" class = "img-fluid" style="width:60%;height:auto;">
     </div>
     <div class="carousel-item" align="center">
-<img src="../img/header.png" alt="" id="headerimg1" class = "img-fluid">
+<img src="./img/shikee-4YcltBUgMFI-unsplash.jpg" alt="" id="headerimg1" class = "img-fluid" style="width:60%;height:auto;">
     </div>
     <div class="carousel-item" align="center">
-<img src="../img/header.png" alt="" id="headerimg1" class = "img-fluid">
+<img src="./img/j1Ai9aBQhSI0jt11596590270_1596590313.jpg" alt="" id="headerimg1" class = "img-fluid" style="width:60%;height:auto;">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
