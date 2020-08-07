@@ -10,11 +10,11 @@
 
 	<header class="navi">
      <div class="navi_inner">
-       <div class="navi_item"><a href="menuadmin">Home</a></div>
-       <div class="navi_item"><a href="dispgoodslistadmin">Goods</a></div>
-	   <div class="navi_item"><a href="insertgoods">CreateGoods</a></div>
+       <div class="navi_item"><a href="/SampleShopping/menuadmin">Home</a></div>
+       <div class="navi_item"><a href="/SampleShopping/dispgoodslistadmin">Goods</a></div>
+	   <div class="navi_item"><a href="/SampleShopping/insertgoods">CreateGoods</a></div>
 	   <div class="navi_item"><a href="#" data-toggle="modal" data-target="#accountModal">Account</a></div>
-	   <div class="navi_item"><a href="logoutadmin">Logout</a></div>
+	   <div class="navi_item"><a href="/SampleShopping/logoutadmin">Logout</a></div>
      </div>
  	</header>
  	
@@ -28,7 +28,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="checkadminpassword" method="POST">
+      <form action="/SampleShopping/admin/checkadminpassword" method="POST">
       <div class="modal-body">
         会員情報を閲覧するにはパスワードを入力してください。
         <input type="password" name="input_password">

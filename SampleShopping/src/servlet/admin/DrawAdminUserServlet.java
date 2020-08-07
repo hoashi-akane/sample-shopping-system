@@ -15,7 +15,7 @@ import dto.UserDto;
 /**
  * Servlet implementation class LogoutServlet
  */
-@WebServlet("/drawadminuser")
+@WebServlet("/admin/drawadminuser")
 public class DrawAdminUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -40,7 +40,7 @@ public class DrawAdminUserServlet extends HttpServlet {
 			session.invalidate();
 			response.sendRedirect("/SampleShopping/loginadmin");
 		}else{
-			response.sendRedirect("/SampleShopping/dispadminuserinfo");
+			response.sendRedirect("/SampleShopping/admin/dispadminuserinfo");
 		}
 	}
 }

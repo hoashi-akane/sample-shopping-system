@@ -67,7 +67,7 @@
 		</form>
 		  <%} %>
 		</div>
-		<div class="col-md-12 text-center"><a href="menuadmin" class="btn-border-bottom">戻る</a></div>
+		<div class="col-md-12 text-center"><a href="admin/menuadmin" class="btn-border-bottom">戻る</a></div>
 
 	<!--フッター-->
 	<footer>

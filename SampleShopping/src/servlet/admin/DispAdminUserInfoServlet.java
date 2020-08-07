@@ -15,7 +15,7 @@ import dto.UserDto;
 /**
  * Servlet implementation class LogoutServlet
  */
-@WebServlet("/dispadminuserinfo")
+@WebServlet("/admin/dispadminuserinfo")
 public class DispAdminUserInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -46,7 +46,7 @@ public class DispAdminUserInfoServlet extends HttpServlet {
     		request.getRequestDispatcher("/WEB-INF/jsp/topadmin.jsp").forward(request,response);
     	}else{
     		session.setAttribute("userDto", userDto);
-    		request.getRequestDispatcher("WEB-INF/jsp/accountadmin.jsp").forward(request, response);
+    		request.getRequestDispatcher("/WEB-INF/jsp/accountadmin.jsp").forward(request, response);
     	}
 	}
 }

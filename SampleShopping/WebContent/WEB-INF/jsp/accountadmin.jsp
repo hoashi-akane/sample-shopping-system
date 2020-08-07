@@ -25,7 +25,7 @@
 		<a href="menuadmin" id="title3a"><h3 id="title3">SampleShopping</h3></a>
 		<p id="title2">- Account -</p>
 	</div>
-<form action ="updateadminuser" method ="post">
+<form action ="admin/updateadminuser" method ="post">
 	<div align="center">
    <div class="asd">
 	   <table id="gaiyou">

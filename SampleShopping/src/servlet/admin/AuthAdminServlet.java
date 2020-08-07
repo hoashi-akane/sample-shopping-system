@@ -15,7 +15,7 @@ import dto.UserDto;
 /**
  * Servlet implementation class InsertAbsenceResistServlet
  */
-@WebServlet("/authadmin")
+@WebServlet("/admin/authadmin")
 public class AuthAdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

@@ -22,7 +22,7 @@ public class LoginAdminServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("WEB-INF/jsp/loginadmin.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/loginadmin.jsp").forward(request, response);
 
 	}
 

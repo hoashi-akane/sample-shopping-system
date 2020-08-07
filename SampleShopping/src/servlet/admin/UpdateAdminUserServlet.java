@@ -16,7 +16,7 @@ import dto.UserDto;
 /**
  * Servlet implementation class LogoutServlet
  */
-@WebServlet("/updateadminuser")
+@WebServlet("/admin/updateadminuser")
 public class UpdateAdminUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	AdminDao adminDao = new AdminDao();
@@ -36,7 +36,7 @@ public class UpdateAdminUserServlet extends HttpServlet {
 		int id = userDto.getId();
 		session.setAttribute("userDto", adminDao.findAdminUser(id));
     	
-    	request.getRequestDispatcher("WEB-INF/jsp/correctionadmin.jsp").forward(request, response);
+    	request.getRequestDispatcher("/WEB-INF/jsp/correctionadmin.jsp").forward(request, response);
     }
     
 	/**
@@ -62,7 +62,7 @@ public class UpdateAdminUserServlet extends HttpServlet {
 		if(!loginId.isPresent() || !userPassword.isPresent() || !userName.isPresent() ||
 				!mailaddress.isPresent() || !address.isPresent() || !zipCode.isPresent()) {
 			request.setAttribute("message", "必須項目が入力されていません。");
-			request.getRequestDispatcher("WEB-INF/jsp/correctionadmin.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/jsp/correctionadmin.jsp").forward(request, response);
 			return;
 		}
 		
@@ -70,7 +70,7 @@ public class UpdateAdminUserServlet extends HttpServlet {
 		userDto.setId(id);
 		userDto.setLoginId(loginId.get());
 		userDto.setPassword(userPassword.get());
-		userDto.setUserName(userPassword.get());
+		userDto.setUserName(userName.get());
 		userDto.setZipCode(zipCode.get());
 		userDto.setZipCodeSub(zipCodeSub.orElse("登録なし"));
 		userDto.setAddress(address.get());
@@ -83,7 +83,7 @@ public class UpdateAdminUserServlet extends HttpServlet {
 			response.sendRedirect("/SampleShopping/menuadmin");
 		}else{
 			request.setAttribute("message", "そのログインIDは既に使用されています。");
-			request.getRequestDispatcher("WEB-INF/jsp/correctionadmin.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/jsp/correctionadmin.jsp").forward(request, response);
 		}
 	}
 }
