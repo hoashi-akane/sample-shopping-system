@@ -15,7 +15,7 @@ import dto.UserDto;
 /**
  * Servlet implementation class CheckAdminPasswordServlet
  */
-@WebServlet("/checkadminpassword")
+@WebServlet("/admin/checkadminpassword")
 public class CheckAdminPasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,7 +36,7 @@ public class CheckAdminPasswordServlet extends HttpServlet {
 		
 		if(adminDao.exists(userDto.getId(), inputPassword)) {
 			session.setAttribute("checkPasswordFlag", true);
-			response.sendRedirect("/SampleShopping/dispadminuserinfo");
+			response.sendRedirect("/SampleShopping/admin/dispadminuserinfo");
 		}else {
 			session.setAttribute("message", "パスワードの認証に失敗しました");
 			response.sendRedirect("/SampleShopping/menuadmin");

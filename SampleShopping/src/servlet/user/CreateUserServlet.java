@@ -60,7 +60,7 @@ public class CreateUserServlet extends HttpServlet {
 //		適切にチェックされていなければget()でExceptionを発生させる
 		userDto.setLoginId(loginId.get());
 		userDto.setPassword(userPassword.get());
-		userDto.setUserName(userPassword.get());
+		userDto.setUserName(userName.get());
 		userDto.setZipCode(zipCode.get());
 		userDto.setZipCodeSub(zipCodeSub.orElse("登録なし"));
 		userDto.setAddress(address.get());

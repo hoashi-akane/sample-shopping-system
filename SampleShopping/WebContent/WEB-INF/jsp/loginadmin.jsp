@@ -16,7 +16,7 @@
 				<p id="title2">- Admin Login -</p>
 		</div>
 
-	<form action="/SampleShopping/authadmin" method="POST">
+	<form action="admin/authadmin" method="POST">
 	<div align="center">
 		<table id="loginTable">
 			<tr>

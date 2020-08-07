@@ -21,10 +21,10 @@
 
 		<!--タイトル-->
 		<div align="center">
-				<a href="menuadmin" id="title3a"><h3 id="title3">SampleShopping</h3></a>
+				<a href="/SampleShopping/menuadmin" id="title3a"><h3 id="title3">SampleShopping</h3></a>
 				<p id="title2">- Correction -</p>
 		</div>
-	<form action="updateuser" method="post">
+	<form action="updateadminuser" method="post">
 			<div align="center">
 		   <div class="asd">
 			   <table id="gaiyou">
@@ -38,7 +38,7 @@
 		   </tr>
 		   <tr>
 			 <th align="center">パスワード</th>
-			 <td><input type="password" name="user_password" value="<%= userDto.getPassword() %>"></td>
+			 <td><input type="password" name="user_password" value=""></td>
 		   </tr>
 		   <tr>
 			 <th>郵便番号1</th>

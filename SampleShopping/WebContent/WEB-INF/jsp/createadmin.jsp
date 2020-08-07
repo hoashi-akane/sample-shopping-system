@@ -20,7 +20,7 @@
 
 		<!--タイトル-->
 		<div align="center">
-				<a href="menuadmin" id="title3a"><h3 id="title3">SampleShopping</h3></a>
+				<a href="/SampleShopping/menuadmin" id="title3a"><h3 id="title3">SampleShopping</h3></a>
 				<p id="title2">- Insert -</p>
 		</div>
 		<form action="createadmin" method="post">
@@ -74,7 +74,7 @@
 			 </tr>
 		   </table>
 		</div>
-			<a href="menuadmin" class="btn-border-bottom px-4 mr-4">戻る</a>
+			<a href="/SampleShopping/menuadmin" class="btn-border-bottom px-4 mr-4">戻る</a>
 			<input type="submit" value="登録" class="btn btn-outline-dark px-4 ml-4">
 		</div>
 		</form>

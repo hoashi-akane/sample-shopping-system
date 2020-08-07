@@ -14,7 +14,7 @@ import dto.UserDto;
 /**
  * Servlet implementation class LogoutServlet
  */
-@WebServlet("/createadmin")
+@WebServlet("/admin/createadmin")
 public class CreateAdminUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -30,7 +30,7 @@ public class CreateAdminUserServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("WEB-INF/jsp/createadmin.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/createadmin.jsp").forward(request, response);
 
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -52,7 +52,7 @@ public class CreateAdminUserServlet extends HttpServlet {
 		if(adminDao.insertAdminUser(userDto)) {
 			response.sendRedirect("/SampleShopping/menuadmin");
 		}else{
-			request.getRequestDispatcher("WEB-INF/jsp/createadmin.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/jsp/createadmin.jsp").forward(request, response);
 		}
 	}
 }

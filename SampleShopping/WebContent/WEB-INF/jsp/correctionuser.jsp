@@ -37,7 +37,7 @@
 		   </tr>
 		   <tr>
 			 <th align="center">パスワード</th>
-			 <td><input type="password" name="user_password" value="<%= userDto.getPassword() %>"></td>
+			 <td><input type="password" name="user_password" value="" required></td>
 		   </tr>
 		   <tr>
 			 <th>郵便番号1(ハイフン無し7文字)</th>
