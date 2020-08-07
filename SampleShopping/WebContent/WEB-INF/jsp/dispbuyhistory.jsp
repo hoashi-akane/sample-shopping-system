@@ -3,7 +3,9 @@
         <%@page import="java.util.*" %>
 <%@page import="dto.*" %>
 
-    <%List<BuyHistoryDto> buyHistoryList= (ArrayList<BuyHistoryDto>)request.getAttribute("buyHistoryList");%>
+    <%List<BuyHistoryDto> buyHistoryList= (ArrayList<BuyHistoryDto>)request.getAttribute("buyHistoryList");
+    int i = 0;
+    %>
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
 	<head>
@@ -26,26 +28,47 @@
 	<%for(BuyHistoryDto buyHistoryDto: buyHistoryList){ %>
 	<div class="container">
 	    <div class="row mt-4">
-	        <div class="col-md-1"></div>
-	        <div class="p-0 col-md-4 shadow-sm">
-	        </div>
-	        <div class="col-md-6 mt-3 shadow-sm">
+	        <div class="col-md-7 mx-auto mt-3 shadow-sm">
 	            <h5 class="ml-4"></h5>
 	<!--   <div class="ml-5 text-secondary"></div> -->
+				<input type="hidden" name="historyNumber" value="<%=i%>">
 	           <div class="text-danger ml-5">購入日：<c:out value="<%=buyHistoryDto.getBuyDate()%>"/></div>
-	
-                <form method="POST">
+	           <div class="text-secondary mt-2 ml-5">購入金額：<c:out value="<%=buyHistoryDto.getTotalPrice() %>"/></div>
 
-                    <div class="form-group col-md-3 mb-0">
-
-                    </div>
-                    <button type="submit" class="mb-2 float-right btn btn-outline-dark">詳細表示</button>
-                </form>
+           	<button type="button" class="mb-2 float-right btn btn-outline-dark" data-toggle="collapse" data-target="#collapse<%=i%>" aria-expanded="false" aria-controls="collapse<%=i%>">詳細表示</button>
 	        </div>
 	    </div>
 	</div>
+	<div class="container">
+	<div class="collapse col-md-7 mx-auto" id="collapse<%=i%>">
+	    <table class="table mt-0" id="cartTable">
+		  <thead>
+				<tr>
+			      <th scope="col">#</th>
+			      <th scope="col">商品名</th>
+			      <th scope="col">単価</th>
+			      <th scope="col">購入数</th>
+			       <th scope="col">小計</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% for(int j=0; j < buyHistoryDto.getGoodsDtoList().size(); j++){ %>
+				<tr>
+					<td><%= j+1 %></td>
+					<td><c:out value="<%=buyHistoryDto.getGoodsDtoList().get(j).getGoodsName() %>"/></td>
+				<td><c:out value="<%=buyHistoryDto.getDetailDtoList().get(j).getUnitPrice() %>"/></td>
+					<td><c:out value="<%=buyHistoryDto.getDetailDtoList().get(j).getVolume() %>"/></td>
+					<td><%=buyHistoryDto.getDetailDtoList().get(j).getUnitPrice() * buyHistoryDto.getDetailDtoList().get(j).getVolume() %></td>
+				</tr>
+				<% } %>
+			</tbody>
+		 </table>
+	</div>	
+	</div>
+	<% i++; %>
 	<%} %>
-
+	
+	<div align="center"><a href="menu" class="btn-border-bottom">戻る</a></div>
 
 			<!--フッター-->
 	<footer>

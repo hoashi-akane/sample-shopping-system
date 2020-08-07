@@ -14,6 +14,7 @@
        <div class="navi_item"><a href="dispgoodslistadmin">Goods</a></div>
 	   <div class="navi_item"><a href="insertgoods">CreateGoods</a></div>
 	   <div class="navi_item"><a href="#" data-toggle="modal" data-target="#accountModal">Account</a></div>
+	   <div class="navi_item"><a href="logoutadmin">Logout</a></div>
      </div>
  	</header>
  	

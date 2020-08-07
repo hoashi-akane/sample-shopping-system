@@ -15,6 +15,7 @@
 	   <div class="navi_item"><a href="dispcart">Cart</a></div>
 	   	   <div class="navi_item"><a href="dispbuyhistory">BuyHistory</a></div>
 	   <div class="navi_item"><a href="#" data-toggle="modal" data-target="#accountModal">Account</a></div>
+  	   <div class="navi_item"><a href="logout">Logout</a></div>
      </div>
  	</header>
 

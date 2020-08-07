@@ -1,6 +1,5 @@
 package dao;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,19 +9,17 @@ import dto.BuyHistoryDto;
 import dto.GoodsDto;
 
 
-
 public class BuyHistoryDao extends DaoBase{
-	
 	
 //	購入履歴一覧取得
 	public List<BuyHistoryDto> getBuyHistoryList(int userId){
 		List<BuyHistoryDto> buyHistoryDtoList = new ArrayList<BuyHistoryDto>();
 		try {
 			con = super.dbOpen();
-			stmt = this.con.prepareStatement("SELECT history.id, history.buy_date, goods.id as goods_id, goods.goods_name FROM buy_historys AS history"
+			stmt = this.con.prepareStatement("SELECT history.id, history.buy_date, goods.id as goods_id, goods.goods_name, detail.volume, detail.unit_price FROM buy_historys AS history"
 					+ " INNER JOIN buy_history_details AS detail ON history.id = detail.buy_history_id"
 					+ " LEFT JOIN goods AS goods ON detail.goods_id = goods.id WHERE user_id=?"
-					+ " group by history.id, history.buy_date, goods_id, goods.goods_name");
+					+ " group by history.id, history.buy_date, goods_id, goods.goods_name, detail.volume, detail.unit_price");
 			stmt.setInt(1, userId);
 			ResultSet rs = stmt.executeQuery();
 			buyHistoryDtoList = buyHistoryToDto(rs);
@@ -118,9 +115,11 @@ public class BuyHistoryDao extends DaoBase{
 			boolean flag = rs.next();
 			while(flag) {
 				List<GoodsDto> goodsDtoList = new ArrayList<GoodsDto>();
+				List<BuyHistoryDetailDto> buyHistoryDetailDtoList = new ArrayList<BuyHistoryDetailDto>();
 				BuyHistoryDto buyHistoryDto =new BuyHistoryDto();
 				buyHistoryDto.setId(rs.getInt("id"));
 				buyHistoryDto.setBuyDate(rs.getDate("buy_date"));
+				int totalPrice = 0;
 				while(flag) {
 //					1回目は必ずtrue
 					if(buyHistoryDto.getId() == rs.getInt("Id")) {
@@ -128,18 +127,27 @@ public class BuyHistoryDao extends DaoBase{
 						int goodsId = rs.getInt("goods_id");
 						String goodsName = rs.getString("goods_name");
 						if(goodsId == 0) {
-							goodsName="商品削除済み";
+							goodsName="削除済み商品";
 						}
 	
 						goodsDto.setId(goodsId);
 						goodsDto.setGoodsName(goodsName);
 						
+						BuyHistoryDetailDto buyHistoryDetailDto = new BuyHistoryDetailDto();
+						buyHistoryDetailDto.setUnitPrice(rs.getInt("unit_price"));
+						buyHistoryDetailDto.setVolume(rs.getInt("volume"));
+						
+						totalPrice+= buyHistoryDetailDto.getUnitPrice() * buyHistoryDetailDto.getVolume();
+
 						goodsDtoList.add(goodsDto);
+						buyHistoryDetailDtoList.add(buyHistoryDetailDto);
 //						rs.next()をするのはここのみ（idが同じ限りrs.next()を、異なればdtoListに追加してbreakさせる。)
 //						データがなくならない限りtrue
 						flag = rs.next();
 					}else {
 						buyHistoryDto.setGoodsDtoList(goodsDtoList);
+						buyHistoryDto.setDetailDtoList(buyHistoryDetailDtoList);
+						buyHistoryDto.setTotalPrice(totalPrice);
 						buyHistoryDtoList.add(buyHistoryDto);
 						break;
 					}

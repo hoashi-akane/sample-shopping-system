@@ -32,9 +32,7 @@ public class LogoutAdminServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
     	session.invalidate();
-		RequestDispatcher dis=request.getRequestDispatcher("WEB-INF/jsp/login.jsp");
-		dis.forward(request, response);
-
+    	response.sendRedirect("/SampleShopping/loginadmin");
 	}
 
 }

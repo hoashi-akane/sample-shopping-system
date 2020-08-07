@@ -29,15 +29,11 @@ super();
 */
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 // セッションを取得.
-	HttpSession session = request.getSession( false );
-
-	if ( null != session ) {
+	HttpSession session = request.getSession();
 		// セッションを終了.
-		session.invalidate();
-	}
-
-	// トップページへ遷移(リダイレクト).
-	response.sendRedirect( "/munu" );
+	session.invalidate();
+	// ログイン画面へ遷移(リダイレクト).
+	response.sendRedirect("/SampleShopping/login");
 }
 
 /**
