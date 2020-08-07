@@ -4,7 +4,7 @@
 <%@page import="dto.*" %>
 <%
 GoodsDto goodsDto= (GoodsDto)request.getAttribute("goodsDto");
-String action=""; 
+String action="";
 ArrayList<BrandDto> brandDtoList = (ArrayList<BrandDto>)request.getAttribute("brandDtoList");
 ArrayList<CategoryDto> categoryDtoList = (ArrayList<CategoryDto>)request.getAttribute("categoryDtoList");
 %>
@@ -34,20 +34,20 @@ ArrayList<CategoryDto> categoryDtoList = (ArrayList<CategoryDto>)request.getAttr
 		   		<table id="gaiyou">
 					<tr>
 					 <th>商品名</th>
-					 <td><input class="form-control" type="text" name="goods_name" value="<%=goodsDto.getGoodsName()%>"></td>
+					 <td><input class="form-control" type="text" name="goods_name" value="<%=goodsDto.getGoodsName()%>" maxlength="100" required></td>
 				   </tr>
-		
+
 				   <tr>
 					 <th align="center">値段</th>
-				   <td><input class="form-control" type="number" name="price" value="<%=goodsDto.getPrice()%>"></td>
+				   <td><input class="form-control" type="number" name="price" value="<%=goodsDto.getPrice()%>" maxlength="8" required></td>
 				   </tr>
 				   <tr>
 					 <th align="center">在庫数</th>
-					 <td><input class="form-control" type="number" name="stock" value="<%=goodsDto.getStock()%>"></td>
+					 <td><input class="form-control" type="number" name="stock" value="<%=goodsDto.getStock()%>" maxlength="7" required></td>
 				   </tr>
 				   <tr>
 					 <th>説明文</th>
-					 <td><textarea class="form-control" name="description" cols="50" rows="7" id="textbox"><%=goodsDto.getDescription()%></textarea></td>
+					 <td><textarea class="form-control" name="description" cols="50" rows="7" id="textbox" maxlength="300" required><%=goodsDto.getDescription()%></textarea></td>
 				   </tr>
 				   <tr>
 					 <th>カテゴリー</th>
@@ -81,7 +81,7 @@ ArrayList<CategoryDto> categoryDtoList = (ArrayList<CategoryDto>)request.getAttr
      </form>
 
 	<!--フッター-->
-				
+
 	<footer>
 	<small id="footer">Copyright&copy;Kadai Website,all rightsreserved.</small>
 	</footer>
