@@ -27,54 +27,56 @@
 	</div>
 
 	<div align="center">
-   <div class="asd">
-	   <table id="gaiyou">
+   <div class="asd col-xs-12 col-md-5 md-offset-1">
+   <table class="table table-active">
    <tr>
-	 <th align="center">お名前</th>
-	 <td><c:out value="<%=userDto.getUserName()%>"/></td>
+	 <th class="mr-4" style="width:30%;">お名前</th>
+	     <td><c:out value="<%=userDto.getUserName()%>"/></td>
    </tr>
    <tr>
-	 <th align="center">ID</th>
-   <td><c:out value="<%=userDto.getId()%>"/></td>
+	 <th>ログインID</th>
+	      <td><c:out value="<%=userDto.getId()%>"/></td>
    </tr>
    <tr>
-	 <th align="center">パスワード</th>
-	 <td><c:out value="<%=userDto.getPassword()%>"/></td>
+	 <th>パスワード</th>
+	    	 <td><c:out value="<%=userDto.getPassword()%>"/></td>
    </tr>
    <tr>
-	 <th>郵便番号1</th>
-	 <td><c:out value="<%=userDto.getZipCode()%>"/></td>
+	 <th>郵便番号</th>
+	    	 <td><c:out value="<%=userDto.getZipCode()%>"/></td>
    </tr>
    <tr>
-	 <th>住所１</th>
-	 <td><c:out value="<%=userDto.getAddress()%>"/></td>
+	 <th>住所</th>
+	    	 <td><c:out value="<%=userDto.getAddress()%>"/></td>
    </tr>
    <tr>
      <tr>
-	 <th>郵便番号2</th>
-	 <td><c:out value="<%=userDto.getZipCodeSub()%>"/></td>
+	 <th>郵便番号(サブ)</th>
+	    	 <td><c:out value="<%=userDto.getZipCodeSub()%>"/></td>
    </tr>
-	 <th>住所２</th>
-	 <td><c:out value="<%=userDto.getAddressSub()%>"/></td>
+   <tr>
+	 <th>住所(サブ)</th>
+	    	 <td><c:out value="<%=userDto.getAddressSub()%>"/></td>
    </tr>
     <tr>
    	 <th>電話番号</th>
-   	 <td><c:out value="<%=userDto.getTel()%>"/></td>
+   	        	 <td><c:out value="<%=userDto.getTel()%>"/></td>
     </tr>
 	<tr>
 	 <th>メールアドレス</th>
-	 <td><c:out value="<%=userDto.getMailAddress()%>"/></td>
+	 		 <td><c:out value="<%=userDto.getMailAddress()%>"/></td>
 	</tr>
 	 <tr>
 	  <th>性別</th>
-	  <td><c:out value="<%=userDto.getGender()%>"/></td>
+	  	 	  <td><c:out value="<%=userDto.getGender()%>"/></td>
 	 </tr>
    </table>
 </div>
 
+
 	<a href="updateuser" class="btn-border-bottom" id="accountbtn">変更</a>
 	<a href="#" class="btn-border-bottom" data-toggle="modal" data-target="#drawModal">退会</a>
-	
+
 	<!-- Modal -->
 	<div class="modal fade" id="drawModal" tabindex="-1" role="dialog" aria-labelledby="drawModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
