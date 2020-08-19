@@ -6,6 +6,9 @@
 <% 
 	String clientSecret = (String)request.getAttribute("clientSecret");
 	ArrayList<HashMap<String, String>> cardInfoList = (ArrayList<HashMap<String, String>>)request.getAttribute("cardInfoList");
+	if(cardInfoList == null){
+		cardInfoList = new ArrayList<HashMap<String, String>>();
+	}
 	UserDto userDto =(UserDto)session.getAttribute("userDto");
 	int totalPrice = (int)request.getAttribute("totalPrice");
 %>
@@ -15,15 +18,15 @@
 	<meta charset="utf-8">
 	<title>SampleShopping</title>
 	<%@include file="head.jsp" %>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 	<script src="https://js.stripe.com/v3/"></script>
 	
 </head>
 <body class="payment-font">
+<%@include file="userheader.jsp" %>
+
 <!--タイトル-->
 	<div align="center">
-			<a href="top.html" id="title3a"><h3 id="title3">SampleShopping</h3></a>
+			<h3 id="title3">SampleShopping</h3>
 			<p id="title2">- Cart -</p>
 	</div>
 	<div class="col-md-5  mx-auto text-center payment-border">
@@ -46,10 +49,10 @@
 			<p class="text-secondary"><c:out value="<%= totalPrice %>"/>円</p>
 		</div>
 		<div class="form-group">
-			<label class="w-50" for="exampleSelect1exampleFormControlSelect1" id="cardLabel"><button class="btn w-100" id="checkBtn">登録されたカードを利用する方</button></label>
+			<label class="w-50" for="exampleSelect1exampleFormControlSelect1" id="cardLabel"><button class="btn btn-light w-100" id="checkBtn">登録されたカードを利用</button></label>
 			<form action="/SampleShopping/paymentcharge" method="post" id="cardForm">
 			<select class="mt-1 mb-3 form-control d-none" name="cardId" id="cardSelect">
-				<option>カードを選択</option>
+				<option id="defaultCard" value="noSelected">カードを選択</option>
 					<% for(HashMap<String,String> cardInfo : cardInfoList){ %>
 					<option value="<%= cardInfo.get("id") %>">
 					発行元：<%= cardInfo.get("cardBrand") %>　下４桁：<%= cardInfo.get("numberLastFour") %>
@@ -63,8 +66,8 @@
 			
 			<!-- We'll put the error messages in this element -->
 			<div id="card-errors" role="alert"></div>
-			<button id="inputCardBtn" type="submit" class="btn d-none w-50" form="cardForm">Pay</button>
-			<button id="submit" class="btn w-50">Pay</button>
+			<button id="inputCardBtn" type="submit" class="btn btn-primary d-none w-50" form="cardForm">Pay</button>
+			<button id="submit" class="btn btn-primary w-50">Pay</button>
 		</div>
 	</div>
 
@@ -105,7 +108,7 @@ document.getElementById("submit").onclick= function() {
 		}).then(function(result) {
 		  if (result.error) {
 		    // Show error to your customer
-			alert('エラー');
+			alert('カード情報を正しく入力してください。');
 		    console.log(result.error.message);
 		  } else {
 		    if (result.paymentIntent.status === 'succeeded') {
@@ -131,16 +134,95 @@ document.getElementById("cardLabel").onclick= function(){
 	var button = document.getElementById("checkBtn");
 	var stripeBtn = document.getElementById("submit");
 	var cardInputBtn = document.getElementById("inputCardBtn");
+	/* ボタン入れ替え */
 	stripeBtn.classList.toggle("d-none");
 	cardInputBtn.classList.toggle("d-none");
 	cardSelect.classList.toggle("d-none");
 	cardElement.classList.toggle("d-none");
-	if(button.innerHTML == "登録されたカードを利用する方"){
-		button.innerHTML = "カードの情報を入力する方";
+	/* ボタンの値変更とカードが選択されているか判別 */
+	if(button.innerHTML == "登録されたカードを利用"){
+		button.innerHTML = "カードの情報を入力";
+		if(document.getElementById("cardSelect").value == "noSelected"){
+			document.getElementById("inputCardBtn").disabled = true;
+		}
 	}else{
-		button.innerHTML = "登録されたカードを利用する方";
+		button.innerHTML = "登録されたカードを利用";
 	}
 }
+/* カードが選択、変更された場合選ばれたか都度チェックさせる */
+document.getElementById("cardSelect").onchange = function(){
+	var cardId = this;
+	if(cardId.value == "noSelected"){
+		document.getElementById("inputCardBtn").disabled = true;
+	}else{
+		document.getElementById("inputCardBtn").disabled = false;
+	}
+}
+
+<!--メニュのjQuery-->
+<!--CDNでjQuery読み込む-->
+	//変数定義
+var navigationOpenFlag = false;
+var navButtonFlag = true;
+var focusFlag = false;
+
+//ハンバーガーメニュー
+$(function(){
+  $(document).on('click','.el_humburger',function(){
+    if(navButtonFlag){
+      spNavInOut.switch();
+      //一時的にボタンを押せなくする
+      setTimeout(function(){
+        navButtonFlag = true;
+      },200);
+      navButtonFlag = false;
+    }
+  });
+  $(document).on('click touchend', function(event) {
+    if (!$(event.target).closest('.bl_header,.el_humburger').length && $('body').hasClass('js_humburgerOpen') && focusFlag) {
+      focusFlag = false;
+      //scrollBlocker(false);
+      spNavInOut.switch();
+    }
+  });
+});
+
+//ナビ開く処理
+function spNavIn(){
+  $('body').removeClass('js_humburgerClose');
+  $('body').addClass('js_humburgerOpen');
+  setTimeout(function(){
+    focusFlag = true;
+  },200);
+  setTimeout(function(){
+    navigationOpenFlag = true;
+  },200);
+}
+
+//ナビ閉じる処理
+function spNavOut(){
+  $('body').removeClass('js_humburgerOpen');
+  $('body').addClass('js_humburgerClose');
+  setTimeout(function(){
+    $(".uq_spNavi").removeClass("js_appear");
+    focusFlag = false;
+  },200);
+  navigationOpenFlag = false;
+}
+
+//ナビ開閉コントロール
+var spNavInOut = {
+  switch:function(){
+    if($('body.spNavFreez').length){
+      return false;
+    }
+    if($('body').hasClass('js_humburgerOpen')){
+     spNavOut();
+    } else {
+     spNavIn();
+    }
+  }
+};
 
 </script>
 </html>
