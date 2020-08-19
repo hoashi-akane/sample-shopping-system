@@ -66,7 +66,7 @@ public class PaymentServlet extends HttpServlet {
 			session.setAttribute("paymentIntentId", paymentIntent.getId());
 			request.setAttribute("totalPrice", totalPrice);
 			request.setAttribute("clientSecret", paymentIntent.getClientSecret());
-			request.getRequestDispatcher("WEB-INF/jsp/payment.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/jsp/payment.jsp").forward(request, response);
 		}else {
 			session.setAttribute("message", "商品をカートに追加してください");
 			response.sendRedirect("/SampleShopping/dispcart");
@@ -81,7 +81,7 @@ public class PaymentServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		UserDto userDto = (UserDto)session.getAttribute("userDto");
 		String paymentIntentId = (String)session.getAttribute("paymentIntentId");
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/paymentstatus.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/paymentstatus.jsp");
 //		セッションの値チェック
 		if(paymentIntentId == null) {
 			request.setAttribute("message", "不正なアクセスを検知しました。");

@@ -40,11 +40,12 @@ public class DispBuyHistoryServlet extends HttpServlet {
     	HttpSession session = request.getSession();
 		UserDto userDto = (UserDto)session.getAttribute("userDto");
 		int id = userDto.getId();
-
+		
 		buyHistoryList = buyHistoryDao.getBuyHistoryList(id);
+
 		if(buyHistoryList != null) {
 		request.setAttribute("buyHistoryList", buyHistoryList);
-		request.getRequestDispatcher("WEB-INF/jsp/dispbuyhistory.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/dispbuyhistory.jsp").forward(request, response);
 		}
 	}
 }
