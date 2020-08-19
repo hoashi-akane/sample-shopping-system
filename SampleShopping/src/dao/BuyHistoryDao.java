@@ -18,8 +18,7 @@ public class BuyHistoryDao extends DaoBase{
 			con = super.dbOpen();
 			stmt = this.con.prepareStatement("SELECT history.id, history.buy_date, goods.id as goods_id, goods.goods_name, detail.volume, detail.unit_price FROM buy_historys AS history"
 					+ " INNER JOIN buy_history_details AS detail ON history.id = detail.buy_history_id"
-					+ " LEFT JOIN goods AS goods ON detail.goods_id = goods.id WHERE user_id=?"
-					+ " group by history.id, history.buy_date, goods_id, goods.goods_name, detail.volume, detail.unit_price");
+					+ " LEFT JOIN goods AS goods ON detail.goods_id = goods.id WHERE user_id=?");
 			stmt.setInt(1, userId);
 			ResultSet rs = stmt.executeQuery();
 			buyHistoryDtoList = buyHistoryToDto(rs);
@@ -77,7 +76,7 @@ public class BuyHistoryDao extends DaoBase{
 		Integer id = null;
 		try {
 			con = super.dbOpen();
-			stmt = this.con.prepareStatement("SELECT id FROM buy_historys WHERE user_id = ? AND buy_date = ?");
+			stmt = this.con.prepareStatement("SELECT id FROM buy_historys WHERE user_id = ? AND buy_date = ? ORDER BY id DESC Limit 1");
 			stmt.setInt(1, buyHistoryDto.getUserId());
 			stmt.setDate(2, new java.sql.Date(buyHistoryDto.getBuyDate().getTime()));
 			ResultSet rs = stmt.executeQuery();
@@ -144,6 +143,12 @@ public class BuyHistoryDao extends DaoBase{
 //						rs.next()をするのはここのみ（idが同じ限りrs.next()を、異なればdtoListに追加してbreakさせる。)
 //						データがなくならない限りtrue
 						flag = rs.next();
+						if(flag == false) {
+							buyHistoryDto.setGoodsDtoList(goodsDtoList);
+							buyHistoryDto.setDetailDtoList(buyHistoryDetailDtoList);
+							buyHistoryDto.setTotalPrice(totalPrice);
+							buyHistoryDtoList.add(buyHistoryDto);
+						}
 					}else {
 						buyHistoryDto.setGoodsDtoList(goodsDtoList);
 						buyHistoryDto.setDetailDtoList(buyHistoryDetailDtoList);
@@ -152,6 +157,7 @@ public class BuyHistoryDao extends DaoBase{
 						break;
 					}
 				}
+
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
