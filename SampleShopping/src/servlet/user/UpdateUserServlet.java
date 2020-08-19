@@ -71,7 +71,7 @@ public class UpdateUserServlet extends HttpServlet {
 		userDto.setId(id);
 		userDto.setLoginId(loginId.get());
 		userDto.setPassword(userPassword.get());
-		userDto.setUserName(userPassword.get());
+		userDto.setUserName(userName.get());
 		userDto.setZipCode(zipCode.get());
 		userDto.setZipCodeSub(zipCodeSub.orElse("登録なし"));
 		userDto.setAddress(address.get());
