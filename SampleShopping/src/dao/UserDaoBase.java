@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 
 import dto.UserDto;
 
@@ -97,11 +98,13 @@ public class UserDaoBase extends DaoBase{
 			userDto.setLoginId(rs.getString("login_id"));
 			userDto.setUserName(rs.getString("user_name"));
 			userDto.setZipCode(rs.getString("zip_code"));
+			userDto.setZipCodeSub(Optional.ofNullable(rs.getString("zip_code_sub")).orElse(""));
 			userDto.setAddress(rs.getString("address"));
-			userDto.setAddressSub(rs.getString("address_sub"));
+			userDto.setAddressSub(Optional.ofNullable(rs.getString("address_sub")).orElse(""));
 			userDto.setTel(rs.getString("tel"));
 			userDto.setGender(rs.getByte("gender"));
 			userDto.setAdmin(rs.getBoolean("is_admin"));
+			userDto.setMailAddress(rs.getString("mail_address"));
 		} catch (SQLException e) {
 			userDto = null;
 			e.printStackTrace();

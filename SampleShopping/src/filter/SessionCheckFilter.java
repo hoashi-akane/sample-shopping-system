@@ -46,7 +46,6 @@ public class SessionCheckFilter implements Filter {
 
 		String name = ((HttpServletRequest)request).getServletPath();
 		StringBuffer sb = ((HttpServletRequest)request).getRequestURL();
-		System.out.println(name);
 // ログイン前
 		if( sb.toString().contains(".PNG") || sb.toString().contains(".png") || sb.toString().contains(".jpeg") || sb.toString().contains(".jpg") || name.equals("/createuser") || name.equals("/login") || name.equals("/auth") || name.equals("/loginadmin") || name.equals("/admin/authadmin")) {
 			chain.doFilter(request, response);

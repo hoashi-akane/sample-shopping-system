@@ -4,6 +4,9 @@
 
 <%@page import="dto.*" %>
 <% List<CartDto> cartDtoList = (ArrayList<CartDto>)request.getAttribute("cartDtoList");
+if(cartDtoList == null){
+	cartDtoList = new ArrayList<CartDto>();
+}
 String message = (String)request.getAttribute("message");
 int i =1;
 int totalPrice = 0;

@@ -66,7 +66,7 @@ public class PaymentServlet extends HttpServlet {
 			session.setAttribute("paymentIntentId", paymentIntent.getId());
 			request.setAttribute("totalPrice", totalPrice);
 			request.setAttribute("clientSecret", paymentIntent.getClientSecret());
-			request.getRequestDispatcher("WEB-INF/jsp/payment.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/jsp/payment.jsp").forward(request, response);
 		}else {
 			session.setAttribute("message", "商品をカートに追加してください");
 			response.sendRedirect("/SampleShopping/dispcart");
@@ -81,7 +81,7 @@ public class PaymentServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		UserDto userDto = (UserDto)session.getAttribute("userDto");
 		String paymentIntentId = (String)session.getAttribute("paymentIntentId");
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/jsp/paymentstatus.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/paymentstatus.jsp");
 //		セッションの値チェック
 		if(paymentIntentId == null) {
 			request.setAttribute("message", "不正なアクセスを検知しました。");
@@ -96,7 +96,7 @@ public class PaymentServlet extends HttpServlet {
 			return;
 		}
 //		購入履歴登録ファサードとカート情報削除処理を行う
-		if(buyHistoryService.insertBuyHistoryFasade(userDto) && cartDao.deleteCarts(userDto.getId())) {
+		if( buyHistoryService.insertBuyHistoryFasade(userDto) && cartDao.deleteCarts(userDto.getId())) {
 			request.setAttribute("message", "購入が完了しました。");
 		}else {
 			request.setAttribute("message", "購入処理後にエラーが発生しました。");
