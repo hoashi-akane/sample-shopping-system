@@ -96,7 +96,7 @@ public class PaymentServlet extends HttpServlet {
 			return;
 		}
 //		購入履歴登録ファサードとカート情報削除処理を行う
-		if(buyHistoryService.insertBuyHistoryFasade(userDto) && cartDao.deleteCarts(userDto.getId())) {
+		if( buyHistoryService.insertBuyHistoryFasade(userDto) && cartDao.deleteCarts(userDto.getId())) {
 			request.setAttribute("message", "購入が完了しました。");
 		}else {
 			request.setAttribute("message", "購入処理後にエラーが発生しました。");
