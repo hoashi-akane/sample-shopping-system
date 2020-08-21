@@ -28,6 +28,8 @@ ArrayList<CategoryDto> categoryDtoList = (ArrayList<CategoryDto>)request.getAttr
 
 
 	<form action="/SampleShopping/insertgoods" method="post"  onsubmit="return input_check();" enctype="multipart/form-data" name="form">
+		
+		 <input class="form-control" type="hidden" name="stock" value="0" maxlength="7" required>
 		<div align="center">
 		   <div class="asd">
 		   <table class="mt-5" id="gaiyou">
@@ -53,12 +55,7 @@ ArrayList<CategoryDto> categoryDtoList = (ArrayList<CategoryDto>)request.getAttr
 			 <th align="center">値段</th>
 		   <td><input class="form-control" type="number" name="price" maxlength="8" required></td>
 		   </tr>
-		   <tr>
-			 <th align="center">在庫数</th>
-			 <td><input class="form-control" type="number" name="stock" maxlength="7" required></td>
-		   </tr>
-		   <tr>
-			 <th>説明文</th>
+		   <th>説明文</th>
 			 <td><textarea class="form-control" name="description" cols="50" rows="7" id="textbox" maxlength="300" required></textarea></td>
 		   </tr>
 		   <tr>

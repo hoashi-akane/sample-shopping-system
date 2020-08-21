@@ -29,6 +29,7 @@ ArrayList<CategoryDto> categoryDtoList = (ArrayList<CategoryDto>)request.getAttr
 		<p id="title2">- CreateGoods -</p>
 	</div>
 	<form class="mt-5" action ="updategoods" method="post">
+		<input class="form-control" type="hidden" name="stock" value="0" maxlength="7" required>		   
 		<div align="center">
 	   		<div class="asd">
 		   		<table id="gaiyou">
@@ -36,14 +37,9 @@ ArrayList<CategoryDto> categoryDtoList = (ArrayList<CategoryDto>)request.getAttr
 					 <th>商品名</th>
 					 <td><input class="form-control" type="text" name="goods_name" value="<%=goodsDto.getGoodsName()%>" maxlength="100" required></td>
 				   </tr>
-
 				   <tr>
 					 <th align="center">値段</th>
 				   <td><input class="form-control" type="number" name="price" value="<%=goodsDto.getPrice()%>" maxlength="8" required></td>
-				   </tr>
-				   <tr>
-					 <th align="center">在庫数</th>
-					 <td><input class="form-control" type="number" name="stock" value="<%=goodsDto.getStock()%>" maxlength="7" required></td>
 				   </tr>
 				   <tr>
 					 <th>説明文</th>

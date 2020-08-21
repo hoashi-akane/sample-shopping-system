@@ -46,11 +46,11 @@
 			</tr>
 			<tr class="mt-2">
 				<td id="goodsName">値段：<c:out value="<%=goodsDto.getPrice()%>"/></td>
-				<td id="goodsName">在庫量：<c:out value="<%=goodsDto.getStock()%>"/></td>
+<!--  			<td id="goodsName">在庫量：<c:out value="<%=goodsDto.getStock()%>"/></td> -->
 			</tr>
 			<tr>	
-			<td id="goodsName">数量</td>
-				<td>
+			<td class="pr-0" id="goodsName">数量</td>
+				<td class="pl-0">
 					<select name="volume">
 						<option value="1" selected>1</option>
 						<option value="2">2</option>
@@ -78,7 +78,7 @@
 				<td></td>
 				<td>
 				<% if(!userDto.isAdmin()){%>
-				<input class="btn" type="submit" value="カートに追加">
+				<input class="btn btn-outline-dark" type="submit" value="カートに追加">
 				<%} %>
 				</td>
 			</tr>

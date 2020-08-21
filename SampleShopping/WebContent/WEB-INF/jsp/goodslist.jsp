@@ -45,7 +45,7 @@
       		 <input type="hidden" name="goods_id" value="<%=goodsDto.getId() %>">
             <h5 class="ml-4"><a href="dispgoodsdetail?id=<%=goodsDto.getId() %>"><c:out value="<%=goodsDto.getGoodsName()%>"/></a></h5>
             <div class="ml-5 text-secondary">価格：¥<c:out value="<%=goodsDto.getPrice()%>"/></div>
-            <div class="text-danger ml-5">在庫数：<c:out value="<%=goodsDto.getStock()%>"/>個</div>
+         <!--    <div class="text-danger ml-5">在庫数：<c:out value="<%=goodsDto.getStock()%>"/>個</div>  -->
                         <div class="text-danger ml-5"><select name="volume">
 							<option value="1" selected>1</option>
 							<option value="2">2</option>
