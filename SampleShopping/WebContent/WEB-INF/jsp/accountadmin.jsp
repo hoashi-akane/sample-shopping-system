@@ -26,11 +26,11 @@
 		<p id="title2">- Account -</p>
 	</div>
 <form action ="admin/updateadminuser" method ="post">
-	<div align="center">
-   <div class="asd">
-	   <table id="gaiyou">
+		<div align="center">
+   <div class="asd col-xs-12 col-md-5 md-offset-1">
+   <table class="table table-active">
    <tr>
-	 <th align="center">お名前</th>
+	 <th  class="mr-4" style="width:30%;">お名前</th>
 	 <td><c:out value="<%=userDto.getUserName()%>"/></td>
    </tr>
    <tr>
@@ -42,19 +42,19 @@
 	 <td><c:out value="<%=userDto.getPassword()%>"/></td>
    </tr>
    <tr>
-	 <th>郵便番号１</th>
+	 <th>郵便番号</th>
 	 <td><c:out value="<%=userDto.getZipCode()%>"/></td>
    </tr>
-   <tr>
-	 <th>郵便番号２</th>
-	 <td><c:out value="<%=userDto.getZipCodeSub()%>"/></td>
-   </tr>
-   <tr>
-	 <th>住所１</th>
+      <tr>
+	 <th>住所</th>
 	 <td><c:out value="<%=userDto.getAddress()%>"/></td>
    </tr>
    <tr>
-	 <th>住所２</th>
+	 <th>郵便番号(サブ)</th>
+	 <td><c:out value="<%=userDto.getZipCodeSub()%>"/></td>
+   </tr>
+   <tr>
+	 <th>住所(サブ)</th>
 	 <td><c:out value="<%=userDto.getAddressSub()%>"/></td>
    </tr>
     <tr>
@@ -78,7 +78,7 @@
 <div>
 
 </div>
-	
+
 	<!-- Modal -->
 	<div class="modal fade" id="drawModal" tabindex="-1" role="dialog" aria-labelledby="drawModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
